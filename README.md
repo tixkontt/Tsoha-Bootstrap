@@ -7,6 +7,8 @@ Yleisiä linkkejä:
 
 ## Työn aihe
 
-Tön aihe on Matkustustiedot
+Työn aihe on Matkustustiedot visuaalisesti
+
 Ohjelma tulee olemaan samankaltainen kuin ulkoministeriön matkustusilmoitustietokanta.
+Matkustaja täyttää matkustusilmoituksen ja käyttäjä voi selailla ilmoituksia.
 [linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Pokemon-kanta.html) 
