@@ -2,7 +2,7 @@
 
 Yleisiä linkkejä:
 
-* [Linkki sovellukseeni](https://www.cs.helsinki.fi)
+* [Linkki sovellukseeni](https://tixkontt.users.cs.helsinki.fi/Tietokantalabra/)
 * [Linkki dokumentaatiooni](https://www.github.com)
 
 ## Työn aihe
