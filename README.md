@@ -10,7 +10,7 @@ Yleisiä linkkejä:
 Työn aihe on Matkustustiedot visuaalisesti
 
 Ohjelma tulee olemaan samankaltainen kuin ulkoministeriön matkustusilmoitustietokanta.
-Matkustaja täyttää matkustusilmoituksen ja käyttäjä sekä ministeriön kriisipäivystäjä voivat selailla ilmoituksia.
+Matkustaja täyttää matkustusilmoituksen, jonka jälkeen sekä käyttäjä että ministeriön kriisipäivystäjä voivat selailla ilmoituksia.
 
 [linkki valmiiseen aiheeseen](http://tixkontt.users.cs.helsinki.fi/SuomalaisetMaailmalla/)
 
