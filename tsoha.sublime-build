@@ -1,0 +1,4 @@
+{
+	"cmd": ["bash","/tixkontt.users.cs.helsinki.fi/Tietokantalabra/Tsoha-Bootstrap/deploy.sh"],
+	"selector" : "source.shell"
+}

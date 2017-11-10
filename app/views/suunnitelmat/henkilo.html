@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Matkustajan tiedot</h1>
+<!-- Painikkeet tähän -->
+
+ <h3>Painikkeet</h3>
+  <button class="btn btn-info">Hae</button>
+  <button class="btn btn-default">Lisää</button>
+  <button class="btn btn-primary">Muokkaa</button>
+  <button class="btn btn-success">Tallenna</button>
+  <button class="btn btn-danger">Poista</button>
+
+  <h1>Tekstikentät</h1>
+  Etunimet*:<br><input type="text" placeholder="Etunimet"> <br>
+  Sukunimi*:<br><input type="text" placeholder="Sukunimi"><br>
+  Syntymäaika*:<br><input type="text" placeholder="pp.kk.vvvv"><br>
+  Sukupuoli*: 
+  <form>  
+  <input type="radio" name="gender" value="mies" checked> Mies<br>
+  <input type="radio" name="gender" value="nainen"> Nainen<br>
+  <input type="radio" name="gender" value="tuntematon"> En ilmoita
+</form>
+
+  Kansalaisuus*:<br><input type="text" placeholder="Kansalaisuus"><br>
+  matkapuhelin:<br><input type="text" placeholder="Matkapuhelin"><br>
+  Sähköposti:<br><input type="email" placeholder="Sähköposti"><br>
+<br>
+
+<!-- Tiedot tulee listana tähän -->
+<ul>
+    <li>Kun haet tietoja, täytä haluamasi kohdat ja paina Hae-painiketta</li>
+    <li>Kun lisäät tietoja, täytä haluamasi kohdat ja paina Lisää-painiketta</li>
+    <li>Kun haluat muokata tietoja, hae muokattavat tiedot,täytä haluamasi kohdat ja paina Tallenna-painiketta</li>
+    <li>Kun haluat poistaa tietoja, hae ensin tiedot ja paina Poista-painiketta</li>
+    
+</ul>
+<!-- Kuvaus tulee tähän -->
+<p>
+   Kuvaus tähän...
+</p>
+{% endblock %}
