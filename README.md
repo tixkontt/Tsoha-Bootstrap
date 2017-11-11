@@ -1,4 +1,4 @@
-# Tietokantasovelluksen esittelysivu
+helposti# Tietokantasovelluksen esittelysivu
 
 Yleisiä linkkejä:
 
@@ -11,9 +11,9 @@ Yleisiä linkkejä:
 
 ## Työn aihe
 
-Työn aihe on Matkustustiedot visuaalisesti
+Työn aihe on Matkustustiedot helpostiti
 
 Ohjelma tulee olemaan samankaltainen kuin ulkoministeriön matkustusilmoitustietokanta.
 Matkustaja täyttää matkustusilmoituksen ja käyttäjä sekä ministeriön kriisipäivystäjä voivat selailla ilmoituksia.
 ##[linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Pokemon-kanta.html) 
-[linkki valmiiseen aiheeseen](http://tixkontt.users.cs.helsinki.fi/SuomalaisetMaailmalla/)
+[linkki valmiiseen aiheeseen](http://tixkontt.users.cs.helsinki.fi/Tietokantalabra/)
