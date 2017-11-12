@@ -10,7 +10,8 @@ CREATE TABLE henkilo(
 	);
 
 CREATE TABLE matkakohde(
-	id SERIAL PRIMARY KEY, 
+	id SERIAL PRIMARY KEY,
+	matkustaja INTEGER REFERENCES henkilo(id), 
 	country varchar(50) NOT NUll,
 	arrivalDate date NOT null,
 	departureDate date NOT null,
@@ -19,14 +20,13 @@ CREATE TABLE matkakohde(
 	city varchar(30)
 	);
 
---CREATE TABLE maa(
---id integer SERIAL PRIMARY KEY, 
---country varchar(50) NOT NULL
+CREATE TABLE maa(
+	id SERIAL PRIMARY KEY, 
+        country varchar(50) NOT NULL
+	);
 
---);
-
---CREATE TABLE JOINTABLE(
---id integer SERIAL PRIMARY KEY,
---FOREIGN KEY (countryKey) REFERENCES maa (id),
---FOREIGN KEY (henkiloId) REFERENCES henkilo (id)
---);
+CREATE TABLE JOINTABLE(
+	id SERIAL PRIMARY KEY,
+	FOREIGN KEY (countryKey) REFERENCES maa (id),
+	FOREIGN KEY (henkiloId) REFERENCES henkilo (id)
+	);
