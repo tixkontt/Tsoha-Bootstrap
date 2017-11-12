@@ -1,11 +1,11 @@
 !/bin/bash
 
 # korvaa tämä omalla käyttäjätunnuksellasi
-<<<<<<< HEAD
-USERNAME="tixkontt"
+#<<<<<<< HEAD
+#USERNAME="tixkontt"
 # korvaa tämä haluamallasi kansion nimellä
-PROJECT_FOLDER="Tietokantalabra"
-=======
+#PROJECT_FOLDER="Tietokantalabra"
+#=======
 USERNAME="tixkontt"
 # korvaa tämä haluamallasi kansion nimellä
 PROJECT_FOLDER="Tietokantalabra"
