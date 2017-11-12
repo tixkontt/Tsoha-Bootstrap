@@ -11,7 +11,7 @@ CREATE TABLE henkilo(
 
 CREATE TABLE matkakohde(
 	id SERIAL PRIMARY KEY,
-	matkustaja INTEGER REFERENCES henkilo(id), 
+	matkustaja integer  REFERENCES henkilo(id), 
 	country varchar(50) NOT NUll,
 	arrivalDate date NOT null,
 	departureDate date NOT null,
@@ -25,7 +25,7 @@ CREATE TABLE maa(
         country varchar(50) NOT NULL
 	);
 
-CREATE TABLE JOINTABLE(
+CREATE TABLE valitaulu(
 	id SERIAL PRIMARY KEY,
 	FOREIGN KEY (countryKey) REFERENCES maa (id),
 	FOREIGN KEY (henkiloId) REFERENCES henkilo (id)

@@ -1,7 +1,8 @@
 -- Lisää INSERT INTO lauseet tähän tiedostoon
-insert into maa (country, Suomi);
-insert into maa (country, Saksa);
-insert into maa (country, Ranska);
+INSERT INTO  maa (country) VALUES ('Suomi');
+INSERT INTO  maa (country) VALUES ('Saksa');
+INSERT INTO  maa (country) VALUES ('Ranska');
+INSERT INTO  maa (country) VALUES ('Thaimaa');
 
-insert into henkilo (firstNames, 'Aku' , familyname, 'ankka', dateOfBirth '1.1.2000',gender 'male',nationality 'ankkalinna', mobilePhone '132456',email 'aku.ankka@ankkalinna.fi');
-insert into matkakohde (country, 'Ankkalinna', arrivalDate '1.1.2000', departureDate '1.1.2001', address 'ankkakuja 1', postcode '123245', city 'Ankkalinna');
+INSERT INTO henkilo (firstNames, familyname, dateOfBirth, gender,nationality, mobilePhone,email) VALUES ('aku','Ankka','1.1.2000','male','Ankkalinna', 'aku.ankka@ankkalinna.fi');
+INSERT INTO matkakohde (country, arrivalDate, departureDate, address, postcode, city) VALUES ('Suomi', '1.11.2017','1.12.2017','','','Helsinki' ;
