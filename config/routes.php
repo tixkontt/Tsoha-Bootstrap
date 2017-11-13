@@ -20,7 +20,7 @@
     HelloWorldController::henkilo();
   });
   
-      $routes->get('/mainPage', function() {
-    HelloWorldController::mainPage();
+      $routes->get('/index', function() {
+    HelloWorldController::index();
   });
 
