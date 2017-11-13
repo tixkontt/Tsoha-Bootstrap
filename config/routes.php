@@ -19,4 +19,8 @@
     $routes->get('/henkilo', function() {
     HelloWorldController::henkilo();
   });
+  
+      $routes->get('/mainPage', function() {
+    HelloWorldController::mainPage();
+  });
 

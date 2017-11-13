@@ -4,8 +4,8 @@ class HelloWorldController extends BaseController {
 
     public static function index() {
         // make-metodi renderöi app/views-kansiossa sijaitsevia tiedostoja
-        // View::make('home.html');
-        echo 'Tämä on etusivun tekele numero neljä :)!';
+         View::make('suunnitelmat/mainPage.html');
+//        echo 'Tämä on etusivun tekele numero neljä :)!';
     }
 
     public static function maat() {

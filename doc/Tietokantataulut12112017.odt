@@ -1,5 +1,5 @@
 CREATE TABLE henkilo(
-id integer SERIAL PRIMARY KEY, 
+id SERIAL PRIMARY KEY, 
 firstNames varchar(50) NOT null,
 familyname varchar(50) NOT null,
 dateOfBirth varchar(10) NOT null,
@@ -11,7 +11,7 @@ email varchar(30)
 );
 
 CREATE TABLE matkakohde(
-id integer SERIAL PRIMARY KEY, 
+id SERIAL PRIMARY KEY, 
 country varchar(50) NOT NUll,
 arrivalDate date NOT null,
 departureDate date NOT null,
@@ -21,13 +21,13 @@ city varchar(30)
 );
 
 CREATE TABLE maa(
-id integer SERIAL PRIMARY KEY, 
+id SERIAL PRIMARY KEY, 
 country varchar(50) NOT NULL
 
 );
 
 CREATE TABLE JOINTABLE(
-id integer SERIAL PRIMARY KEY,
+id SERIAL PRIMARY KEY,
 FOREIGN KEY (countryKey) REFERENCES maa (id),
 FOREIGN KEY (henkiloId) REFERENCES henkilo (id)
 );
