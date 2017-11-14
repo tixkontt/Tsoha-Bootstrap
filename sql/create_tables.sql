@@ -11,7 +11,6 @@ CREATE TABLE henkilo(
 
 CREATE TABLE matkakohde(
 	id SERIAL PRIMARY KEY,
---	matkustaja integer  REFERENCES henkilo(id), 
 	country varchar(50) NOT NUll,
 	arrivalDate date NOT null,
 	departureDate date NOT null,
