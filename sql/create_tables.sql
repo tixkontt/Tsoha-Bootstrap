@@ -25,7 +25,6 @@ CREATE TABLE maa(
 	);
 
 CREATE TABLE valitaulu(
---	id SERIAL PRIMARY KEY,
 	FOREIGN KEY (countryKey) REFERENCES maa (id),
 	FOREIGN KEY (henkiloId) REFERENCES henkilo (id)
 	);
