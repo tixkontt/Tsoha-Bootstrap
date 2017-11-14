@@ -16,6 +16,10 @@
     HelloWorldController::matka();
   });
   
+      $routes->get('/matkalistaus', function() {
+    HelloWorldController::matkalistaus();
+  });
+  
     $routes->get('/henkilo', function() {
     HelloWorldController::henkilo();
   });

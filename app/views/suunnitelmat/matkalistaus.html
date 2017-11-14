@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+  <h3>Valitse muokattava tai poistettava matka alla olevasta listasta:</h3>
+
+  <!-- Kaikki lomakkeen elementit form-tagin sisään -->
+  <form>
+    <!-- Tekstikenttä käyttäjätunnukselle -->
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Maa</th>
+        <th>Saapumispäivä</th>
+        <th>Lähtöpäivä</th>
+        <th>Osoite</th>
+        <th>Postinumero</th>
+        <th>Kaupunki</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <!-- Listataan pelit tähän -->
+      <tr>
+        <td><a href="#">###</a></td>
+        <td><##/td>
+        <td>##</td>
+        <td><##</td>
+        <td>##</td>
+        <td>##</td>
+        <th><a class="btn btn-default btn-sm" href="#">Muokkaa</a>    <a class="btn btn-default btn-sm" href="#">Poista</a></th>
+      </tr>
+    </tbody>
+  </table>
+
+    <button type="submit" class="btn btn-primary">Tallenna</button>
+  </form>
+{% endblock %}

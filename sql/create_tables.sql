@@ -6,7 +6,8 @@ CREATE TABLE henkilo(
 	gender varchar(12),
 	nationality varchar(50) NOT null,
 	mobilePhone varchar(25),
-	email varchar(30)
+	email varchar(30),
+	password varchar(30)
 	);
 
 CREATE TABLE matkakohde(
@@ -25,6 +26,6 @@ CREATE TABLE maa(
 	);
 
 CREATE TABLE valitaulu(
-	FOREIGN KEY (countryKey) REFERENCES maa (id),
-	FOREIGN KEY (henkiloId) REFERENCES henkilo (id)
+	countryKey integer REFERENCES maa (id),
+	henkiloId integer REFERENCES henkilo (id)
 	);

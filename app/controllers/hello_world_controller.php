@@ -24,6 +24,10 @@ class HelloWorldController extends BaseController {
         View::make('suunnitelmat/matka.html');
     }
     
+            public static function matkalistaus() {
+        View::make('suunnitelmat/matkalistaus.html');
+    }
+    
     public static function sandbox() {
         // Testaa koodiasi täällä
         View::make('helloworld.html');
