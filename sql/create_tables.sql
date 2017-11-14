@@ -25,8 +25,8 @@ CREATE TABLE maa(
         country varchar(50) NOT NULL
 	);
 
---CREATE TABLE valitaulu(
---	id SERIAL PRIMARY KEY,
---	FOREIGN KEY (countryKey) REFERENCES maa (id),
---	FOREIGN KEY (henkiloId) REFERENCES henkilo (id)
---	);
+CREATE TABLE valitaulu(
+	id SERIAL PRIMARY KEY,
+	FOREIGN KEY (countryKey) REFERENCES maa (id),
+	FOREIGN KEY (henkiloId) REFERENCES henkilo (id)
+	);
