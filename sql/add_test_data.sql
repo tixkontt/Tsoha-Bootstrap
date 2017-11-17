@@ -1,1 +1,1 @@
-INSERT INTO henkilo (firstnames, familyname, dateofBirth, gender,nationality, mobilePhone,email,password) VALUES ('aku','Ankka','1.1.2000','male','Ankkalinna', 'aku.ankka@ankkalinna.fi','Iines');
+INSERT INTO henkilo (ID, firstnames, familyname,dateofbirth, nationality) VALUES (1,'aku','Ankka','2000-1-1','Suomi');
