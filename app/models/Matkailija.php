@@ -8,6 +8,8 @@ class matkailijalista extends BaseModel {
     public function __construct($attributes) {
         parent::__construct($attributes);
     }
+    
+   // $Timo = new Matkailijalista(array('id=1'=>1, 'firstnames'=>'Timo','familyname'=>'Konttinen'));
 
 }
 

@@ -9,25 +9,22 @@
   <button class="btn btn-primary">Muokkaa</button>
   <button class="btn btn-success">Tallenna</button>
   <button class="btn btn-danger">Poista</button>
-
   <h3>Matkan tiedot:</h3>
 Kohdemaa*:<br>
  <!-- <input type="text" placeholder="Etunimet"> <br>-->
    <form action="/action_page.php">
  <select name="Maat:">
-  <option value="volvo">Volvo</option>
-  <option value="saab">Saab</option>
-  <option value="opel">Opel</option>
-  <option value="audi">Audi</option>
+<?php taytaDropDown()?>
+     
 </select>
-
+--<button type="button" onclick="alert('Hello World!')">Click Me!</button>
        
 </form> 
-  Maahan saapuminen*:<br><input type="date" placeholder="pp.kk.vvvv"><br>
-  Maasta poistuminen*:<br><input type="date" placeholder="pp.kk.vvvv"><br>
-  Katuosoite*:<br><input type="text" placeholder="osoite"><br>
-  Postinumero:<br><input type="text" placeholder="Postinumero"><br>
-  Kaupunki tai maakunta*:<br><input type="text" placeholder="Kaupunki tai maakunta"><br>
+  Maahan saapuminen*:<br><input type="date" class="form-control" placeholder="pp.kk.vvvv"><br>
+  Maasta poistuminen*:<br><input type="date" class="form-control"placeholder="pp.kk.vvvv"><br>
+  Katuosoite*:<br><input type="text" class="form-control"placeholder="osoite"><br>
+  Postinumero:<br><input type="text" class="form-control"placeholder="Postinumero"><br>
+  Kaupunki tai maakunta*:<br><input type="text" class="form-control"placeholder="Kaupunki tai maakunta"><br>
   <br>
 <!-- Tiedot tulee listana tähän -->
 <ul>
