@@ -13,15 +13,16 @@
   });
 
     $routes->get('/matka', function() {
-    HelloWorldController::matka();
+    MatkailijaKontrolleri::lisaaMatka();
   });
   
       $routes->get('/matkalistaus', function() {
-    HelloWorldController::matkalistaus();
+    //HelloWorldController::matkalistaus();
+    MatkailijaKontrolleri::matkalistaus();
   });
   
     $routes->get('/henkilo', function() {
-    HelloWorldController::henkilo();
+    MatkailijaKontrolleri::lisaaHenkilo();
   });
   
       $routes->get('/index', function() {

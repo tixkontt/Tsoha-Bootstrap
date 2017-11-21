@@ -1,6 +1,5 @@
 <?php
 
-
 class Matka extends BaseModel {
 
 //attribuutit
@@ -10,18 +9,36 @@ class Matka extends BaseModel {
         parent::__construct($attributes);
     }
 
+    public static function all() {
+        //alustetaan tietokantayhteys
+        $query = DB::connection()->prepare('SELECT * FROM matkakohde');
+        //Suoritetaan kysely
+        $query->execute();
+        //haetaan rivit
+        $rows = $query->fetchAll();
+        $matkat = array();
+
+        //Käydään rivit läpi
+        foreach ($rows as $row) {
+            $maat[] = new Matka(array(
+                'id' => $row['id'],
+                'country' => $row['country'],
+                'arrivalDate' => $row['arrivaldate'],
+                'departureDate' => $row['departuredate'],
+                'address' => $row['address'],
+                'postcode' => $row['postcode'],
+                'city' => $row['city']
+            ));
+        }
+        return $maat;
+    }
+
 }
 
 /* 
-CREATE TABLE matkakohde(
-        id SERIAL PRIMARY KEY,
-        country varchar(50) NOT NUll,
-        arrivalDate date NOT null,
-        departureDate date NOT null,
-        address varchar(60),
-        postCode varchar(10),
-        city varchar(30)
-        );
+
+  }
+}
 
  */
 

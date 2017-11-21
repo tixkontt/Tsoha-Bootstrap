@@ -14,8 +14,9 @@ Kohdemaa*:<br>
  <!-- <input type="text" placeholder="Etunimet"> <br>-->
    <form action="/action_page.php">
  <select name="Maat:">
-<?php taytaDropDown()?>
-     
+     {% for maa in maat%}
+     <option value="{{maa.id}}">{{maa.country}}</option> 
+        {% endfor%}
 </select>
 --<button type="button" onclick="alert('Hello World!')">Click Me!</button>
        

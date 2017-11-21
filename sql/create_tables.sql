@@ -10,7 +10,7 @@ CREATE TABLE henkilo(
 	password varchar(30)
 	);
 
-CREATE TABLE matkakohde(
+CREATE TABLE matka(
 	id SERIAL PRIMARY KEY,
 	country varchar(50) NOT NUll,
 	arrivalDate date NOT null,
@@ -26,6 +26,6 @@ CREATE TABLE maa(
 	);
 
 CREATE TABLE valitaulu(
-	countryKey integer REFERENCES maa (id),
-	henkiloId integer REFERENCES henkilo (id)
+	travelkey integer REFERENCES matka(id),
+	henkiloid integer REFERENCES henkilo (id)
 	);

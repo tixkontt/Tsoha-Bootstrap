@@ -20,15 +20,18 @@
 
     <tbody>
       <!-- Listataan pelit tähän -->
+      {% for matka in matkat%}
       <tr>
-        <td><a href="#">###</a></td>
-        <td><##</td>
-        <td>##</td>
-        <td><##</td>
-        <td>##</td>
-        <td>##</td>
+        <!--<td><a href="{{base_path}}/matkalistaus/{{matkakohde.id}}">matka</a></td>-->
+        <td>{{matka.country}}</td>
+        <td>{{matka.arrivalDate}}</td>
+        <td>{{matka.departureDate}}</td>
+        <td>{{matka.address}}</td>
+        <td>{{matka.postcode}}</td>
+        <td>{{matka.city}}</td>
         <th><a class="btn btn-default btn-sm" href="#">Muokkaa</a>    <a class="btn btn-default btn-sm" href="#">Poista</a></th>
       </tr>
+      {%endfor%}
     </tbody>
   </table>
 
