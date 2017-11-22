@@ -26,6 +26,6 @@ CREATE TABLE maa(
 	);
 
 CREATE TABLE valitaulu(
-	travelkey integer REFERENCES matka(id),
+	travelkey integer REFERENCES matka (id),
 	henkiloid integer REFERENCES henkilo (id)
 	);

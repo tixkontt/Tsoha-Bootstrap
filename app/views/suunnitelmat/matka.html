@@ -1,42 +1,55 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Matkan tiedot</h1>
-<!-- Painikkeet tähän -->
 
- <h3>Valitse</h3>
-  <button class="btn btn-info">Hae</button>
-  <button class="btn btn-default">Lisää</button>
-  <button class="btn btn-primary">Muokkaa</button>
-  <button class="btn btn-success">Tallenna</button>
-  <button class="btn btn-danger">Poista</button>
-  <h3>Matkan tiedot:</h3>
-Kohdemaa*:<br>
- <!-- <input type="text" placeholder="Etunimet"> <br>-->
-   <form action="/action_page.php">
- <select name="Maat:">
-     {% for maa in maat%}
-     <option value="{{maa.id}}">{{maa.country}}</option> 
-        {% endfor%}
-</select>
---<button type="button" onclick="alert('Hello World!')">Click Me!</button>
+ <h3>Matkan tiedot:</h3>
+ 
+<form method="post" action="{{base_path}}suunnitelmat/matka">  
+    <div class="form-group">
        
-</form> 
-  Maahan saapuminen*:<br><input type="date" class="form-control" placeholder="pp.kk.vvvv"><br>
-  Maasta poistuminen*:<br><input type="date" class="form-control"placeholder="pp.kk.vvvv"><br>
-  Katuosoite*:<br><input type="text" class="form-control"placeholder="osoite"><br>
-  Postinumero:<br><input type="text" class="form-control"placeholder="Postinumero"><br>
-  Kaupunki tai maakunta*:<br><input type="text" class="form-control"placeholder="Kaupunki tai maakunta"><br>
-  <br>
-<!-- Tiedot tulee listana tähän -->
-<ul>
-    <li>Kun haet tietoja, täytä haluamasi kohdat ja paina Hae-painiketta</li>
-    <li>Kun lisäät tietoja, täytä haluamasi kohdat ja paina Lisää-painiketta</li>
-    <li>Kun haluat muokata tietoja, hae muokattavat tiedot,täytä haluamasi kohdat ja paina Tallenna-painiketta</li>
-    <li>Kun haluat poistaa tietoja, hae ensin tiedot ja paina Poista-painiketta</li>
-    
-</ul>
-<!-- Kuvaus tulee tähän -->
-<p>
-   Kuvaus tähän...
-</p>
-{% endblock %}
+        Kohdemaa*:<br>
+        <!-- <input type="text" placeholder="Etunimet"> <br>-->
+
+        <select name="Maat:">
+            {% for maa in maat%}
+            <option value="{{maa.id}}">{{maa.country}}</option> 
+            {% endfor%}
+        </select>
+
+    </div>
+    <div class="form-group">
+        <label>Matkan kohdemaa:*</label>
+        <input name ="country" class="form-control" type="text">
+    </div>
+
+    <div class="form-group">
+        <label>Maahan saapumispäivämäärä*</label>
+        <input name ="arrivaldate" class="form-control" type="text">
+    </div>
+
+    <div class="form-group">
+        <label>Maasta poistumispäivämäärä*</label>
+        <input name ="departuredate" class="form-control" type="text">
+    </div>
+
+    <div class="form-group">
+        <label>Osoite</label>
+        <input name ="address" class="form-control" type="text">
+    </div>
+
+    <div class="form-group">
+        <label>Postinumero</label>
+        <input name ="postcode" class="form-control" type="text">
+    </div>
+
+    <div class="form-group">
+        <label>Kaupunki tai maakunta</label>
+        <input name ="city" class="form-control" type="text">
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Tallenna</button>
+        <!--onclick="alert('Hello World!')">Click Me!</button>-->
+    </div>
+</form>
+
+     {% endblock %}

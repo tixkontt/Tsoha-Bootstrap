@@ -1,36 +1,60 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Matkustajan tietojen syöttölomake:</h2>
-<!-- Painikkeet tähän -->
+<h2>Syötä henkilötiedot:</h2>
+<!-- Painikkeet tähän 
 
 <h3>Painikkeet:</h3>
 <button class="btn btn-info">Hae</button>
 <button class="btn btn-default">Lisää</button>
 <button class="btn btn-primary">Muokkaa</button>
 <button class="btn btn-success">Tallenna</button>
-<button class="btn btn-danger">Poista</button>
+<button class="btn btn-danger">Poista</button>-->
 
-<h1>Tekstikentät</h1>
-Etunimet*:<br><input type="text" placeholder="Etunimet"> <br>
-Sukunimi*:<br><input type="text" placeholder="Sukunimi"><br>
-Syntymäaika*:<br><input type="text" placeholder="pp.kk.vvvv"><br>
-Sukupuoli*: 
+<h>Tähdellä (*) merkityt kohdat ovat pakollisia</h4>
+
+ <div class="form-group">
+  <label>Etunimet</label>
+        <input type="text" class="form-control">
+    </div>
+ <div class="form-group">
+  <label>Sukunimi</label>
+        <input type="text" class="form-control">
+    </div>
+ <div class="form-group">
+  <label>Syntymäaika</label>
+        <input type="text" class="form-control">
+    </div>
+ <div class="form-group">
+  <label>Sukupuoli</label>
+        <input type="text" class="form-control">
+ </div>
 <form>  
     <input type="radio" name="gender" value="mies" checked> Mies<br>
     <input type="radio" name="gender" value="nainen"> Nainen<br>
     <input type="radio" name="gender" value="tuntematon"> En ilmoita
 </form>
 
-Kansalaisuus*<br>
+Kansalaisuus*<br><br>
+
 <select name="Maat:">
     {% for maa in maat%}
     <option value="{{maa.id}}">{{maa.country}}</option> 
     {% endfor%}
 </select>
-
+<br>
 :<br><input type="text" placeholder="Kansalaisuus"><br>
-matkapuhelin:<br><input type="text" placeholder="Matkapuhelin"><br>
-Sähköposti:<br><input type="email" placeholder="Sähköposti"><br>
+ <div class="form-group">
+  <label>Matkapuhelin</label>
+        <input type="text" class="form-control">
+ </div>
+ <div class="form-group">
+  <label>sähköposti</label>
+        <input type="text" class="form-control">
+ </div>
+ <div class="form-group">
+  <label>salasana</label>
+        <input type="password" class="form-control">
+ </div>
 <br>
 
 <!-- Tiedot tulee listana tähän -->
