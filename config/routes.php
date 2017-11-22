@@ -8,12 +8,8 @@ $routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
 });
 
-/*$routes->get('/login', function() {
-    HelloWorldController::login();
-});*/
-
 $routes->post('/kirjaudu', function() {
-    MatkailijaKontrolleri::login();
+    MatkailijaKontrolleri::kirjaudu();
 });
 
 $routes->post('/kirjaudu', function() {

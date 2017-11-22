@@ -9,8 +9,9 @@ class MatkailijaKontrolleri extends BaseController {
     }
     
         public static function kirjaudu() {
-        $login = Login::login();
-        View::make('suunnitelmat/login.html', array('matkat' => $matkat, 'maa' => $maa));
+        /*$login = Kirjaudu::kirjaudu();*/
+        View::make('suunnitelmat/kirjaudu.html');
+        
     }
 
 
