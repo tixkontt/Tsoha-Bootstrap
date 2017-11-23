@@ -9,7 +9,7 @@
 <button class="btn btn-primary">Muokkaa</button>
 <button class="btn btn-success">Tallenna</button>
 <button class="btn btn-danger">Poista</button>-->
-
+<form method="post" action="{{base_path}}suunnitelmat/henkilo">  
 <h4>Tähdellä (*) merkityt kohdat ovat pakollisia</h4>
 
  <div class="form-group">
@@ -22,7 +22,7 @@
     </div>
  <div class="form-group">
   <label>Syntymäaika</label>
-        <input type="text" class="form-control">
+        <input type="date" class="form-control">
     </div>
  <div class="form-group">
   <label>Sukupuoli</label>
@@ -60,7 +60,7 @@ Kansalaisuus*<br><br>
 <!-- Tiedot tulee listana tähän -->
 <ul>
     <li>Kun haet tietoja, täytä haluamasi kohdat ja paina Hae-painiketta</li>
-    <li>Kun lisäät tietoja, täytä haluamasi kohdat ja paina Lisää-painiketta</li>
+    <li>Kun lisätä tietoja, täytä haluamasi kohdat ja paina Lisää-painiketta</li>
     <li>Kun haluat muokata tietoja, hae muokattavat tiedot,täytä haluamasi kohdat ja paina Tallenna-painiketta</li>
     <li>Kun haluat poistaa tietoja, hae ensin tiedot ja paina Poista-painiketta</li>
 

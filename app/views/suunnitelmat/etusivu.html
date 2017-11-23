@@ -1,0 +1,27 @@
+{%extends "base.html"%}
+{% block content %}
+  <h1>Tervetuloa matkailmoitussivulle!</h1>
+
+  <!-- Kaikki lomakkeen elementit form-tagin sisään -->
+  <form>
+    <!-- Tekstikenttä käyttäjätunnukselle -->
+    <div class="form-group">
+      <label>Mitä haluat tehdä?</label>
+     
+    </div>
+
+    <!-- Salasanakenttä salasanalle -->
+        <div class="form-group">
+     <form>
+  <input type="radio" name="valinta" value=" haku" checked>Hakea matkoja<br>
+  <input type="radio" name="valinta" value=" lisaa"> Lisätä matkan<br>
+  <input type="radio" name="valinta" value=" muokkaa"> Muokata matkan tietoja<br>
+  <input type="radio" name="valinta" value=" poista"> Poistaa matkan<br>
+</form> 
+  </div>  
+    
+    
+
+    <button type="submit" class="btn btn-primary">Tallenna valinta</button>
+  </form>
+{% endblock %}

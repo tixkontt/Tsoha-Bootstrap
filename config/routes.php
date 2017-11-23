@@ -1,7 +1,7 @@
 <?php
 
 $routes->get('/', function() {
-    HelloWorldController::index();
+    MatkailijaKontrolleri::etusivu();
 });
 
 $routes->get('/hiekkalaatikko', function() {
@@ -33,7 +33,10 @@ $routes->get('/henkilo', function() {
     MatkailijaKontrolleri::lisaaHenkilo();
 });
 
-$routes->get('/index', function() {
-    HelloWorldController::index();
+$routes->get('/etusivu', function() {
+    MatkailijaKontrolleri::etusivu();
 });
 
+$routes->get('/haematka', function() {
+    MatkailijaKontrolleri::haematka();
+});

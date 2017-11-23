@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 
- <h3>Matkan tiedot:</h3>
+ <h3>Hae matkoja:</h3>
  
-<form method="post" action="{{base_path}}suunnitelmat/matka">  
+<form method="post" action="{{base_path}}suunnitelmat/haematka">  
     <div class="form-group">
        
         Kohdemaa*:<br>
@@ -47,7 +47,7 @@
     </div>
 
     <div class="form-group">
-        <button type="submit" class="btn btn-primary">Tallenna</button>
+        <button type="submit" class="btn btn-primary">Hae</button>
         <!--onclick="alert('Hello World!')">Click Me!</button>-->
     </div>
 </form>
