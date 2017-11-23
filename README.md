@@ -5,8 +5,8 @@ Yleisiä linkkejä:
 * [Linkki sovellukseeni](https://tixkontt.users.cs.helsinki.fi/Tietokantalabra/)
 <<<<<<< HEAD
 * [Linkki dokumentaatiooni](https://github.com/tixkontt/Tsoha-Bootstrap)
-* [Linkki kirjatumissivulle](https://tixkontt.users.cs.helsinki.fi/Tietokantalabra/login)
-* [Linkki henkilotietoihin](https://tixkontt.users.cs.helsinki.fi/Tietokantalabra/henkilotiedot)
+* [Linkki kirjatumissivulle](https://tixkontt.users.cs.helsinki.fi/Tietokantalabra/kirjaudu)
+* [Linkki henkilotietoihin](https://tixkontt.users.cs.helsinki.fi/Tietokantalabra/henkilo)
 * [Linkki matkasivulle](https://tixkontt.users.cs.helsinki.fi/Tietokantalabra/matka)
 
 

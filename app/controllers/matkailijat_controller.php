@@ -8,8 +8,8 @@ class MatkailijaKontrolleri extends BaseController {
         View::make('suunnitelmat/matkalistaus.html', array('matkat' => $matkat, 'maa' => $maa));
     }
 
-    public static function kirjaudu() {
-        $kirjaudu = Kirjaudu::kirjaudu();
+        public static function kirjaudu() {
+//        $kirjaudu = Kirjaudu::kirjaudu();
         View::make('suunnitelmat/kirjaudu.html');
     }
     
@@ -47,7 +47,7 @@ class MatkailijaKontrolleri extends BaseController {
 
         $matka->tallenna();
         //ohjataan käyttäjä matkalistaukselle
-        Redirect::to('suunnitelmat/matkalistaus.html' . $matka->id, array('message' => 'Matka lisättiin matkatietokantaan'));
+        Redirect::to('/suunnitelmat/matkalistaus.html' . $matka->id, array('message' => 'Matka lisättiin matkatietokantaan'));
     }
 
 }
