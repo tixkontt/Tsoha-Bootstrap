@@ -3,32 +3,32 @@
 
  <h3>Matkan tiedot:</h3>
  
-<form method="post" action="{{base_path}}suunnitelmat/matka">  
+<form method="post" action="{{base_path}}/matka">  
     <div class="form-group">
        
         Kohdemaa*:<br>
         <!-- <input type="text" placeholder="Etunimet"> <br>-->
 
-        <select name="Maat:">
+        <select name="country">
             {% for maa in maat%}
             <option value="{{maa.id}}">{{maa.country}}</option> 
             {% endfor%}
         </select>
 
-    </div>
+   <!-- </div>
     <div class="form-group">
         <label>Matkan kohdemaa:*</label>
         <input name ="country" class="form-control" type="text">
-    </div>
+    </div>-->
 
     <div class="form-group">
         <label>Maahan saapumispäivämäärä*</label>
-        <input name ="arrivaldate" class="form-control" type="date">
+        <input name ="arrivalDate" class="form-control" type="date">
     </div>
 
     <div class="form-group">
         <label>Maasta poistumispäivämäärä*</label>
-        <input name ="departuredate" class="form-control" type="date">
+        <input name ="departureDate" class="form-control" type="date">
     </div>
 
     <div class="form-group">

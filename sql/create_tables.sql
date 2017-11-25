@@ -10,19 +10,19 @@ CREATE TABLE henkilo(
 	password varchar(30)
 	);
 
+CREATE TABLE maa(
+	id SERIAL PRIMARY KEY, 
+        country varchar(50) NOT NULL
+	);
+
 CREATE TABLE matka(
 	id SERIAL PRIMARY KEY,
-	country varchar(50) NOT NUll,
+	country integer REFERENCES maa(id) NOT NUll,
 	arrivalDate date NOT null,
 	departureDate date NOT null,
 	address varchar(60),
 	postCode varchar(10),
 	city varchar(30)
-	);
-
-CREATE TABLE maa(
-	id SERIAL PRIMARY KEY, 
-        country varchar(50) NOT NULL
 	);
 
 CREATE TABLE valitaulu(

@@ -9,64 +9,81 @@
 <button class="btn btn-primary">Muokkaa</button>
 <button class="btn btn-success">Tallenna</button>
 <button class="btn btn-danger">Poista</button>-->
-<form method="post" action="{{base_path}}suunnitelmat/henkilo">  
-<h4>Tähdellä (*) merkityt kohdat ovat pakollisia</h4>
+<form method="post" action="{{base_path}}/henkilo">  
+    <div class="form-group"> 
+        <h4>Tähdellä (*) merkityt kohdat ovat pakollisia</h4>
 
- <div class="form-group">
-  <label>Etunimet</label>
-        <input type="text" class="form-control">
-    </div>
- <div class="form-group">
-  <label>Sukunimi</label>
-        <input type="text" class="form-control">
-    </div>
- <div class="form-group">
-  <label>Syntymäaika</label>
-        <input type="date" class="form-control">
-    </div>
- <div class="form-group">
-  <label>Sukupuoli</label>
-        <input type="text" class="form-control">
- </div>
-<form>  
-    <input type="radio" name="gender" value="mies" checked> Mies<br>
-    <input type="radio" name="gender" value="nainen"> Nainen<br>
-    <input type="radio" name="gender" value="tuntematon"> En ilmoita
-</form>
+        <div class="form-group">
+            <label>Etunimet*</label>
+            <input name ="firstnames" class="form-control" type="text">
+        </div>
+        <div class="form-group">
+            <label>Sukunimi*</label>
+            <input name ="familyname" class="form-control" type="text">
+        </div>
+        <div class="form-group">
+            <label>Syntymäaika*</label>
+            <input name=" dateofbirth"  class="form-control" type="date">
+        </div>
 
-Kansalaisuus*<br><br>
+        <form>  
+            <input type="radio" name="gender" onclick="myFunction(this.value)" value="Mies">Mies<br>
+            <input type="radio" name="gender" onclick="myFunction(this.value)" value="Nainen">Nainen<br>
+            <input type="radio" name="gender" onclick="myFunction(this.value)" value="En ilmoita">En ilmoita<br>
+        </form>
 
-<select name="Maat:">
-    {% for maa in maat%}
-    <option value="{{maa.id}}">{{maa.country}}</option> 
-    {% endfor%}
-</select>
-<br>
-:<br><input type="text" placeholder="Kansalaisuus"><br>
- <div class="form-group">
-  <label>Matkapuhelin</label>
-        <input type="text" class="form-control">
- </div>
- <div class="form-group">
-  <label>sähköposti</label>
-        <input type="text" class="form-control">
- </div>
- <div class="form-group">
-  <label>salasana</label>
-        <input type="password" class="form-control">
- </div>
-<br>
+        <div class="form-group">
+            <label>Sukupuoli</label>
+            <input name ="gender" type="text" id="result" class="form-control">
+        </div>
+        <script>
+            function myFunction(browser) {
+                document.getElementById("result").value = browser;
+            }
+        </script>
 
-<!-- Tiedot tulee listana tähän -->
-<ul>
-    <li>Kun haet tietoja, täytä haluamasi kohdat ja paina Hae-painiketta</li>
-    <li>Kun lisätä tietoja, täytä haluamasi kohdat ja paina Lisää-painiketta</li>
-    <li>Kun haluat muokata tietoja, hae muokattavat tiedot,täytä haluamasi kohdat ja paina Tallenna-painiketta</li>
-    <li>Kun haluat poistaa tietoja, hae ensin tiedot ja paina Poista-painiketta</li>
+        <script>
+            function sukupuoli() {
+                var x = document.getElementById("radio").value;
+                document.getElementById("demo").innerHTML = x;
+            }
+        </script>
+        <h4>Kansalaisuus*</h4>
 
-</ul>
-<!-- Kuvaus tulee tähän -->
-<p>
-    Kuvaus tähän...
-</p>
-{% endblock %}
+        <select name="Maat:">
+            {% for maa in maat%}
+            <option value="{{maa.id}}">{{maa.country}}</option> 
+            {% endfor%}
+        </select>
+        <br><br>
+        <!--:<br><input type="text" placeholder="Kansalaisuus"><br>-->
+        <div class="form-group">
+            <label>Matkapuhelin</label>
+            <input name ="mobilephone" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>sähköposti</label>
+            <input name="email" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>salasana</label>
+            <input name =" password" type="password" class="form-control">
+        </div>
+        <br>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Tallenna</button>
+            <!--onclick="alert('Hello World!')">Click Me!</button>-->
+        </div>
+        <!-- Tiedot tulee listana tähän -->
+        <ul>
+            <li>Kun haet tietoja, täytä haluamasi kohdat ja paina Hae-painiketta</li>
+            <li>Kun lisätä tietoja, täytä haluamasi kohdat ja paina Lisää-painiketta</li>
+            <li>Kun haluat muokata tietoja, hae muokattavat tiedot,täytä haluamasi kohdat ja paina Tallenna-painiketta</li>
+            <li>Kun haluat poistaa tietoja, hae ensin tiedot ja paina Poista-painiketta</li>
+
+        </ul>
+        <!-- Kuvaus tulee tähän -->
+        <p>
+            Kuvaus tähän...
+        </p>
+        {% endblock %}

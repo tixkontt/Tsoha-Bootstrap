@@ -23,8 +23,8 @@ class Matka extends BaseModel {
             $maat[] = new Matka(array(
                 'id' => $row['id'],
                 'country' => $row['country'],
-                'arrivaldate' => $row['arrivaldate'],
-                'departurdate' => $row['departuredate'],
+                'arrivalDate' => $row['arrivaldate'],
+                'departureDate' => $row['departuredate'],
                 'address' => $row['address'],
                 'postcode' => $row['postcode'],
                 'city' => $row['city']
@@ -35,8 +35,14 @@ class Matka extends BaseModel {
 
     public function tallennaUusiMatka() {
         //lisätään returning id tietokantakyselyn loppuun, niin saadaan se talteen
-        $query = DB::connection()->prepare('INSERT INTO matka (country, arrivaldate, departuredate, address, postcode, city) VALUES (:country, :arrivaldate, :departuredate, :address, :postcode, :city)RETURNING id ');
-        $query->execute(array('country' => $this->country, 'arrivaldate' => $this->arrivalDate, 'departuredate' => $this->departureDate, 'address' => $this->address, 'postcode' => $this->postcode, 'city' => $this->city));
+        $query = DB::connection()->prepare('INSERT INTO matka (country, arrivaldate, departuredate, address, postcode, city) VALUES (:country, :arrivalDate, :departureDate, :address, :postcode, :city)RETURNING id ');
+        $query->execute(array(
+            'country' => $this->country, 
+            'arrivalDate' => $this->arrivalDate, 
+            'departureDate' => $this->departureDate, 
+            'address' => $this->address, 
+            'postcode' => $this->postcode, 
+            'city' => $this->city));
         $row=$query->fetch();
         $this->id=$row['id'];
         
