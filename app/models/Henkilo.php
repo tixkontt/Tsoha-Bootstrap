@@ -17,6 +17,7 @@ class Henkilo extends BaseModel {
             'familyname' => $this->familyname, 
             'dateofbirth' => $this->dateofbirth, 
             'gender' => $this->gender, 
+            //'country' => $this->country, 
             'nationality' => $this->nationality, 
             'mobilephone' => $this->mobilephone,
             'email' => $this->email,

@@ -33,8 +33,10 @@ $routes->get('/henkilo', function() {
     MatkailijaKontrolleri::lisaaHenkilo();
 });
 
+
 $routes->post('/henkilo', function() {
     MatkailijaKontrolleri::tallennaMatkailija();
+    
 });
 
 $routes->get('/etusivu', function() {

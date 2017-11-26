@@ -53,17 +53,16 @@ class MatkailijaKontrolleri extends BaseController {
 
     public static function tallennaMatkailija() {
         $params = $_POST;
-        $human = new Henkilo(array(
-            'firstnames' => $this->firstnames,
-            'familyname' => $this->familyname,
-            'dateofbirth' => $this->dateofbirth,
-            'gender' => $this->gender,
-            'nationality' => $this->nationality,
-            'mobilephone' => $this->mobilephone,
-            'email' => $this->email,
-            'password' => $this->password));
-        
-        $human->tallennaMatkailija();
+        $Henkilo = new Henkilo(array('firstnames' => $params['firstnames'],
+            'familyname' => $params['familyname'],
+            'dateofbirth' => $params['dateofbirth'],
+            'gender' => $params['gender'],
+            'nationality' => $params['nationality'],
+            'mobilephone' => $params['mobilephone'],
+            'email' => $params['email'],
+            'password' => $params['password']));
+
+        $Henkilo->tallennaMatkailija();
         
         Redirect::to('/henkilo');
     }

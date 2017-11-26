@@ -50,10 +50,14 @@
         </script>
         <h4>Kansalaisuus*</h4>
 
-        <select name="Maat:">
+        <select required name="nationality">
             {% for maa in maat%}
-            <option value="{{maa.id}}">{{maa.country}}</option> 
-            {% endfor%}
+          <!--  <option value="{{maa.id}}">{{maa.country}}</option> -->
+          <!--  <option value="{{henkilo.nationality}}">{{maa.country}}</option> -->
+                <option value="{{maa.country}}">{{maa.country}}</option> 
+  
+          
+          {% endfor%}
         </select>
         <br><br>
         <!--:<br><input type="text" placeholder="Kansalaisuus"><br>-->
