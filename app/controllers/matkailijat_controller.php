@@ -61,6 +61,7 @@ class MatkailijaKontrolleri extends BaseController {
             'nationality' => $params['nationality'],
             'mobilephone' => $params['mobilephone'],
             'email' => $params['email'],
+            'username'=>$params['username'],
             'password' => $params['password'],
             'administrator' => $params['administrator']
         ));

@@ -3,7 +3,7 @@
 class Henkilo extends BaseModel {
 
 //attribuutit
-    public $id, $firstnames, $familyname, $dateofbirth, $gender, $nationality, $mobilephone, $email, $password, $administrator;
+    public $id, $firstnames, $familyname, $dateofbirth, $gender, $nationality, $mobilephone, $email, $username, $password, $administrator;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -20,6 +20,7 @@ class Henkilo extends BaseModel {
             'nationality' => $this->nationality,
             'mobilephone' => $this->mobilephone,
             'email' => $this->email,
+            'username'=> $this->username,
             'password' => $this->password,
             'administrator' => $this->administrator));
         $row = $query->fetch();

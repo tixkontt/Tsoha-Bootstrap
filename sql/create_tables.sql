@@ -8,6 +8,7 @@ CREATE TABLE henkilo(
 	mobilePhone varchar(25),
 	email varchar(30),
 	password varchar(30),
+        username varchar(25),
         administrator boolean DEFAULT 'false'
 	);
 
