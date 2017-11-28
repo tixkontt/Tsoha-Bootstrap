@@ -9,12 +9,12 @@ $routes->get('/hiekkalaatikko', function() {
 });
 
 $routes->get('/kirjaudu', function() {
-    MatkailijaKontrolleri::kirjaudu();
+    Kayttajahallinta::kirjaudu();
 });
 
-//$routes->post('/kirjaudu', function() {
-  //  MatkailijaKontrolleri::tallenna();
-//});
+$routes->post('/kirjaudu', function() {
+    Kayttajahallinta::kasittele_kirjautuminen();
+});
 
 $routes->get('/matka', function() {
     MatkailijaKontrolleri::lisaaMatka();

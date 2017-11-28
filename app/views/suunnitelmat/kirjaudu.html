@@ -5,12 +5,11 @@
 
 <!-- Kaikki lomakkeen elementit form-tagin sisään -->
 <form method="post" action="{{base_path}}/kirjaudu">  
-    
-    
+
     <!-- Tekstikenttä käyttäjätunnukselle -->
     <div class="form-group">
         <label>Käyttäjätunnus</label>
-        <input name="kayttajatunnus" class="form-control" type="text">
+        <input class="form-control" name="username" value ="{{username}}" type="text">
     </div>
 
     <!-- Salasanakenttä salasanalle -->
@@ -18,8 +17,8 @@
         <label>Salasana</label>
         <input name = "password" type="password" class="form-control">
     </div>
-    
-        <!-- Salasanakenttä salasanalle -->
+
+    <!-- Salasanakenttä salasanalle -->
     <div class="form-group">
         <label>Salasana uudelleen </label>
         <input name = "password2" type="password" class="form-control">
