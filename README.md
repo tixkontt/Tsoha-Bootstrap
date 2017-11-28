@@ -9,7 +9,7 @@ Yleisiä linkkejä:
 * [Linkki kirjatumissivulle](https://tixkontt.users.cs.helsinki.fi/Tietokantalabra/kirjaudu)
 * [Linkki henkilotietoihin](https://tixkontt.users.cs.helsinki.fi/Tietokantalabra/henkilo)
 * [Linkki matkasivulle](https://tixkontt.users.cs.helsinki.fi/Tietokantalabra/matka)
-
+* [Linkki matkojen listaussivulle](https://tixkontt.users.cs.helsinki.fi/Tietokantalabra/matkalistaus)
 
 ## Työn aihe
 
@@ -24,9 +24,10 @@ Matkustaja täyttää matkustusilmoituksen ja käyttäjä sekä ministeriön kri
 
 ## Työn aihe
 
-Työn aihe on Matkustustiedot visuaalisesti
+Työn aihe on Matkustustietokanta
 
-Ohjelma tulee olemaan samankaltainen kuin ulkoministeriön matkustusilmoitustietokanta.
+Ohjelmalla käyttäjä syöttää tietokantaan matkan ja selailla, muokata ja poistaa matkoja
+.
 Matkustaja täyttää matkustusilmoituksen, jonka jälkeen sekä käyttäjä että ministeriön kriisipäivystäjä voivat selailla ilmoituksia.
 
 [linkki valmiiseen aiheeseen](http://tixkontt.users.cs.helsinki.fi/SuomalaisetMaailmalla/)

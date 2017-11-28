@@ -29,14 +29,3 @@ class Maa extends BaseModel {
 
 }
 
-//}
-
-/* COPY master FROM 'D:\demo.csv'  DELIMITER AS ',';
- * 
- * 
-CREATE TABLE maa(
-        id SERIAL PRIMARY KEY, 
-        country varchar(50) NOT NULL
-        );
-
- *  */

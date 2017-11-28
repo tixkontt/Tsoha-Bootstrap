@@ -48,23 +48,28 @@ class MatkailijaKontrolleri extends BaseController {
         $matka->tallennaUusiMatka();
         //ohjataan käyttäjä matkalistaukselle
         // Redirect::to('/suunnitelmat/matkalistaus.html' . $matka->id, array('message' => 'Matka lisättiin matkatietokantaan'));
-        Redirect::to('/matka');
+        Redirect::to('/matkalistaus');
     }
 
     public static function tallennaMatkailija() {
         $params = $_POST;
-        $Henkilo = new Henkilo(array('firstnames' => $params['firstnames'],
+        $Henkilo = new Henkilo(array(
+            'firstnames' => $params['firstnames'],
             'familyname' => $params['familyname'],
             'dateofbirth' => $params['dateofbirth'],
             'gender' => $params['gender'],
             'nationality' => $params['nationality'],
             'mobilephone' => $params['mobilephone'],
             'email' => $params['email'],
-            'password' => $params['password']));
+            'password' => $params['password'],
+            'administrator' => $params['administrator']
+        ));
+        
+        //Tähän väliin tulee henkilö-luokan errors-metodikutsu
 
         $Henkilo->tallennaMatkailija();
-        
-        Redirect::to('/henkilo');
+
+        Redirect::to('/matkalistaus');
     }
 
 }

@@ -18,9 +18,9 @@
       <!-- Oma tyylitiedostomme -->
       <link href="{{base_path}}/assets/css/site.css" rel="stylesheet">
     {% endblock %}
-  </head>
+  <!--</head>-->
 
-  <body>
+ <!-- <body>-->
 
     <nav class="navbar navbar-default" role="navigation">
       <div class="container-fluid">
@@ -34,7 +34,7 @@
           </button>
           <!-- Sovelluksen nimi -->
           <!--<a class="navbar-brand" href="{{base_path}}">Matkustustietokanta</a>-->
-          <a class="navbar-brand" href="{{base_path}}/etusivu">Matkustustietokanta</a>
+          <a class="navbar-brand" href="{{base_path}}/kirjaudu">Matkustustietokanta</a>
           
         </div>
 
@@ -43,8 +43,8 @@
             <!-- Navigaation linkit -->
             <!--<li><a href="{{base_path}}">Henkilötiedot</a></li>-->
             <li><a href="{{base_path}}/henkilo">Henkilötiedot</a></li>
-            <li><a href="{{base_path}}/matka">Matka</a></li>
-            <li><a href="{{base_path}}/kirjaudu">Kirjaudu sisään</a></li>
+            <li><a href="{{base_path}}/matkalistaus">Matkat</a></li>
+            <!--<li><a href="{{base_path}}/kirjaudu">Kirjaudu sisään</a></li>-->
             <li><a href="{{base_path}}/etusivu">Kirjaudu ulos</a></li>
           </ul>
         </div>
@@ -52,8 +52,8 @@
     </nav>
 
     <div id="main-container">
-      <!-- Dynaaminen sisältö tulee tähän -->
-      {% block content %}{% endblock %}
+      <!-- Dynaaminen sisältö tulee tähän--> 
+        {% block content %}{% endblock %}
     </div>
 
     {% block body %}

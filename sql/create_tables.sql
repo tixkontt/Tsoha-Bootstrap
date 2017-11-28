@@ -7,7 +7,8 @@ CREATE TABLE henkilo(
 	nationality varchar(50) NOT null,
 	mobilePhone varchar(25),
 	email varchar(30),
-	password varchar(30)
+	password varchar(30),
+        administrator boolean DEFAULT 'false'
 	);
 
 CREATE TABLE maa(
@@ -17,7 +18,8 @@ CREATE TABLE maa(
 
 CREATE TABLE matka(
 	id SERIAL PRIMARY KEY,
-	country integer REFERENCES maa(id) NOT NUll,
+--	country integer REFERENCES maa(id) NOT NUll,
+        country varchar (30) not null,
 	arrivalDate date NOT null,
 	departureDate date NOT null,
 	address varchar(60),

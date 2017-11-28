@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
+
+<div class="alert alert-success">
+  {{"Tallennus onnistui!"}}
+</div>
+
   <h3>Valitse muokattava tai poistettava matka alla olevasta listasta:</h3>
 
   <!-- Kaikki lomakkeen elementit form-tagin sisään -->
@@ -14,7 +19,8 @@
         <th>Osoite</th>
         <th>Postinumero</th>
         <th>Kaupunki</th>
-        <th></th>
+        <th>Muokkaa</th>
+        <th>Poista</th>
       </tr>
     </thead>
 
@@ -29,12 +35,15 @@
         <td>{{matka.address}}</td>
         <td>{{matka.postcode}}</td>
         <td>{{matka.city}}</td>
-        <th><a class="btn btn-default btn-sm" href="#">Muokkaa</a>    <a class="btn btn-default btn-sm" href="#">Poista</a></th>
+   
+        <td> <a href="{{base_path}}/matka" class="btn btn-default" role="button">Muokkaa</a></td>
+        <td><button type = "submit" class="btn btn-danger" <a class="btn btn-default btn-sm" href="#">Poista</a></button></td>
+       
       </tr>
       {%endfor%}
     </tbody>
   </table>
 
-    <button type="submit" class="btn btn-primary">Tallenna</button>
+    <button type="submit" class="btn btn-primary"href="/matka">Matkoihin</button>
   </form>
 {% endblock %}

@@ -26,15 +26,18 @@
             <input name=" dateofbirth"  class="form-control" type="date">
         </div>
 
-        <form>  
-            <input type="radio" name="gender" onclick="myFunction(this.value)" value="Mies">Mies<br>
-            <input type="radio" name="gender" onclick="myFunction(this.value)" value="Nainen">Nainen<br>
-            <input type="radio" name="gender" onclick="myFunction(this.value)" value="En ilmoita">En ilmoita<br>
-        </form>
+
+
 
         <div class="form-group">
-            <label>Sukupuoli</label>
-            <input name ="gender" type="text" id="result" class="form-control">
+            <label>Sukupuoli</label><br>
+            
+            <!-- <input name ="gender" type="text" id="result" class="form-control"> -->
+            <input type="radio" name="gender" value="Mies">  Mies<br>
+            <input type="radio" name="gender" value="Nainen">  Nainen<br>
+            <input type="radio" name="gender" value="En ilmoita"> En ilmoita<br>
+
+
         </div>
         <script>
             function myFunction(browser) {
@@ -52,15 +55,14 @@
 
         <select required name="nationality">
             {% for maa in maat%}
-          <!--  <option value="{{maa.id}}">{{maa.country}}</option> -->
-          <!--  <option value="{{henkilo.nationality}}">{{maa.country}}</option> -->
-                <option value="{{maa.country}}">{{maa.country}}</option> 
-  
-          
-          {% endfor%}
+            <!--  <option value="{{maa.id}}">{{maa.country}}</option> -->
+            <!--  <option value="{{henkilo.nationality}}">{{maa.country}}</option> -->
+            <option value="{{maa.country}}">{{maa.country}}</option> 
+
+
+            {% endfor%}
         </select>
         <br><br>
-        <!--:<br><input type="text" placeholder="Kansalaisuus"><br>-->
         <div class="form-group">
             <label>Matkapuhelin</label>
             <input name ="mobilephone" type="text" class="form-control">
@@ -74,20 +76,32 @@
             <input name =" password" type="password" class="form-control">
         </div>
         <br>
+
+
+        <div class="form-group">
+            <input type="checkbox" name="administrator" value="y">Administrator<br>
+        </div>
+
+        <br>
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Tallenna</button>
             <!--onclick="alert('Hello World!')">Click Me!</button>-->
         </div>
-        <!-- Tiedot tulee listana tähän -->
-        <ul>
-            <li>Kun haet tietoja, täytä haluamasi kohdat ja paina Hae-painiketta</li>
-            <li>Kun lisätä tietoja, täytä haluamasi kohdat ja paina Lisää-painiketta</li>
-            <li>Kun haluat muokata tietoja, hae muokattavat tiedot,täytä haluamasi kohdat ja paina Tallenna-painiketta</li>
-            <li>Kun haluat poistaa tietoja, hae ensin tiedot ja paina Poista-painiketta</li>
 
-        </ul>
-        <!-- Kuvaus tulee tähän -->
-        <p>
-            Kuvaus tähän...
-        </p>
-        {% endblock %}
+        <div class="alert alert-success">
+            {{"Tallennus onnistui!"}}
+        </div>
+</form>
+<!-- Tiedot tulee listana tähän -->
+<ul>
+    <li>Kun haet tietoja, täytä haluamasi kohdat ja paina Hae-painiketta</li>
+    <li>Kun lisätä tietoja, täytä haluamasi kohdat ja paina Lisää-painiketta</li>
+    <li>Kun haluat muokata tietoja, hae muokattavat tiedot,täytä haluamasi kohdat ja paina Tallenna-painiketta</li>
+    <li>Kun haluat poistaa tietoja, hae ensin tiedot ja paina Poista-painiketta</li>
+
+</ul>
+<!-- Kuvaus tulee tähän -->
+<p>
+    Kuvaus tähän...
+</p>
+{% endblock %}
