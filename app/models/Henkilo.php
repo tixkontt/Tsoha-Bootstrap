@@ -11,7 +11,7 @@ class Henkilo extends BaseModel {
 
     public function tallennaMatkailija() {
         //lisätään returning id tietokantakyselyn loppuun, niin saadaan se talteen
-        $query = DB::connection()->prepare('INSERT INTO henkilo (firstnames, familyname, dateofbirth, gender, nationality, mobilephone, email, password, administrator) VALUES (:firstnames, :familyname, :dateofbirth, :gender, :nationality, :mobilephone, :email, :password, :administrator) RETURNING id ');
+        $query = DB::connection()->prepare('INSERT INTO henkilo (firstnames, familyname, dateofbirth, gender, nationality, mobilephone, email, username, password, administrator) VALUES (:firstnames, :familyname, :dateofbirth, :gender, :nationality, :mobilephone, :email, :username, :password, :administrator) RETURNING id ');
         $query->execute(array(
             'firstnames' => $this->firstnames,
             'familyname' => $this->familyname,

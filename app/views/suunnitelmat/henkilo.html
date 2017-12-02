@@ -27,30 +27,18 @@
         </div>
 
 
-
-
-        <div class="form-group">
-            <label>Sukupuoli</label><br>
-            
+        <label>Sukupuoli</label><br>
+        <div class="radio">  
             <!-- <input name ="gender" type="text" id="result" class="form-control"> -->
-            <input type="radio" name="gender" value="Mies">  Mies<br>
-            <input type="radio" name="gender" value="Nainen">  Nainen<br>
-            <input type="radio" name="gender" value="En ilmoita"> En ilmoita<br>
-
-
+            <label><input type="radio" name="gender" value="Mies">  Mies<br></label>
         </div>
-        <script>
-            function myFunction(browser) {
-                document.getElementById("result").value = browser;
-            }
-        </script>
+        <div class="radio"> 
+            <label><input type="radio" name="gender" value="Nainen">  Nainen<br></label>
+        </div>
+        <div class="radio"> 
+            <label><input type="radio" name="gender" value="En ilmoita"> En ilmoita<br></label>
+        </div>
 
-        <script>
-            function sukupuoli() {
-                var x = document.getElementById("radio").value;
-                document.getElementById("demo").innerHTML = x;
-            }
-        </script>
         <h4>Kansalaisuus*</h4>
 
         <select required name="nationality">
@@ -71,12 +59,12 @@
             <label>sähköposti</label>
             <input name="email" type="text" class="form-control">
         </div>
-            <!-- Tekstikenttä käyttäjätunnukselle -->
-    <div class="form-group">
-        <label>Käyttäjätunnus</label>
-        <input name="username" class="form-control" type="text">
-    </div>
-        
+        <!-- Tekstikenttä käyttäjätunnukselle -->
+        <div class="form-group">
+            <label>Käyttäjätunnus</label>
+            <input name="username" type="text" class="form-control" value ="{{username}}" ><!--name="username"  >-->
+        </div>
+
         <div class="form-group">
             <label>salasana</label>
             <input name =" password" type="password" class="form-control">
@@ -84,8 +72,14 @@
         <br>
 
 
-        <div class="form-group">
-            <input type="checkbox" name="administrator" value="y">Administrator<br>
+
+        <label>Pääkäyttäjä</label><br>
+        <div class="radio">  
+            <!-- <input name ="gender" type="text" id="result" class="form-control"> -->
+            <label><input type="radio" name="administrator" value="yes">  Kyllä<br></label>
+        </div>
+        <div class="radio"> 
+            <label><input type="radio" name="administrator" value="no" checked>  Ei<br></label>
         </div>
 
         <br>
