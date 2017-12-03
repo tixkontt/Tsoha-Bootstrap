@@ -33,10 +33,10 @@
     }
     
     
-        public function HaeMatkatYhdestaMaasta(){
-        $query= DB::connection()->prepare('SELECT * FROM matka');
+        public static function HaeMatkatYhdestaMaasta($country){
+        $query= DB::connection()->prepare('SELECT * FROM matka WHERE country = :country');
         
-        $query ->execute();
+        $query ->execute(array('country'=>$country));
         $row = $query->fetchall();
         
         $matkat = array();
@@ -58,6 +58,14 @@
        return null; 
         
     }
+    
+//SELECT valitaulu.travelkey as matka, valitaulu.henkiloid as matkailija, matka.country as matkakohde, matka.arrivaldate as tulopaiva, matka.departuredate as lahtopaiva, henkilo.familyname as sukunimi 
+//FROM valitaulu, henkilo, matka
+//WHERE valitaulu.henkiloid = henkilo.id
+//AND valitaulu.travelkey=matka.id;
+    
+    
+    
     
     
  }
