@@ -19,15 +19,15 @@
 
         <div class="form-group">
             <label>Etunimet*</label>
-            <input name ="firstnames" class="form-control" type="text">
+            <input name ="firstnames" class="form-control" value="{{attributes.firstnames}}" type="text">
         </div>
         <div class="form-group">
             <label>Sukunimi*</label>
-            <input name ="familyname" class="form-control" type="text">
+            <input name ="familyname" class="form-control" value= "{{attributes.familyname}}" type="text">
         </div>
         <div class="form-group">
             <label>Syntymäaika*</label>
-            <input name=" dateofbirth"  class="form-control" type="date">
+            <input name=" dateofbirth"  class="form-control" value= "{{attributes.dateofbirth}}" type="date">
         </div>
 
 
@@ -45,10 +45,9 @@
 
         <h4>Kansalaisuus*</h4>
 
+        <!--täytetään alasvetovalikko-->
         <select required name="nationality">
             {% for maa in maat%}
-            <!--  <option value="{{maa.id}}">{{maa.country}}</option> -->
-            <!--  <option value="{{henkilo.nationality}}">{{maa.country}}</option> -->
             <option value="{{maa.country}}">{{maa.country}}</option> 
 
 
@@ -57,21 +56,21 @@
         <br><br>
         <div class="form-group">
             <label>Matkapuhelin</label>
-            <input name ="mobilephone" type="text" class="form-control">
+            <input name ="mobilephone" type="text" value= "{{attributes.mobilephone}}" class="form-control">
         </div>
         <div class="form-group">
             <label>sähköposti</label>
-            <input name="email" type="text" class="form-control">
+            <input name="email" type="text" value= "{{attributes.email}}" class="form-control">
         </div>
         <!-- Tekstikenttä käyttäjätunnukselle -->
         <div class="form-group">
             <label>Käyttäjätunnus</label>
-            <input name="username" type="text" class="form-control" value ="{{username}}" ><!--name="username"  >-->
+            <input name="username" type="text" class="form-control" value= "{{attributes.username}}" ><!--name="username"  >-->
         </div>
 
         <div class="form-group">
             <label>salasana</label>
-            <input name =" password" type="password" class="form-control">
+            <input name =" password" type="password" value= "{{attributes.password}}" class="form-control">
         </div>
         <br>
 

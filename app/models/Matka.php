@@ -3,7 +3,7 @@
 class Matka extends BaseModel {
 
 //attribuutit
-    public $id, $country, $arrivalDate, $departureDate, $address, $postcode, $city;
+    public $id, $travellerid, $country, $arrivalDate, $departureDate, $address, $postcode, $city;
 
     public function __construct($attributes) {
         parent::__construct($attributes);

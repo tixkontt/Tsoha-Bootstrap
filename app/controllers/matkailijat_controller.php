@@ -57,7 +57,7 @@ class MatkailijaKontrolleri extends BaseController {
             $matka->tallennaUusiMatka();
 //            Redirect::to('/suunnitelmat/matkalistaus.html' . $matka->id, array('message' => 'Matka lisättiin matkatietokantaan'));
 //            Redirect::to('/matkalistaus');
-  Redirect::to('/matkalistaus.html' , array('message' => 'Matka lisättiin matkatietokantaan'));
+                Redirect::to('/matkalistaus' , array('message' => 'Matka lisättiin matkatietokantaan'));
             }
 
 
@@ -99,5 +99,13 @@ class MatkailijaKontrolleri extends BaseController {
             Redirect::to('/matkalistaus');
         }
     }
+    
+//    public static function muokkaa_matkaa($id){
+//        $matka = HaeMatka::find($id);
+//        $matkakohde= HaeMatka::haeMatka();
+//        
+////        View::make('suunnitelmat/matkalistaus.html'), array('id'=> $id, 'travellerid' => $travellerid, 'country'=>$country, 'arrivaldate'=>$arrivaldate, 'departuredate'=>$departuredate, 'address'=>$address, 'postcode=>$postcode', 'city'=>$city));
+//          View::make('matkalistaus.html'), array('id'=> $id, 'travellerid' => $travellerid, 'country'=>$country, 'arrivaldate'=>$arrivaldate, 'departuredate'=>$departuredate, 'address'=>$address, 'postcode'=>$postcode, 'city'=>$city));
+//    }
 
 }
