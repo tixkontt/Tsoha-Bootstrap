@@ -1,14 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
 <h2>Syötä henkilötiedot:</h2>
-<!-- Painikkeet tähän 
+<!-- Painikkeet tähän -->
 
-<h3>Painikkeet:</h3>
-<button class="btn btn-info">Hae</button>
-<button class="btn btn-default">Lisää</button>
-<button class="btn btn-primary">Muokkaa</button>
-<button class="btn btn-success">Tallenna</button>
-<button class="btn btn-danger">Poista</button>-->
+{%if errors%}
+<div class="alert alert-danger">
+    <ul>
+        {% for error in errors %}
+        <li>{{error}}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endif%}
 <form method="post" action="{{base_path}}/henkilo">  
     <div class="form-group"> 
         <h4>Tähdellä (*) merkityt kohdat ovat pakollisia</h4>
@@ -36,7 +40,7 @@
             <label><input type="radio" name="gender" value="Nainen">  Nainen<br></label>
         </div>
         <div class="radio"> 
-            <label><input type="radio" name="gender" value="En ilmoita"> En ilmoita<br></label>
+            <label><input type="radio" name="gender" value="En ilmoita" checked> En ilmoita  <br></label>
         </div>
 
         <h4>Kansalaisuus*</h4>
@@ -84,14 +88,19 @@
 
         <br>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary">Tallenna</button>
+            <button type="submit" class="btn btn-success">Tallenna</button>
             <!--onclick="alert('Hello World!')">Click Me!</button>-->
         </div>
+
+
+</form>
+
+
 
         <div class="alert alert-success">
             {{"Tallennus onnistui!"}}
         </div>
-</form>
+
 <!-- Tiedot tulee listana tähän -->
 <ul>
     <li>Kun haet tietoja, täytä haluamasi kohdat ja paina Hae-painiketta</li>

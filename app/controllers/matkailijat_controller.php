@@ -44,16 +44,34 @@ class MatkailijaKontrolleri extends BaseController {
             'city' => $params['city']
         ));
         //kutsutaan tallenna-metodia
+        //$etunimivirhe=$henkilo->validoi_etunimet();
+        $tuloaikavirhe = $matka->validoi_maahantulopaiva();
+        $poistumisaikavirhe = $matka->validoi_maastapoistumispaiva();
+        $matkankesto = $matka->validoi_matkankesto();
 
-        $matka->tallennaUusiMatka();
+        $errors = array_merge($tuloaikavirhe, $poistumisaikavirhe, $matkankesto);
+        if (count($errors) > 0) {
+//            View::make('suunnitelmat/henkilo.html', array('errors'=>$errors));
+            View::make('suunnitelmat/matka.html', array('errors' => $errors)); //, 'etunimivirhe'=>$etunimivirhe));
+        } else {
+            $matka->tallennaUusiMatka();
+//            Redirect::to('/suunnitelmat/matkalistaus.html' . $matka->id, array('message' => 'Matka lisättiin matkatietokantaan'));
+//            Redirect::to('/matkalistaus');
+  Redirect::to('/matkalistaus.html' , array('message' => 'Matka lisättiin matkatietokantaan'));
+            }
+
+
+
+
         //ohjataan käyttäjä matkalistaukselle
         // Redirect::to('/suunnitelmat/matkalistaus.html' . $matka->id, array('message' => 'Matka lisättiin matkatietokantaan'));
         Redirect::to('/matkalistaus');
     }
 
+    //validointiversio
     public static function tallennaMatkailija() {
         $params = $_POST;
-        $Henkilo = new Henkilo(array(
+        $henkilo = new Henkilo(array(
             'firstnames' => $params['firstnames'],
             'familyname' => $params['familyname'],
             'dateofbirth' => $params['dateofbirth'],
@@ -61,16 +79,25 @@ class MatkailijaKontrolleri extends BaseController {
             'nationality' => $params['nationality'],
             'mobilephone' => $params['mobilephone'],
             'email' => $params['email'],
-            'username'=>$params['username'],
+            'username' => $params['username'],
             'password' => $params['password'],
             'administrator' => $params['administrator']
         ));
-        
-        //Tähän väliin tulee henkilö-luokan errors-metodikutsu
 
-        $Henkilo->tallennaMatkailija();
+        //kutsutaan henkilö-luokan validaattoreita
+        $etunimivirhe = $henkilo->validoi_etunimet();
+        $sukunimivirhe = $henkilo->validoi_sukunimi();
+        $syntymaaikavirhe = $henkilo->validoi_paivays();
+//        $maavirhe=$Henkilo->validate_nationality();
 
-        Redirect::to('/matkalistaus');
+        $errors = array_merge($etunimivirhe, $sukunimivirhe, $syntymaaikavirhe);
+        if (count($errors) > 0) {
+//            View::make('suunnitelmat/henkilo.html', array('errors'=>$errors));
+            View::make('suunnitelmat/henkilo.html', array('errors' => $errors)); //, 'etunimivirhe'=>$etunimivirhe));
+        } else {
+            $Henkilo->tallennaMatkailija();
+            Redirect::to('/matkalistaus');
+        }
     }
 
 }

@@ -1,6 +1,7 @@
 <?php
 
-require 'app/models/Paaohjelma.php';
+//require 'app/models/Paaohjelma.php';
+require 'app/models/hello_world.php';
 
 class HelloWorldController extends BaseController {
 
@@ -33,12 +34,26 @@ class HelloWorldController extends BaseController {
     public static function sandbox() {
         // Testaa koodiasi täällä
         View::make('helloworld.html');
+//
+//        $Suomi = maa::find(1);
+//        $maa = country::all();
+//        // Kint-luokan dump-metodi tulostaa muuttujan arvon
+//        Kint::dump($Suomi);
+//        Kint::dump($maa);
+        
+//      
+        $henkilo = new Henkilo(array(
+            'firstnames' => 'ti',
+            'familyname' => 'kop',
+            'dateofbirth'=> '1.1.1',
+            'nationality' => '--valitse--'
+                   
+        ));
+        Kint::dump($errors);
+        
 
-        $Suomi = maa::find(1);
-        $maa = country::all();
-        // Kint-luokan dump-metodi tulostaa muuttujan arvon
-        Kint::dump($Suomi);
-        Kint::dump($maa);
+}
+        
         }
 
 
@@ -48,6 +63,7 @@ class HelloWorldController extends BaseController {
         // Kint-luokan dump-metodi tulostaa muuttujan arvon
 //    Kint::dump($games);
 //        Kint::dump($maa);
-    }
+    
+        
 
 //}

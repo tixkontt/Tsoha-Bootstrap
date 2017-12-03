@@ -1,27 +1,22 @@
 <?php
 
 class Kayttajahallinta extends BaseController {
-    
-     public static function kirjaudu() {
-//        $kirjaudu = Kirjaudu::kirjaudu();
+
+    public static function kirjaudu() {
         View::make('suunnitelmat/kirjaudu.html');
     }
 
     public static function kasittele_kirjautuminen() {
         $params = $_POST;
+        $administrator = Kirjaudu::Kirjaudu($params['username'], $params['password']);
 
-        $user = Kirjaudu::authenticate($params['username'], $params['password']);
-
-
-        if (!$user) {
-            View::make('suunnitelmat/kirjaudu.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'username' => $params['username']));
+        if (!$administrator) {
+            View::make('suunnitelmat/kirjaudu.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'userame' => $params['username']));
         } else {
-            $_SESSION['user'] = $user->username;
-
-            Redirect::to('/', array('message' => 'Tervetuloa takaisin ' . $user->username . '!'));
+            $_SESSION['administrator'] = $administrator->administrator;
+            Redirect::to('/', array('message' => 'Tervetuloa takaisin ' . $administrator->username . '!'));
         }
     }
-    
-   //public function 
 
+    //public function 
 }

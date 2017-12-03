@@ -19,7 +19,7 @@ CREATE TABLE maa(
 
 CREATE TABLE matka(
 	id SERIAL PRIMARY KEY,
---	country integer REFERENCES maa(id) NOT NUll,
+	travellerid  integer ,
         country varchar (30) not null,
 	arrivalDate date NOT null,
 	departureDate date NOT null,
