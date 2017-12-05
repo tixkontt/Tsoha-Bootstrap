@@ -9,7 +9,7 @@ class Henkilo extends BaseModel {
         parent::__construct($attributes);
     }
 
-    public function tallennaMatkailija() {
+    public function tallennaHenkilo() {
         //lisätään returning id tietokantakyselyn loppuun, niin saadaan se talteen
         $query = DB::connection()->prepare('INSERT INTO henkilo (firstnames, familyname, dateofbirth, gender, nationality, mobilephone, email, username, password, administrator) VALUES (:firstnames, :familyname, :dateofbirth, :gender, :nationality, :mobilephone, :email, :username, :password, :administrator) RETURNING id ');
         $query->execute(array(
@@ -28,7 +28,7 @@ class Henkilo extends BaseModel {
         $this->id = $row['id'];
     }
 
-    public static function muokkaaMatkailijaa() {
+    public static function muokkaaHenkiloa() {
         $query = DB::connection()->prepare('UPDATE henkilo SET firstnames, familyname, dateofbirth, gender, nationality, mobilephone, email, username, password, administrator)=
                 (:firstnames, :familyname, :dateofbirth, :gender, :nationality, :mobilephone, :email, :username, :password, :administrator');
         $query->execute(array('id' => $this->id,
@@ -47,12 +47,12 @@ class Henkilo extends BaseModel {
         $this->id = $row['id'];
     }
 
-    public static function poistaMatkailija() {
-        $query = DB::connection()->prepare('DELETE FROM henkilo WHERE henkilo.id=:id');
+    public static function poistaHenkilo() {
+        $query = DB::connection()->prepare('DELETE FROM henkilo WHERE henkilo.id = :id');
         $query->execute(array('id' => $this->id));
     }
 
-    public static function kaikkihenkilot() {
+    public static function kaikkiHenkilot() {
         //alustetaan tietokantayhteys
         $query = DB::connection()->prepare('SELECT * FROM henkilo');
         //Suoritetaan kysely

@@ -2,10 +2,6 @@
 {% block content %}
 {% import "macros/forms.html" as forms %}
 
-
-
-
-
   <h3>Valitse muokattava tai poistettava henkilo alla olevasta listasta:</h3>
 <!--
   <!-- Kaikki lomakkeen elementit form-tagin sisään -->
@@ -37,9 +33,11 @@
         <td>{{henkilo.id}}</td>
         <td>{{henkilo.firstnames}}</td>
         <td>{{henkilo.familynames}}</td>
-        <td>{{henkilo.birthdate}}</td>
+        <td>{{henkilo.gender}}</td>
+        <td>{{henkilo.dateofbirth}}</td>
         <td>{{henkilo.nationality}}</td>
         <td>{{henkilo.mobilephone}}</td>
+        <td>{{henkilo.email}}</td>
         <td>{{henkilo.username}}</td>
         <td>{{henkilo.password}}</td>
         <td>{{henkilo.administrator}}</td>

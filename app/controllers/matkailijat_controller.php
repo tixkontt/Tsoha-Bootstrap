@@ -8,12 +8,13 @@ class MatkailijaKontrolleri extends BaseController {
         View::make('suunnitelmat/matkalistaus.html', array('matkat' => $matkat, 'maa' => $maa));
     }
 
-      public static function henkilolistaus() {
+    public static function henkilolistaus() {
         $henkilot = Henkilo::kaikkihenkilot();
         $maa = Maa::kaikkiMaat();
         View::make('suunnitelmat/henkilolistaus.html', array('henkilot' => $henkilot, 'maa' => $maa));
+//        View::make('suunnitelmat/henkilolistaus.html');
     }
-    
+
     public static function kirjaudu() {
 //        $kirjaudu = Kirjaudu::kirjaudu();
         View::make('suunnitelmat/kirjaudu.html');
@@ -59,8 +60,8 @@ class MatkailijaKontrolleri extends BaseController {
         $errors = array_merge($tuloaikavirhe, $poistumisaikavirhe, $matkankesto);
         if (count($errors) > 0) {
 //            View::make('suunnitelmat/henkilo.html', array('errors'=>$errors));
-             $maa = Maa::kaikkiMaat();
-            View::make('suunnitelmat/matka.html', array('errors' => $errors,'maat' => $maa )); //, 'etunimivirhe'=>$etunimivirhe));
+            $maa = Maa::kaikkiMaat();
+            View::make('suunnitelmat/matka.html', array('errors' => $errors, 'maat' => $maa)); //, 'etunimivirhe'=>$etunimivirhe));
         } else {
             $matka->tallennaUusiMatka();
 //            Redirect::to('/suunnitelmat/matkalistaus.html' . $matka->id, array('message' => 'Matka lisättiin matkatietokantaan'));
@@ -77,7 +78,7 @@ class MatkailijaKontrolleri extends BaseController {
     }
 
     //validointifunktiot
-    public static function tallennaMatkailija() {
+    public static function tallennaHenkilo() {
         $params = $_POST;
         $henkilo = new Henkilo(array(
             'firstnames' => $params['firstnames'],
@@ -100,8 +101,8 @@ class MatkailijaKontrolleri extends BaseController {
 
         $errors = array_merge($etunimivirhe, $sukunimivirhe, $syntymaaikavirhe);
         if (count($errors) > 0) {
-           $maa = Maa::kaikkiMaat();
-            View::make('suunnitelmat/henkilo.html', array('errors' => $errors, 'maat'=>$maa)); //, 'etunimivirhe'=>$etunimivirhe));
+            $maa = Maa::kaikkiMaat();
+            View::make('suunnitelmat/henkilo.html', array('errors' => $errors, 'maat' => $maa)); //, 'etunimivirhe'=>$etunimivirhe));
         } else {
             $Henkilo->tallennaMatkailija();
             Redirect::to('/matkalistaus');
@@ -144,14 +145,14 @@ class MatkailijaKontrolleri extends BaseController {
     public static function poistaMatka($id) {
         $matka = new Matka(array('id' => $id));
         $matka->poistaMatka();
-        
+
         Redirect::to('/matkalistaus');
     }
-    
-      public static function poistaHenkilo($id) {
+
+    public static function poistaHenkilo($id) {
         $henkilo = new Henkilo(array('id' => $id));
         $henkilo->poistaHenkilo();
-        
+
         Redirect::to('/henkilolistaus');
     }
 
