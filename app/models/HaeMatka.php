@@ -8,7 +8,7 @@
         parent::__construct($attributes);
     }
 
-    public function HaeMatka(){
+    public static function HaeMatka(){
         $query= DB::connection()->prepare('SELECT * FROM matka ORDER BY random() LIMIT 1');
         
         $query ->execute();

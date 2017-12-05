@@ -87,7 +87,7 @@
 
         <br>
         <div class="form-group">
-            <button type="submit" class="btn btn-success">Tallenna</button>
+          {{forms.destroy_button("#{base_path}/henkilo/#{henkilo.id}")}}
             <!--onclick="alert('Hello World!')">Click Me!</button>-->
         </div>
 
@@ -96,9 +96,6 @@
 
 
 
-<div class="alert alert-success">
-    {{"Tallennus onnistui!"}}
-</div>
 
 <!-- Tiedot tulee listana tähän -->
 <ul>

@@ -9,9 +9,9 @@
         Kohdemaa*:<br>
         <!-- <input type="text" placeholder="Etunimet"> <br>-->
 
-        <select name="Maat:">
+        <select name="country">
             {% for maa in maat%}
-            <option value="{{maa.id}}">{{maa.country}}</option> 
+            <option value="{{maa.country}}">{{maa.country}}</option> 
             {% endfor%}
         </select>
 

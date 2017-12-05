@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 
- <h3>Matkan tiedot:</h3>
- 
- {%if errors%}
+<h3>Matkan tiedot:</h3>
+
+{%if errors%}
 <div class="alert alert-danger">
     <ul>
         {% for error in errors %}
@@ -13,24 +13,20 @@
 </div>
 
 {% endif%}
- 
+
 <form method="post" action="{{base_path}}/matka">  
     <div class="form-group">
-       
         Kohdemaa*:<br>
         <!-- <input type="text" placeholder="Etunimet"> <br>-->
+    </div>
+    <select name="country">
+        {% for maa in maat%}
+        <option value="{{maa.country}}">{{maa.country}}</option> 
+        {% endfor%}
+    </select>
 
-        <select name="country">
-            {% for maa in maat%}
-            <option value="{{maa.country}}">{{maa.country}}</option> 
-            {% endfor%}
-        </select>
+    <div class="form-group"><input type="hidden" name ="id" value="{{matka.id}}"></div>
 
-   <!-- </div>
-    <div class="form-group">
-        <label>Matkan kohdemaa:*</label>
-        <input name ="country" class="form-control" type="text">
-    </div>-->
 
     <div class="form-group">
         <label>Maahan saapumispäivämäärä*</label>
@@ -63,4 +59,4 @@
     </div>
 </form>
 
-     {% endblock %}
+{% endblock %}

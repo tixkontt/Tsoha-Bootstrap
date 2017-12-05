@@ -24,6 +24,11 @@ $routes->post('/matka', function() {
     MatkailijaKontrolleri::tallennaUusiMatka();
 });
 
+$routes->post('/matka/:id', function($id) {
+    MatkailijaKontrolleri::poistaMatka($id);
+});
+
+
 $routes->get('/matkalistaus', function() {
     //HelloWorldController::matkalistaus();
     MatkailijaKontrolleri::matkalistaus();
@@ -36,6 +41,11 @@ $routes->get('/henkilo', function() {
 
 $routes->post('/henkilo', function() {
     MatkailijaKontrolleri::tallennaMatkailija();
+    
+});
+
+$routes->get('/henkilolistaus', function() {
+    MatkailijaKontrolleri::henkilolistaus();
     
 });
 
