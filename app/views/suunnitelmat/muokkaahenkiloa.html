@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Syötä henkilötiedot:</h2>
+<h2>Muokkaa henkilön {{henkilo.familyname}} tietoja:</h2>
 <!-- Painikkeet tähän -->
 
 {%if errors%}
@@ -13,7 +13,10 @@
 </div>
 
 {% endif%}
-<form method="post" action="{{base_path}}/henkilo">  
+<form method="post" action="{{base_path}}/muokkaahenkiloa/{{henkilo.id}}">
+<div class="form-group"><input type="hidden" name="id" value="{{henkilo.id}}"></div>
+
+    
     <div class="form-group"> 
         <h4>Tähdellä (*) merkityt kohdat ovat pakollisia</h4>
 

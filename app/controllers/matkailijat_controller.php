@@ -11,24 +11,18 @@ class MatkailijaKontrolleri extends BaseController {
     public static function henkilolistaus() {
         $maa = Maa::kaikkiMaat();
         $henkilo = Henkilo::kaikkiHenkilot();
-        //        View::make('suunnitelmat/henkilolistaus.html', array('henkilo' => $henkilo, 'maa' => $maa));
-        View::make('suunnitelmat/henkilolistaus.html');
+        View::make('suunnitelmat/henkilolistaus.html', array('henkilo' => $henkilo));
     }
 
     public static function muokkaahenkiloa($id) {
-        $henkilo = Henkilo::find($id);
-        View::make('suunnitelmat/muokkaahenkiloa.html', array('henkilo' => $henkilo, 'maa' => $maa));
+        $henkilo = Henkilo::etsihenkilo($id);
+        View::make('suunnitelmat/muokkaahenkiloa.html', array('henkilo' => $henkilo, 'attributes' => $attributes));
     }
-    
-        public static function muokkaahenkiloalomake() {
+
+    public static function muokkaahenkiloalomake() {
         $henkilo = Henkilo::muokkaaHenkiloa();
         View::make('suunnitelmat/muokkaahenkiloa.html');
-//            $etusivu = Etusivu::etusivu();
-//        View::make('suunnitelmat/etusivu.html');
-        
-        
-        }
-    
+    }
 
     //****************************
     public static function paivitahenkilo($id) {
@@ -56,7 +50,7 @@ class MatkailijaKontrolleri extends BaseController {
             View::make('suunnitelmat/muokkaahenkiloa.html', array('errors' => $errors, 'attributes' => $attributes)); //, 'etunimivirhe'=>$etunimivirhe));
         } else {
             $henkilo->paivitahenkilo();
-            Redirect::to('/matkalistaus' . $henkilo->id, array('message' => 'henkilotietoja muokattiin onnistuneesti'));
+            Redirect::to('suunnitelmat/henkilolistaus' . $henkilo->id, array('message' => 'henkilotietoja muokattiin onnistuneesti'));
         }
     }
 
@@ -148,11 +142,11 @@ class MatkailijaKontrolleri extends BaseController {
 
         $errors = array_merge($etunimivirhe, $sukunimivirhe, $syntymaaikavirhe);
         if (count($errors) > 0) {
-            $maa = Maa::kaikkiMaat();
-            View::make('suunnitelmat/henkilo.html', array('errors' => $errors, 'maat' => $maa)); //, 'etunimivirhe'=>$etunimivirhe));
+             $maa = Maa::kaikkiMaat();
+            View::make('suunnitelmat/henkilo.html' , array('errors' => $errors, 'maat' => $maa)); // 'attributes' =>$attributes)); //, 'etunimivirhe'=>$etunimivirhe));
         } else {
-            $Henkilo->tallennaMatkailija();
-            Redirect::to('/matkalistaus');
+            $henkilo->tallennaHenkilo();
+            Redirect::to('/henkilolistaus');
         }
     }
 

@@ -28,7 +28,7 @@ class Henkilo extends BaseModel {
         $this->id = $row['id'];
     }
 
-    public static function muokkaaHenkiloa($id) {
+    public static function paivitahenkilo($id) {
         $query = DB::connection()->prepare('UPDATE henkilo SET firstnames, familyname, dateofbirth, gender, nationality, mobilephone, email, username, password, administrator)=
                 (:firstnames, :familyname, :dateofbirth, :gender, :nationality, :mobilephone, :email, :username, :password, :administrator');
         $query->execute(array('id' => $this->id,
@@ -80,5 +80,35 @@ class Henkilo extends BaseModel {
         }
         return $henkilo;
     }
+    
+        public static function etsihenkilo($id) {
+        //alustetaan tietokantayhteys
+        $query = DB::connection()->prepare('SELECT henkilo.id AS id, henkilo.firstnames as firstnames, henkilo.familyname as familyname, henkilo.dateofbirth, henkilo.gender as gender, henkilo.nationality as nationality, henkilo.mobilephone as mobilephone, henkilo.email as email, henkilo.username as username, henkilo.password as password, henkilo.administrator as administrator FROM henkilo WHERE henkilo.id =:id LIMIT 1');
+        //Suoritetaan kysely
+        $query->execute(array('id'=>$id));
+        //haetaan rivi
+        $row = $query->fetch(); // haetaan vain yksi osuma
+        $henkilo = array();
+
+        if($row){
+        //Käydään rivit läpi
+        $henkilo[] = new Henkilo(array(
+                'id' => $row['id'],
+                'firstnames' => $row['firstnames'],
+                'familyname' => $row['familyname'],
+                'dateofbirth' => $row['dateofbirth'],
+                'gender'=> $row['gender'],
+                'nationality' => $row['nationality'],
+                'mobilephone' => $row['mobilephone'],
+                'email'=>$row['email'],
+                'username' => $row['username'],
+                'password' => $row['password'],
+                'administrator' => $row['administrator']
+            ));
+           return $henkilo; 
+        }
+        return NULL;
+    }
+
 
 }

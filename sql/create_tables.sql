@@ -29,6 +29,6 @@ CREATE TABLE matka(
 	);
 
 CREATE TABLE valitaulu(
-	travelkey integer REFERENCES matka (id),
-	henkiloid integer REFERENCES henkilo (id)
+	travelkey integer REFERENCES matka (id) ON DELETE CASCADE NOT NULL,
+	henkiloid integer REFERENCES henkilo (id) ON DELETE CASCADE NOT NULL
 	);

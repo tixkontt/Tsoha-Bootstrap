@@ -39,7 +39,6 @@ $routes->post('/matka/:id', function($id) {
 
 
 $routes->get('/matkalistaus', function() {
-    //HelloWorldController::matkalistaus();
     MatkailijaKontrolleri::matkalistaus();
 });
 
@@ -56,23 +55,23 @@ $routes->post('/henkilo', function() {
     
 });
 
-$routes->post('/henkilolistaus', function() {
+$routes->get('/henkilolistaus', function() {
     MatkailijaKontrolleri::henkilolistaus();
     
 });
 
-$routes->get('/paivitahenkilo', function() {
+$routes->get('/paivitahenkilo/', function() { //update
     MatkailijaKontrolleri::paivitahenkilo();
     
 });
 
 
-$routes->get('/:id/paivitahenkilo', function($id) {
+$routes->post('/paivitahenkilo/:id', function($id) { //update
     MatkailijaKontrolleri::paivitahenkilo($id);
     
 });
 
-$routes->get('/henkilolistaus:id/muokkaahenkiloa', function($id) {
+$routes->get('/muokkaahenkiloa/:id', function($id) { //edit
     MatkailijaKontrolleri::muokkaahenkiloa($id);
     
 });
