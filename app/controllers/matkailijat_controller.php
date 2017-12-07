@@ -9,11 +9,58 @@ class MatkailijaKontrolleri extends BaseController {
     }
 
     public static function henkilolistaus() {
-        $henkilot = Henkilo::kaikkihenkilot();
         $maa = Maa::kaikkiMaat();
-        View::make('suunnitelmat/henkilolistaus.html', array('henkilot' => $henkilot, 'maa' => $maa));
-//        View::make('suunnitelmat/henkilolistaus.html');
+        $henkilo = Henkilo::kaikkiHenkilot();
+        //        View::make('suunnitelmat/henkilolistaus.html', array('henkilo' => $henkilo, 'maa' => $maa));
+        View::make('suunnitelmat/henkilolistaus.html');
     }
+
+    public static function muokkaahenkiloa($id) {
+        $henkilo = Henkilo::find($id);
+        View::make('suunnitelmat/muokkaahenkiloa.html', array('henkilo' => $henkilo, 'maa' => $maa));
+    }
+    
+        public static function muokkaahenkiloalomake() {
+        $henkilo = Henkilo::muokkaaHenkiloa();
+        View::make('suunnitelmat/muokkaahenkiloa.html');
+//            $etusivu = Etusivu::etusivu();
+//        View::make('suunnitelmat/etusivu.html');
+        
+        
+        }
+    
+
+    //****************************
+    public static function paivitahenkilo($id) {
+        $params = $_POST;
+
+        $attributes = array(
+            'id' => $id,
+            'firstnames' => $params['firstnames'],
+            'familyname' => $params['familyname'],
+            'dateofbirth' => $params['dateofbirth'],
+            'gender' => $params['gender'],
+            'nationality' => $params['nationality'],
+            'mobilephone' => $params['mobilephone'],
+            'email' => $params['email'],
+            'username' => $params['username'],
+            'password' => $params['password'],
+            'administrator' => $params['administrator']
+        );
+        //luodaan uusi olio uusilla attribuuteilla
+        $henkilo = new Henkilo($attributes);
+        $errors = $henkilo - errors();
+
+        if (count($errors) > 0) {
+            $maa = Maa::kaikkiMaat();
+            View::make('suunnitelmat/muokkaahenkiloa.html', array('errors' => $errors, 'attributes' => $attributes)); //, 'etunimivirhe'=>$etunimivirhe));
+        } else {
+            $henkilo->paivitahenkilo();
+            Redirect::to('/matkalistaus' . $henkilo->id, array('message' => 'henkilotietoja muokattiin onnistuneesti'));
+        }
+    }
+
+    //****************************
 
     public static function kirjaudu() {
 //        $kirjaudu = Kirjaudu::kirjaudu();

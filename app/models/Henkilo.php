@@ -28,7 +28,7 @@ class Henkilo extends BaseModel {
         $this->id = $row['id'];
     }
 
-    public static function muokkaaHenkiloa() {
+    public static function muokkaaHenkiloa($id) {
         $query = DB::connection()->prepare('UPDATE henkilo SET firstnames, familyname, dateofbirth, gender, nationality, mobilephone, email, username, password, administrator)=
                 (:firstnames, :familyname, :dateofbirth, :gender, :nationality, :mobilephone, :email, :username, :password, :administrator');
         $query->execute(array('id' => $this->id,
@@ -47,11 +47,12 @@ class Henkilo extends BaseModel {
         $this->id = $row['id'];
     }
 
-    public static function poistaHenkilo() {
-        $query = DB::connection()->prepare('DELETE FROM henkilo WHERE henkilo.id = :id');
+    public function poistaHenkilo() {
+        $query = DB::connection()->prepare('DELETE FROM henkilo, valitaulu WHERE henkilo.id = :id AND valitaulu.henkiloid= :id');
         $query->execute(array('id' => $this->id));
     }
 
+    
     public static function kaikkiHenkilot() {
         //alustetaan tietokantayhteys
         $query = DB::connection()->prepare('SELECT * FROM henkilo');
@@ -59,23 +60,25 @@ class Henkilo extends BaseModel {
         $query->execute();
         //haetaan rivit
         $rows = $query->fetchAll();
-        $henkilot = array();
+        $henkilo = array();
 
         //Käydään rivit läpi
         foreach ($rows as $row) {
-            $henkilot[] = new Henkilo(array(
+            $henkilo[] = new Henkilo(array(
                 'id' => $row['id'],
                 'firstnames' => $row['firstnames'],
                 'familyname' => $row['familyname'],
                 'dateofbirth' => $row['dateofbirth'],
+                'gender'=> $row['gender'],
                 'nationality' => $row['nationality'],
                 'mobilephone' => $row['mobilephone'],
+                'email'=>$row['email'],
                 'username' => $row['username'],
                 'password' => $row['password'],
                 'administrator' => $row['administrator']
             ));
         }
-        return $henkilot;
+        return $henkilo;
     }
 
 }

@@ -3,11 +3,11 @@
 {% import "macros/forms.html" as forms %}
 
   <h3>Valitse muokattava tai poistettava henkilo alla olevasta listasta:</h3>
-<!--
+
   <!-- Kaikki lomakkeen elementit form-tagin sisään -->
  
     <!-- Tekstikenttä käyttäjätunnukselle -->
-  <table class="table table-striped table-bordered">
+ <table class="table table-striped table-bordered">
     <thead>
       <tr>
         <th>ID</th>
@@ -21,35 +21,33 @@
         <th>Käyttäjätunnus</th>
         <th>Salasana</th>
         <th>Pääkäyttäjä</th>
-        
+        <th>Muokkaa</th>
+        <th>Poista</th>
       </tr>
     </thead>
 
     <tbody>
       <!-- Listataan maat tähän -->
-      {% for henkilo in henkilot%}
+      {% for henkilo in henkilo%}
       <tr>
         <!--<td><a href="{{base_path}}/matkalistaus/{{matkakohde.id}}">matka</a></td>-->
         <td>{{henkilo.id}}</td>
         <td>{{henkilo.firstnames}}</td>
-        <td>{{henkilo.familynames}}</td>
-        <td>{{henkilo.gender}}</td>
+        <td>{{henkilo.familyname}}</td>
         <td>{{henkilo.dateofbirth}}</td>
+        <td>{{henkilo.gender}}</td>
         <td>{{henkilo.nationality}}</td>
         <td>{{henkilo.mobilephone}}</td>
         <td>{{henkilo.email}}</td>
         <td>{{henkilo.username}}</td>
         <td>{{henkilo.password}}</td>
         <td>{{henkilo.administrator}}</td>
-        
-        
-        
-   
+
         <!--<td> <a href="{{base_path}}/matka" class="btn btn-default" role="button">Muokkaa</a></td>-->
         <td> <a href="{{base_path}}/henkilo/{{henkilo.id}}" class="btn btn-default" role="button">Muokkaa</a></td>
        <!-- <td><button type = "submit" class="btn btn-danger" <a class="btn btn-default btn-sm" href="#">Poista</a></button></td>-->
        <td>{{forms.destroy_button("#{base_path}/henkilo/#{henkilo.id}")}}</td>
-    
+    <!--<td>{{forms.destroy_button("#{base_path}/matka/#{matka.id}")}}</td>-->
         <!--onclick="alert('Hello World!')">Click Me!</button>-->
      
             </tr>

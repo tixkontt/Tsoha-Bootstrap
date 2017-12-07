@@ -61,6 +61,22 @@ $routes->post('/henkilolistaus', function() {
     
 });
 
+$routes->get('/paivitahenkilo', function() {
+    MatkailijaKontrolleri::paivitahenkilo();
+    
+});
+
+
+$routes->get('/:id/paivitahenkilo', function($id) {
+    MatkailijaKontrolleri::paivitahenkilo($id);
+    
+});
+
+$routes->get('/henkilolistaus:id/muokkaahenkiloa', function($id) {
+    MatkailijaKontrolleri::muokkaahenkiloa($id);
+    
+});
+
 
 $routes->get('/haematka', function() {
     MatkailijaKontrolleri::haematka();

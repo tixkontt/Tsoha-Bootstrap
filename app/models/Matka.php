@@ -16,7 +16,8 @@ class Matka extends BaseModel {
         $query->execute();
         //haetaan rivit
         $rows = $query->fetchAll();
-        $matkat = array();
+//        $matkat = array();
+        $maat = array();
 
         //Käydään rivit läpi
         foreach ($rows as $row) {
@@ -49,8 +50,7 @@ class Matka extends BaseModel {
 
     public function poistaMatka() {
         $query = DB::connection()->prepare('DELETE FROM matka WHERE matka.id=:id');
-        $query->execute(array('id'=> $this->id));
-        
+        $query->execute(array('id' => $this->id));
     }
 
     public function muokkaaMatkaa() {
