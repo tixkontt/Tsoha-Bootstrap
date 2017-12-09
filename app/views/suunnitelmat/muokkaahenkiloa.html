@@ -13,6 +13,16 @@
 </div>
 
 {% endif%}
+
+<!--jos kaikki onnistui, näytetään siitä ilmoitus sivun yläreunassa-->
+
+{%if message %}
+<div class="alert alert-success">
+{{message}}
+</div>
+{% endif %}
+
+
 <form method="post" action="{{base_path}}/muokkaahenkiloa/{{henkilo.id}}">
 <div class="form-group"><input type="hidden" name="id" value="{{henkilo.id}}"></div>
 
@@ -22,15 +32,15 @@
 
         <div class="form-group">
             <label>Etunimet*</label>
-            <input name ="firstnames" class="form-control" value="{{attributes.firstnames}}" type="text">
+            <input name ="firstnames" class="form-control" value="{{henkilo.firstnames}}" type="text">
         </div>
         <div class="form-group">
             <label>Sukunimi*</label>
-            <input name ="familyname" class="form-control" value= "{{attributes.familyname}}" type="text">
+            <input name ="familyname" class="form-control" value= "{{henkilo.familyname}}" type="text">
         </div>
         <div class="form-group">
             <label>Syntymäaika*</label>
-            <input name=" dateofbirth"  class="form-control" value= "{{attributes.dateofbirth}}" type="date">
+            <input name=" dateofbirth"  class="form-control" value= "{{henkilo.dateofbirth}}" type="date">
         </div>
 
 
@@ -59,21 +69,21 @@
         <br><br>
         <div class="form-group">
             <label>Matkapuhelin</label>
-            <input name ="mobilephone" type="text" value= "{{attributes.mobilephone}}" class="form-control">
+            <input name ="mobilephone" type="text" value= "{{henkilo.mobilephone}}" class="form-control">
         </div>
         <div class="form-group">
             <label>sähköposti</label>
-            <input name="email" type="text" value= "{{attributes.email}}" class="form-control">
+            <input name="email" type="text" value= "{{henkilo.email}}" class="form-control">
         </div>
         <!-- Tekstikenttä käyttäjätunnukselle -->
         <div class="form-group">
             <label>Käyttäjätunnus</label>
-            <input name="username" type="text" class="form-control" value= "{{attributes.username}}" ><!--name="username"  >-->
+            <input name="username" type="text" class="form-control" value= "{{henkilo.username}}" ><!--name="username"  >-->
         </div>
 
         <div class="form-group">
             <label>salasana</label>
-            <input name =" password" type="password" value= "{{attributes.password}}" class="form-control">
+            <input name =" password" type="password" value= "{{henkilo.password}}" class="form-control">
         </div>
         <br>
 

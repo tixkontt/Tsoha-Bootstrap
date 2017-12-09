@@ -19,7 +19,6 @@ CREATE TABLE maa(
 
 CREATE TABLE matka(
 	id SERIAL PRIMARY KEY,
-	travellerid  integer ,
         country varchar (30) not null,
 	arrivalDate date NOT null,
 	departureDate date NOT null,
@@ -29,6 +28,6 @@ CREATE TABLE matka(
 	);
 
 CREATE TABLE valitaulu(
-	travelkey integer REFERENCES matka (id) ON DELETE CASCADE NOT NULL,
+	matkaid integer REFERENCES matka (id) ON DELETE CASCADE NOT NULL,
 	henkiloid integer REFERENCES henkilo (id) ON DELETE CASCADE NOT NULL
 	);

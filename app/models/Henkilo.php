@@ -27,6 +27,21 @@ class Henkilo extends BaseModel {
         $row = $query->fetch();
         $this->id = $row['id'];
     }
+    
+    //******************************
+        public function tallennaUusiKayttaja($username, $password, $administrator) {
+        //lisätään returning id tietokantakyselyn loppuun, niin saadaan se talteen
+        $query = DB::connection()->prepare('INSERT INTO henkilo (username, password, administrator) VALUES (:username, :password, :administrator) RETURNING id ');
+        $query->execute(array(
+            'username' => $this->username,
+            'password' => $this->password,
+            'administrator' => $this->administrator));
+
+        $row = $query->fetch();
+        $this->id = $row['id'];
+    }
+    
+    //******************************
 
     public static function paivitahenkilo($id) {
         $query = DB::connection()->prepare('UPDATE henkilo SET firstnames, familyname, dateofbirth, gender, nationality, mobilephone, email, username, password, administrator)=
@@ -48,7 +63,7 @@ class Henkilo extends BaseModel {
     }
 
     public function poistaHenkilo() {
-        $query = DB::connection()->prepare('DELETE FROM henkilo, valitaulu WHERE henkilo.id = :id AND valitaulu.henkiloid= :id');
+        $query = DB::connection()->prepare('DELETE FROM henkilo WHERE henkilo.id = :id');
         $query->execute(array('id' => $this->id));
     }
 
@@ -88,11 +103,11 @@ class Henkilo extends BaseModel {
         $query->execute(array('id'=>$id));
         //haetaan rivi
         $row = $query->fetch(); // haetaan vain yksi osuma
-        $henkilo = array();
+        $henkilo = NULL;
 
         if($row){
         //Käydään rivit läpi
-        $henkilo[] = new Henkilo(array(
+        $henkilo = new Henkilo(array(
                 'id' => $row['id'],
                 'firstnames' => $row['firstnames'],
                 'familyname' => $row['familyname'],

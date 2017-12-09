@@ -5,11 +5,10 @@ class BaseModel {
     // "protected"-attribuutti on käytössä vain luokan ja sen perivien luokkien sisällä
     protected $validators;
 
-
-    public function __construct($attributes=null) {
+    public function __construct($attributes = null) {
         // 2 ekaa riviä ylempää
 //        parent::construct($attributes);
-        $this->validators = array('validoi_etunimet', 'validoi_sukunimi', 'validoi_paivays', 'validoi_maannimikentta', 'validoi_kayttajatunnus', 'validoi_salasana', 'validoi_maahantulopaiva', 'validoi_maastapoistumispaiva','validoi_matkankesto');
+        $this->validators = array('validoi_etunimet', 'validoi_sukunimi', 'validoi_paivays', 'validoi_maannimikentta', 'validoi_kayttajatunnus', 'validoi_salasana', 'validoi_maahantulopaiva', 'validoi_maastapoistumispaiva', 'validoi_matkankesto');
 
 //     Käydään assosiaatiolistan avaimet läpi
         foreach ($attributes as $attribute => $value) {
@@ -69,9 +68,8 @@ class BaseModel {
         if (strlen($this->dateofbirth) > 10) {
             $errors[] = 'Päiväyksen maksimipituus on 10 merkkiä';
         }
-         return $errors;
+        return $errors;
     }
-
 
     public function validoi_salasana() {
         $errors = array();
@@ -86,6 +84,30 @@ class BaseModel {
 
         if (strlen($this->password) > 30) {
             $errors[] = 'Salasanan maksimipituus on 30 merkkiä';
+        }
+
+        return $errors;
+    }
+
+    public function validoi_salasanat() {
+        $errors = array();
+        //Tarkastetaan, että päiväyskenttä ei ole tyhjä
+        if ($this->password == '' || $this->password == null) {
+            $errors[] = 'Salasanakenttä ei saa olla tyhjä!';
+        } else if ($this->password2 == '' || $this->password2 == null) {
+            $errors[] = 'Salasanan varmistuskenttä ei saa olla tyhjä!';
+        }
+        //tarkastetaan, että päiväyskentässä on vähintään 8 merkin syöte
+        if (strlen($this->password) < 8 || ($this->password2) < 8) {
+            $errors[] = 'Salasanan minimipituus on 8 merkkiä!';
+        }
+
+        if (strlen($this->password) || ($this->password2) > 30) {
+            $errors[] = 'Salasanan maksimipituus on 30 merkkiä';
+        }
+
+        if(strcmp($this->password,$this->password2)!=0) {
+            $errors[] = 'Salasanat eivät täsmää, yritä uudelleen!';
         }
 
         return $errors;
@@ -108,8 +130,8 @@ class BaseModel {
 
         return $errors;
     }
-    
-        public function validoi_maahantulopaiva() {
+
+    public function validoi_maahantulopaiva() {
         $errors = array();
         //Tarkastetaan, että päiväyskenttä ei ole tyhjä
         if ($this->arrivalDate == '' || $this->arrivalDate == null) {
@@ -126,8 +148,8 @@ class BaseModel {
 
         return $errors;
     }
-    
-        public function validoi_maastapoistumispaiva() {
+
+    public function validoi_maastapoistumispaiva() {
         $errors = array();
         //Tarkastetaan, että päiväyskenttä ei ole tyhjä
         if ($this->departureDate == '' || $this->departureDate == null) {
@@ -144,15 +166,15 @@ class BaseModel {
 
         return $errors;
     }
-    
-            public function validoi_matkankesto() {
+
+    public function validoi_matkankesto() {
         $errors = array();
         //Tarkastetaan, että päiväyskenttä ei ole tyhjä
         if ($this->arrivalDate > $this->departureDate) {
             $errors[] = 'Matka ei voi loppua ennnen alkamistaan!';
         }
 
- 
+
         return $errors;
     }
 

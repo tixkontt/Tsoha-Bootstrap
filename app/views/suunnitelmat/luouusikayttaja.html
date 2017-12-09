@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>Kirjaudu sisään sovellukseen:</h1>
-<br>
+<h1>Luo uusi käyttäjä:</h1>
 {%if errors%}
+<br>
 <div class="alert alert-danger">
     <ul>
         {% for error in errors %}
@@ -14,7 +14,7 @@
 
 {% endif%}
 <!-- Kaikki lomakkeen elementit form-tagin sisään -->
-<form method="post" action="{{base_path}}/kirjaudu">  
+<form method="post" action="{{base_path}}/luouusikayttaja">  
 
     <!-- Tekstikenttä käyttäjätunnukselle -->
     <div class="form-group">
@@ -28,11 +28,11 @@
         <input type="password" class="form-control" name = "password">
     </div>
 
-    <!-- Salasanakenttä salasanalle 
+   <!-- Salasanakenttä salasanalle -->
     <div class="form-group">
         <label>Salasana uudelleen </label>
         <input name = "password2" type="password" class="form-control">
-    </div>-->
+    </div>
     <div>
         <button type="submit" class="btn btn-primary">Kirjaudu sisään</button>
     </div>

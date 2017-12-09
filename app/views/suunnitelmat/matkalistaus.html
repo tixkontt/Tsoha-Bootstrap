@@ -4,9 +4,11 @@
 
 
 
-<!--<div class="alert alert-success">
-  {{"Tallennus onnistui!"}}
-</div>-->
+{%if message %}
+<div class="alert alert-success">
+{{message}}
+</div>
+{% endif %}
 
   <h3>Valitse muokattava tai poistettava matka alla olevasta listasta:</h3>
 
@@ -42,7 +44,7 @@
         <td>{{matka.city}}</td>
    
         <!--<td> <a href="{{base_path}}/matka" class="btn btn-default" role="button">Muokkaa</a></td>-->
-        <td> <a href="{{base_path}}/matka/{{matka.id}}" class="btn btn-default" role="button">Muokkaa</a></td>
+        <td> <a href="{{base_path}}/muokkaa_matkaa/{{matka.id}}" class="btn btn-default" role="button">Muokkaa</a></td>
        <!-- <td><button type = "submit" class="btn btn-danger" <a class="btn btn-default btn-sm" href="#">Poista</a></button></td>-->
        <td>{{forms.destroy_button("#{base_path}/matka/#{matka.id}")}}</td>
     

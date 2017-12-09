@@ -1,25 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
-
+  {% if user_logged_in %}
+    <h1>Käyttäjä {{user_logged_in.name}} kirjautunut sisään</h1>
+  {% endif %}
  <h3>Hae matkoja:</h3>
  
-<form method="post" action="{{base_path}}suunnitelmat/haematka">  
+<form method="post" action="{{base_path}}/haematka">  
     <div class="form-group">
        
         Kohdemaa*:<br>
         <!-- <input type="text" placeholder="Etunimet"> <br>-->
 
-        <select name="country">
+       <select name="country">
+          
             {% for maa in maat%}
-            <option value="{{maa.country}}">{{maa.country}}</option> 
+  
+           <option value="{{maa.country}}">{{maa.country}}</option> 
             {% endfor%}
-        </select>
+        </select> 
 
     </div>
-    <div class="form-group">
+   <!-- <div class="form-group">
         <label>Matkan kohdemaa:*</label>
         <input name ="country" class="form-control" type="text">
-    </div>
+    </div>-->
 
     <div class="form-group">
         <label>Maahan saapumispäivämäärä*</label>

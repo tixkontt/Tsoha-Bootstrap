@@ -42,9 +42,13 @@
           <ul class="nav navbar-nav">
             <!-- Navigaation linkit -->
             <!--<li><a href="{{base_path}}">Henkilötiedot</a></li>-->
-            <li><a href="{{base_path}}/henkilo">Henkilötiedot</a></li>
-            <li><a href="{{base_path}}/matkalistaus">Matkat</a></li>
-            <li><a href="{{base_path}}/henkilolistaus">Henkilot</a></li>
+            <li><a href="{{base_path}}/henkilo">Lisää henkilö</a></li>
+             <li><a href="{{base_path}}/henkilolistaus">Kaikki henkilöt</a></li>
+             <li><a href="{{base_path}}/luouusikayttaja">Luo uusi käyttäjä</a></li>
+             <li><a href="{{base_path}}/haematka">Hae matkoja</a></li>
+            <li><a href="{{base_path}}/matka"> Lisää matka</a> </li>
+            <li><a href="{{base_path}}/matkalistaus">Kaikki matkat</a></li>
+           
             <!--<li><a href="{{base_path}}/kirjaudu">Kirjaudu sisään</a></li>-->
             <li><a href="{{base_path}}/etusivu">Kirjaudu ulos</a></li>
           </ul>
@@ -53,6 +57,26 @@
     </nav>
 
     <div id="main-container">
+        {%if errors%}
+<div class="alert alert-danger">
+    <ul>
+        {% for error in errors %}
+        <li>{{error}}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endif%}
+
+<!--jos kaikki onnistui, näytetään siitä ilmoitus sivun yläreunassa-->
+
+{%if message %}
+<div class="alert alert-success">
+{{message}}
+</div>
+{% endif %}
+        
+        
       <!-- Dynaaminen sisältö tulee tähän--> 
         {% block content %}{% endblock %}
     </div>
