@@ -3,7 +3,7 @@
 class HaeMatka extends BaseModel {
 
 //attribuutit
-    public $id, $maa, $matka, $country, $arrivalDate, $departureDate, $address, $postcode, $city;
+    public $id, $maa, $matka, $country, $arrivaldate, $departuredate, $address, $postcode, $city;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -18,7 +18,6 @@ class HaeMatka extends BaseModel {
         if ($row) {
             $matka = new Matka(array(
                 'id' => $row['id'],
-                'travelleridid' => $row['travellerid'],
                 'country' => $row['country'],
                 'arrivaldate' => $row['arrivaldate'],
                 'departuredate' => $row['departuredate'],
@@ -32,17 +31,19 @@ class HaeMatka extends BaseModel {
     }
 
     public static function haeYksiMatka($id) {
-        $query = DB::connection()->prepare('SELECT matka.id as id, matka.travellerid as travellerid, matka.country as country, matka.arrivaldate as arrivaldate, matka.departuredate as departuredate, matka.address as address, matka.postcode as postcode, matka.city as city FROM matka WHERE matka.id= :id LIMIT 1');
-
+        // alustetaan tietokantayhteys
+        $query = DB::connection()->prepare('SELECT matka.id as id, matka.country as country, matka.arrivaldate as arrivaldate, matka.departuredate as departuredate, matka.address as address, matka.postcode as postcode, matka.city as city FROM matka WHERE matka.id= :id LIMIT 1');
+        //suoritetaan kysely
         $query->execute(array('id' => $id));
         //haetaan rivi
         $row = $query->fetch(); // haetaan vain yksi osuma
-
-        $matka = array();
+        //varmistetaan, että objekti $matka on null
+        $matka = NULL;
+ 
+        //Mikäli kysely tuottaa rivin, kootaan tiedot listaksi
         if ($row) {
-            $matka[] = new Matka(array(
+            $matka = new HaeMatka(array(
                 'id' => $row['id'],
-                'travellerid' => $row['travellerid'],
                 'country' => $row['country'],
                 'arrivaldate' => $row['arrivaldate'],
                 'departuredate' => $row['departuredate'],
@@ -67,7 +68,36 @@ class HaeMatka extends BaseModel {
         foreach ($rows as $row) {
             $matkat = new Matka(array(
                 'id' => $row['id'],
-                'travelleridid' => $row['travellerid'],
+                'country' => $row['country'],
+                'arrivaldate' => $row['arrivaldate'],
+                'departuredate' => $row['departuredate'],
+                'address' => $row['address'],
+                'postcode' => $row['postcode'],
+                'city' => $row['city']));
+
+            return $matkat;
+        }
+        return null;
+    }
+
+    //Testataan, toimiiko...
+    public static function HaeYhdenHenkilonMatkat($id) {
+        $query = DB::connection()->prepare('SELECT valitaulu.matkaid, henkilo.familyname, matka.country, matka.city, matka.arrivaldate, matka.departuredate, henkilo.username 
+        FROM valitaulu, henkilo, matka
+        WHERE valitaulu.henkiloid = henkilo.id
+        AND valitaulu.matkaid=matka.id
+        and henkilo.id=:id');
+
+
+        $query->execute(array('country' => $country));
+        $row = $query->fetchall();
+
+        $matkat = array();
+
+        foreach ($rows as $row) {
+            $matkat = new Matka(array(
+                'henkilo.id' => $row['henkilo.id'],
+                'familyname'=>$row['familyname'],
                 'country' => $row['country'],
                 'arrivaldate' => $row['arrivaldate'],
                 'departuredate' => $row['departuredate'],

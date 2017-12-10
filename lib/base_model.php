@@ -117,7 +117,7 @@ class BaseModel {
         $errors = array();
         //Tarkastetaan, että päiväyskenttä ei ole tyhjä
         if ($this->username == '' || $this->username == null) {
-            $errors[] = 'Käyttätunnuskenttä ei saa olla tyhjä!';
+            $errors[] = 'Käyttäjätunnuskenttä ei saa olla tyhjä!';
         }
         //tarkastetaan, että päiväyskentässä on vähintään 8 merkin syöte
         if (strlen($this->username) < 4) {

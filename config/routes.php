@@ -17,15 +17,18 @@ $routes->get('/hiekkalaatikko', function() {
 //********** kirjautuminen*****************
 $routes->get('/kirjaudu', function() {
     Kayttajahallinta::kirjaudu();
-    });
+});
 
 $routes->post('/kirjaudu', function() {
     Kayttajahallinta::kasittele_kirjautuminen();
 });
 
+//$routes->post('/kirjaudu', function() {
+//    MatkailijaKontrolleri::kirjaudu();
+//});
+
 $routes->get('/luouusikayttaja', function() {
-Kayttajahallinta::luouusikayttaja();
-    
+    Kayttajahallinta::luouusikayttaja();
 });
 
 //********** Matkojen käsittely*************
@@ -42,6 +45,10 @@ $routes->post('/matka/:id', function($id) {
     MatkailijaKontrolleri::poistaMatka($id);
 });
 
+//$routes->post('/matka/:id', function($id) {
+//    MatkailijaKontrolleri::muokkaamatkaa($id);
+//});
+
 // ****** matkojen haku ******
 
 $routes->get('/matkalistaus', function() {
@@ -52,7 +59,11 @@ $routes->get('/haematka', function() {
     MatkailijaKontrolleri::haematka();
 });
 
-$routes->get('/muokkaa_matkaa/:id', function($id) {
+$routes->get('/muokkaamatkaa/:id', function($id) {//muokkaa_matkaa >>> muokkaamatkaa
+    MatkailijaKontrolleri::haeYksiMatka($id);
+});
+
+$routes->post('/muokkaamatkaa/:id', function($id) {//muokkaa_matkaa >>> muokkaamatkaa
     MatkailijaKontrolleri::haeYksiMatka($id);
 });
 
@@ -65,28 +76,25 @@ $routes->get('/henkilo', function() {
 
 $routes->post('/henkilo', function() {
     MatkailijaKontrolleri::tallennaHenkilo();
-    
 });
 
 $routes->get('/henkilolistaus', function() {
     MatkailijaKontrolleri::henkilolistaus();
-    
 });
 
 $routes->get('/paivitahenkilo/:id', function($id) { //update
     MatkailijaKontrolleri::paivitahenkilo($id);
-    
+});
+
+$routes->post('/muokkaahenkiloa/:id', function($id) { //update
+    MatkailijaKontrolleri::paivitahenkilo($id);
 });
 
 $routes->get('/muokkaahenkiloa/:id', function($id) { //edit
     MatkailijaKontrolleri::muokkaahenkiloa($id);
-    
 });
 
-$routes->get('/muokkaahenkiloa/:id', function($id) { //edit
-    MatkailijaKontrolleri::muokkaahenkiloa($id);
-    
-});
+
 // //Tee myös POST versio
 
 $routes->post('/henkilo/:id', function($id) {

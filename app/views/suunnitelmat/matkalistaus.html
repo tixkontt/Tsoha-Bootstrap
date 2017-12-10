@@ -3,17 +3,17 @@
 {% import "macros/forms.html" as forms %}
 
 
-
+<!--
 {%if message %}
 <div class="alert alert-success">
 {{message}}
 </div>
 {% endif %}
-
+-->
   <h3>Valitse muokattava tai poistettava matka alla olevasta listasta:</h3>
 
   <!-- Kaikki lomakkeen elementit form-tagin sisään -->
- 
+ <form method="post" action="{{base_path}}/muokkaamatkaa/{{matka.id}}">  
     <!-- Tekstikenttä käyttäjätunnukselle -->
   <table class="table table-striped table-bordered">
     <thead>
@@ -44,7 +44,7 @@
         <td>{{matka.city}}</td>
    
         <!--<td> <a href="{{base_path}}/matka" class="btn btn-default" role="button">Muokkaa</a></td>-->
-        <td> <a href="{{base_path}}/muokkaa_matkaa/{{matka.id}}" class="btn btn-default" role="button">Muokkaa</a></td>
+        <td> <a href="{{base_path}}/muokkaamatkaa/{{matka.id}}" class="btn btn-default" role="button">Muokkaa</a></td>
        <!-- <td><button type = "submit" class="btn btn-danger" <a class="btn btn-default btn-sm" href="#">Poista</a></button></td>-->
        <td>{{forms.destroy_button("#{base_path}/matka/#{matka.id}")}}</td>
     
@@ -52,8 +52,9 @@
      
             </tr>
       {%endfor%}
+     
     </tbody>
   </table>
 
-  
+   </form>
 {% endblock %}

@@ -14,6 +14,8 @@
 
 {% endif%}
 
+
+
 <form method="post" action="{{base_path}}/paivitamatka/{{matka.id}}">  
     <div class="form-group">
         Kohdemaa*:<br>
@@ -21,6 +23,7 @@
     </div>
     <select name="country">
         {% for maa in maat%}
+        {% if maa.country == matka.country%} selected {% endif %} 
         <option value="{{maa.country}}">{{maa.country}}</option> 
         {% endfor%}
     </select>
@@ -30,27 +33,27 @@
 
     <div class="form-group">
         <label>Maahan saapumispäivämäärä*</label>
-        <input name ="arrivalDate" class="form-control" type="date" value = "{{maa.arrivalDate}}">
+        <input name ="arrivaldate" class="form-control" type="date" value = "{{matka.arrivaldate}}">
     </div>
 
     <div class="form-group">
         <label>Maastapoistumispäivämäärä*</label>
-        <input name ="departureDate" class="form-control" value="{{maa.departureDate}}" type="date">
+        <input name ="departuredate" class="form-control" type="date" value="{{matka.departuredate}}" >
     </div>
 
     <div class="form-group">
         <label>Osoite</label>
-        <input name ="address" class="form-control" value="{{maa.address}}" type="text">
+        <input name ="address" class="form-control" value="{{matka.address}}" type="text">
     </div>
 
     <div class="form-group">
         <label>Postinumero</label>
-        <input name ="postcode" class="form-control" value="{{maa.postcode}}" type="text">
+        <input name ="postcode" class="form-control" value="{{matka.postcode}}" type="text">
     </div>
 
     <div class="form-group">
         <label>Kaupunki tai maakunta</label>
-        <input name ="city" class="form-control" value="{{maa.city}}" type="text">
+        <input name ="city" class="form-control" value="{{matka.city}}" type="text">
     </div>
 
     <div class="form-group">

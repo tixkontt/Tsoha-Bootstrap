@@ -58,22 +58,23 @@ class MatkailijaKontrolleri extends BaseController {
 
     //****************************
 
-    public static function kirjaudu() {
-        $params = $_POST;
-        //Kutsutaan Kirjaudu-mallin metodia Kirjaudu()
-        $kirjaudu = Kirjaudu::kirjaudu();
-        //Kutusutaan validointimetodia, joka tsekkaa kirjaudu-objektin
-        $kirjautumisvirhe = $kirjaudu->validoi_salasana();
-        //tsekataan löytyykö kirjautumisvirheitä...
-        $errors = array_merge($kirjautumisvirhe);
-        //jos löytyy, niin annetaan ohjeita ja ohjataan näkymä sen mukaan.
-        if (count($errors) > 0) {
-            View::make('suunnitelmat/kirjaudu.html', array('errors' => $errors));
-        } else {
-            $errors = 'Kirjautuminen onnistui!';
-            View::make('suunnitelmat/kirjaudu.html', array('errors' => $errors));
-        }
-    }
+//    public static function kirjaudu() {
+//        $params = $_POST;
+//        //Kutsutaan Kirjaudu-mallin metodia Kirjaudu()
+//        $kirjaudu = Kirjaudu::kirjaudu($params['username'], $params['password']);
+//        //Kutusutaan validointimetodia, joka tsekkaa kirjaudu-objektin
+//        $salasanavirhe = $kirjaudu->validoi_salasana();
+//        $kayttajatunnusvirhe =$kirjaudu->validoi_kayttajatunnus();
+//        //tsekataan löytyykö kirjautumisvirheitä...
+//        $errors = array_merge($kirjautumisvirhe);
+//        //jos löytyy, niin annetaan ohjeita ja ohjataan näkymä sen mukaan.
+//        if (count($errors) > 0) {
+//            View::make('suunnitelmat/kirjaudu.html', array('errors' => $errors));
+//        } else {
+//            $message= 'Kirjautuminen onnistui!';
+//            View::make('suunnitelmat/henkilo.html', array('message' => $message));
+//        }
+//    }
 
     public static function etusivu() {
         $etusivu = Etusivu::etusivu();
@@ -88,8 +89,8 @@ class MatkailijaKontrolleri extends BaseController {
 
     public static function haeYksiMatka($id) {
         $maa = Maa::kaikkiMaat();
-        $haematka = HaeMatka::haeYksiMatka($id);
-        View::make('suunnitelmat/muokkaamatkaa.html', array('maat' => $maa, 'matka' => $haematka));
+        $matka = HaeMatka::haeYksiMatka($id);
+        View::make('suunnitelmat/muokkaamatkaa.html', array('maat' => $maa, 'matka' => $matka));
     }
 
     public static function lisaaMatka() {
@@ -170,13 +171,11 @@ class MatkailijaKontrolleri extends BaseController {
         }
     }
 
-    public static function muokkaa_matkaa($id) {
+    public static function muokkaamatkaa($id) {
+//        $params = $_POST;
         $maa = Maa::kaikkiMaat();
         $matka = HaeMatka::haeYksiMatka($id);
-        $matkakohde = HaeMatka::haeYksiMatka();
-
-
-        View::make('muokkaamatkaa.html', array('id' => $id, 'travellerid' => $travellerid, 'country' => $country, 'arrivaldate' => $arrivaldate, 'departuredate' => $departuredate, 'address' => $address, 'postcode' => $postcode, 'city' => $city, 'maa' => $maa));
+        View::make('muokkaamatkaa.html', array('id' => $id, 'country' => $country, 'arrivaldate' => $arrivaldate, 'departuredate' => $departuredate, 'address' => $address, 'postcode' => $postcode, 'city' => $city, 'maa' => $maa));
 //           View::make('matka.html', array('id'=> $id, 'travellerid' => $travellerid, 'country'=>$country, 'arrivaldate'=>$arrivaldate, 'departuredate'=>$departuredate, 'address'=>$address, 'postcode'=>$postcode, 'city'=>$city));
     }
 
