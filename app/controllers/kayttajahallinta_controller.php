@@ -6,6 +6,14 @@ class Kayttajahallinta extends BaseController {
     public static function kirjaudu() {
         View::make('suunnitelmat/kirjaudu.html');
     }
+    
+    public static function kirjaudu_ulos(){
+        $_SESSION['henkilo']=NULL;
+        Redirect::to('/etusivu', array('message' =>'Olet kirjautunut ulos'));
+        
+        
+        
+    }
 
     //kirjautumienen siinä tapauksessa, että käyttäjällä on jo tunnukset
     public static function kasittele_kirjautuminen() {
@@ -31,7 +39,8 @@ class Kayttajahallinta extends BaseController {
         } else if (!$henkilo->administrator) {
             View::make('suunnitelmat/kirjaudu.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'username' => $params['username']));
         } else {
-            $_SESSION['henkilo'] = $henkilo->id;
+            $_SESSION['henkilo'] = $henkilo->id;// Tässä lisätään assosiaatiolistaan kirjautuneen henkilön id.
+//            Kint::dump(id);
             Redirect::to('/henkilo', array('message' => 'Tervetuloa takaisin ' . $henkilo->username . '!'));
         }
     }
@@ -41,7 +50,9 @@ class Kayttajahallinta extends BaseController {
         View::make('suunnitelmat/luouusikayttaja.html');
         $params = $_POST;
         $kirjaudu = Kirjaudu::Luokayttaja();
+        $kayttajatunnusvirhe=
         $kirjautumisvirhe = $kirjaudu->validoi_salasanat();
+        
         $errors = array_merge($kirjautumisvirhe);
         if (count($errors) > 0) {
             View::make('suunnitelmat/kirjaudu.html', array('errors' => $errors));
@@ -51,5 +62,16 @@ class Kayttajahallinta extends BaseController {
         }
     }
 
-    //public function 
+          public static function tallennaUusiKayttaja($username, $password, $administrator) {
+        //lisätään returning id tietokantakyselyn loppuun, niin saadaan se talteen
+        $query = DB::connection()->prepare('INSERT INTO henkilo (username, password, administrator) VALUES (:username, :password, :administrator) RETURNING id ');
+        $query->execute(array(
+            'username' => $this->username,
+            'password' => $this->password,
+            'administrator' => $this->administrator));
+
+        $row = $query->fetch();
+        $this->id = $row['id'];
+    }
+    
 }

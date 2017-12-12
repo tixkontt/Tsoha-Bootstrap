@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
 <h2>Syötä henkilötiedot:</h2>
+
+  {% if user_logged_in %}
+    <h1>Tervetuloa {{user_logged_in.username}} </h1>
+ {%endif%}
 <!-- Painikkeet tähän -->
 <!--
 {%if errors%}
@@ -15,6 +19,8 @@
 {% endif%}
 -->
 <form method="post" action="{{base_path}}/henkilo">  
+    
+    
     <div class="form-group"> 
         <h4>Tähdellä (*) merkityt kohdat ovat pakollisia</h4>
 

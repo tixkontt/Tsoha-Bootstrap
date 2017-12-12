@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Hakusivu:</h2>
+
+  {% if user_logged_in %}
+    <h4>Tervetuloa {{user_logged_in.username}} </h4>
+ {%endif%}
+
+
+<h2>Valitse mitä haet ja täytä hakukentät</h2>
+
+<form method="post" action="{{base_path}}/hakusvu">  
+    
+    
+    <div class="checkbox">
+     <label><input type="checkbox" value="allmytravels">Haen omat matkani</label>
+    </div>
+     <div class="checkbox">
+     <label><input type="checkbox" value="allbyfamilyname">Haen sukunimen perusteella kaikki matkat</label>
+    </div>
+    <div class="checkbox">
+        <label><input type="checkbox" value="allfromcountry">Haen kaikki matkat tietystä maasta </label>
+    </div>
+    <div class="checkbox">
+        <label><input type="checkbox" value="allfromonecity" >Haen kaikki matkat tietystä kaupungista</label>
+    </div>
+       <div class="checkbox">
+     <label><input type="checkbox" value="allfinnsfromonecountrynow">Haen ne suomalaiset matkailijat, jotka ovat nyt tietyssä maassa</label>
+    </div>      
+    <div class="checkbox">
+     <label><input type="checkbox" value="allfromonecountrynow">Haen ne matkailijat, jotka ovat nyt tietyssä maassa</label>
+    </div>
+    <div class="checkbox">
+        <label><input type="checkbox" value="allfromonecitynow">Haen ne matkailijat, jotka ovat nyt tietyssä kaupungissa </label>
+    </div>
+    <div class="checkbox">
+        <label><input type="checkbox" value="allwhoareonthemovenow" >Haen ne matkailijat, jotka ovat nyt matkalla</label>
+    </div>
+    
+  
+
+        <br>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Tallenna</button>
+
+        </div>
+
+
+</form>
+
+
+{% endblock %}

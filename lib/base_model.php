@@ -134,15 +134,15 @@ class BaseModel {
     public function validoi_maahantulopaiva() {
         $errors = array();
         //Tarkastetaan, että päiväyskenttä ei ole tyhjä
-        if ($this->arrivalDate == '' || $this->arrivalDate == null) {
+        if ($this->arrivaldate == '' || $this->arrivaldate == null) {
             $errors[] = 'Saapumispäivämäärä ei saa olla tyhjä!';
         }
         //tarkastetaan, että päiväyskentässä on vähintään 8 merkin syöte
-        if (strlen($this->arrivalDate) < 8) {
+        if (strlen($this->arrivaldate) < 8) {
             $errors[] = 'Päiväyksen minimipituus on 8 merkkiä!';
         }
 
-        if (strlen($this->arrivalDate) > 10) {
+        if (strlen($this->arrivaldate) > 10) {
             $errors[] = 'Päiväyksen maksimipituus on 10 merkkiä';
         }
 
@@ -152,15 +152,15 @@ class BaseModel {
     public function validoi_maastapoistumispaiva() {
         $errors = array();
         //Tarkastetaan, että päiväyskenttä ei ole tyhjä
-        if ($this->departureDate == '' || $this->departureDate == null) {
+        if ($this->departuredate == '' || $this->departuredate == null) {
             $errors[] = 'Poistumispäivämäärä ei saa olla tyhjä!';
         }
         //tarkastetaan, että päiväyskentässä on vähintään 8 merkin syöte
-        if (strlen($this->departureDate) < 8) {
+        if (strlen($this->departuredate) < 8) {
             $errors[] = 'Päiväyksen minimipituus on 8 merkkiä!';
         }
 
-        if (strlen($this->departureDate) > 10) {
+        if (strlen($this->departuredate) > 10) {
             $errors[] = 'Päiväyksen maksimipituus on 10 merkkiä';
         }
 
@@ -170,7 +170,7 @@ class BaseModel {
     public function validoi_matkankesto() {
         $errors = array();
         //Tarkastetaan, että päiväyskenttä ei ole tyhjä
-        if ($this->arrivalDate > $this->departureDate) {
+        if ($this->arrivaldate > $this->departuredate) {
             $errors[] = 'Matka ei voi loppua ennnen alkamistaan!';
         }
 

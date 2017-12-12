@@ -3,7 +3,7 @@
 class Matka extends BaseModel {
 
 //attribuutit
-    public $id, $travellerid, $country, $arrivalDate, $departureDate, $address, $postcode, $city;
+    public $id, $travellerid, $country, $arrivaldate, $departuredate, $address, $postcode, $city;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -24,8 +24,8 @@ class Matka extends BaseModel {
             $maat[] = new Matka(array(
                 'id' => $row['id'],
                 'country' => $row['country'],
-                'arrivalDate' => $row['arrivaldate'],
-                'departureDate' => $row['departuredate'],
+                'arrivaldate' => $row['arrivaldate'],
+                'departuredate' => $row['departuredate'],
                 'address' => $row['address'],
                 'postcode' => $row['postcode'],
                 'city' => $row['city']
@@ -39,8 +39,8 @@ class Matka extends BaseModel {
         $query = DB::connection()->prepare('INSERT INTO matka (country, arrivaldate, departuredate, address, postcode, city) VALUES (:country, :arrivalDate, :departureDate, :address, :postcode, :city)RETURNING id ');
         $query->execute(array(
             'country' => $this->country,
-            'arrivalDate' => $this->arrivalDate,
-            'departureDate' => $this->departureDate,
+            'arrivaldate' => $this->arrivaldate,
+            'departuredate' => $this->departuredate,
             'address' => $this->address,
             'postcode' => $this->postcode,
             'city' => $this->city));
@@ -48,23 +48,48 @@ class Matka extends BaseModel {
         $this->id = $row['id'];
     }
 
-    public function poistaMatka() {
+    public static function poistaMatka() {
         $query = DB::connection()->prepare('DELETE FROM matka WHERE matka.id=:id');
         $query->execute(array('id' => $this->id));
     }
 
-    public function muokkaaMatkaa() {
-        //lisätään returning id tietokantakyselyn loppuun, niin saadaan se talteen
-        $query = DB::connection()->prepare('UPDATE matka (country, arrivaldate, departuredate, address, postcode, city) VALUES (:country, :arrivalDate, :departureDate, :address, :postcode, :city) WHERE id=:id');
+    public static function etsimatka($id) {
+        $query = DB::connection()->prepare('SELECT matka.id as id, matka.country as country, matka.arrivaldate as arrivaldate, matka.departuredate as departuredate, matka.address as address, matka.postcode as postcode, matka.city as city FROM matka WHERE matka.id =:id LIMIT 1');
+        $query->execute(array('id'=>$id));
+        $row =$query->fetch();
+        $matka=NULL;
+        
+        if($row){
+        //Käydään rivit läpi
+        $matka = new Matka(array(
+            'id' => $row['id'],
+            'country' => $row['country'],
+            'arrivaldate' => $row['arrivaldate'],
+            'departuredate' => $row['departuredate'],
+            'address'  => $row['address'],
+            'postcode' => $row['postcode'],
+            'city' => $row['city']));
+        return $matka;
+        
+        }
+        return NULL;
+    }
+
+    public function paivitamatka($id) {
+        $query = DB::connection()->prepare('UPDATE matka SET (country, arrivaldate, departuredate, address, postcode, city) = (:country, :arrivaldate, :departuredate, :address, :postcode, :city) WHERE id = :id');
         $query->execute(array(
+            'id' => $this->id,
             'country' => $this->country,
-            'arrivalDate' => $this->arrivalDate,
-            'departureDate' => $this->departureDate,
+            'arrivaldate' => $this->arrivaldate,
+            'departuredate' => $this->departuredate,
             'address' => $this->address,
             'postcode' => $this->postcode,
-            'city' => $this->city));
+            'city' => $this->city
+             ));
 //        $row = $query->fetch();
 //        $this->id = $row['id'];
+
+        
     }
 
 }
@@ -76,3 +101,4 @@ class Matka extends BaseModel {
 
  */
 
+//paivitamatka($id)

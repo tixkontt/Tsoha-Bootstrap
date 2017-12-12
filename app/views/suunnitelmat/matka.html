@@ -17,9 +17,9 @@
 <form method="post" action="{{base_path}}/matka">  
     <div class="form-group">
         Kohdemaa*:<br>
-        <!-- <input type="text" placeholder="Etunimet"> <br>-->
     </div>
-    <select name="country">
+                <!--täytetään alasvetovalikko-->
+        <select required name="country">
         {% for maa in maat%}
         <option value="{{maa.country}}">{{maa.country}}</option> 
         {% endfor%}
@@ -30,12 +30,12 @@
 
     <div class="form-group">
         <label>Maahan saapumispäivämäärä*</label>
-        <input name ="arrivalDate" class="form-control" type="date">
+        <input name ="arrivaldate" class="form-control" type="date">
     </div>
 
     <div class="form-group">
         <label>Maasta poistumispäivämäärä*</label>
-        <input name ="departureDate" class="form-control" type="date">
+        <input name ="departuredate" class="form-control" type="date">
     </div>
 
     <div class="form-group">
@@ -54,6 +54,7 @@
     </div>
 
     <div class="form-group">
+        Kint::dump();
         <button type="submit" class="btn btn-primary">Tallenna</button>
         <!--onclick="alert('Hello World!')">Click Me!</button>-->
     </div>

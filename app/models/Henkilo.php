@@ -9,7 +9,7 @@ class Henkilo extends BaseModel {
         parent::__construct($attributes);
     }
 
-    public function tallennaHenkilo() {
+    public static function tallennaHenkilo() {
         //lisätään returning id tietokantakyselyn loppuun, niin saadaan se talteen
         $query = DB::connection()->prepare('INSERT INTO henkilo (firstnames, familyname, dateofbirth, gender, nationality, mobilephone, email, username, password, administrator) VALUES (:firstnames, :familyname, :dateofbirth, :gender, :nationality, :mobilephone, :email, :username, :password, :administrator) RETURNING id ');
         $query->execute(array(
@@ -29,23 +29,23 @@ class Henkilo extends BaseModel {
     }
     
     //******************************
-        public function tallennaUusiKayttaja($username, $password, $administrator) {
-        //lisätään returning id tietokantakyselyn loppuun, niin saadaan se talteen
-        $query = DB::connection()->prepare('INSERT INTO henkilo (username, password, administrator) VALUES (:username, :password, :administrator) RETURNING id ');
-        $query->execute(array(
-            'username' => $this->username,
-            'password' => $this->password,
-            'administrator' => $this->administrator));
-
-        $row = $query->fetch();
-        $this->id = $row['id'];
-    }
-    
+//        public static function tallennaUusiKayttaja($username, $password, $administrator) {
+//        //lisätään returning id tietokantakyselyn loppuun, niin saadaan se talteen
+//        $query = DB::connection()->prepare('INSERT INTO henkilo (username, password, administrator) VALUES (:username, :password, :administrator) RETURNING id ');
+//        $query->execute(array(
+//            'username' => $this->username,
+//            'password' => $this->password,
+//            'administrator' => $this->administrator));
+//
+//        $row = $query->fetch();
+//        $this->id = $row['id'];
+//    }
+//    
     //******************************
 
-    public static function paivitahenkilo($id) {
-        $query = DB::connection()->prepare('UPDATE henkilo SET firstnames, familyname, dateofbirth, gender, nationality, mobilephone, email, username, password, administrator)=
-                (:firstnames, :familyname, :dateofbirth, :gender, :nationality, :mobilephone, :email, :username, :password, :administrator');
+    public function paivitahenkilo($id) {
+        $query = DB::connection()->prepare('UPDATE henkilo SET (firstnames, familyname, dateofbirth, gender, nationality, mobilephone, email, username, password, administrator)=
+                (:firstnames, :familyname, :dateofbirth, :gender, :nationality, :mobilephone, :email, :username, :password, :administrator)WHERE id =:id');
         $query->execute(array('id' => $this->id,
             'firstnames' => $this->firstnames,
             'familyname' => $this->familyname,
@@ -58,11 +58,10 @@ class Henkilo extends BaseModel {
             'password' => $this->password,
             'administrator' => $this->administrator
         ));
-        $row = $query->fetch();
-        $this->id = $row['id'];
+
     }
 
-    public function poistaHenkilo() {
+    public static function poistaHenkilo() {
         $query = DB::connection()->prepare('DELETE FROM henkilo WHERE henkilo.id = :id');
         $query->execute(array('id' => $this->id));
     }

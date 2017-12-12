@@ -23,11 +23,15 @@ $routes->post('/kirjaudu', function() {
     Kayttajahallinta::kasittele_kirjautuminen();
 });
 
-//$routes->post('/kirjaudu', function() {
-//    MatkailijaKontrolleri::kirjaudu();
-//});
+$routes->post('/etusivu', function() {
+    Kayttajahallinta::kirjaudu_ulos();
+});
 
 $routes->get('/luouusikayttaja', function() {
+    Kayttajahallinta::luouusikayttaja();
+});
+
+$routes->post('/luouusikayttaja', function() {
     Kayttajahallinta::luouusikayttaja();
 });
 
@@ -49,9 +53,18 @@ $routes->post('/matka/:id', function($id) {
 //    MatkailijaKontrolleri::muokkaamatkaa($id);
 //});
 
-// ****** matkojen haku ******
+// ****** Hakusivut ******
 
+$routes->get('/hakusivu', function() {
+    MatkailijaKontrolleri::hakusivu();
+});
+
+//*** matkojen haut ******
 $routes->get('/matkalistaus', function() {
+    MatkailijaKontrolleri::matkalistaus();
+});
+
+$routes->post('/matkalistaus', function() {
     MatkailijaKontrolleri::matkalistaus();
 });
 
@@ -59,12 +72,12 @@ $routes->get('/haematka', function() {
     MatkailijaKontrolleri::haematka();
 });
 
-$routes->get('/muokkaamatkaa/:id', function($id) {//muokkaa_matkaa >>> muokkaamatkaa
-    MatkailijaKontrolleri::haeYksiMatka($id);
+$routes->get('/paivitamatka/:id', function($id) {//haetaan matkan muokkaussivuu näkyviin
+    MatkailijaKontrolleri::muokkaamatkaa($id);
 });
 
-$routes->post('/muokkaamatkaa/:id', function($id) {//muokkaa_matkaa >>> muokkaamatkaa
-    MatkailijaKontrolleri::haeYksiMatka($id);
+$routes->post('/paivitamatka/:id', function($id) {//lähetetään tiedot >>> muokkaamatkaa
+    MatkailijaKontrolleri::paivitamatka($id);
 });
 
 //********henkilöiden käsittely************
@@ -82,15 +95,15 @@ $routes->get('/henkilolistaus', function() {
     MatkailijaKontrolleri::henkilolistaus();
 });
 
-$routes->get('/paivitahenkilo/:id', function($id) { //update
-    MatkailijaKontrolleri::paivitahenkilo($id);
-});
+//$routes->get('/paivitahenkilo/:id', function($id) { //update
+//    MatkailijaKontrolleri::paivitahenkilo($id);
+//});
 
 $routes->post('/muokkaahenkiloa/:id', function($id) { //update
     MatkailijaKontrolleri::paivitahenkilo($id);
 });
 
-$routes->get('/muokkaahenkiloa/:id', function($id) { //edit
+$routes->get('/muokkaahenkiloa/:id', function($id) { // tuo näkyviin muokkaussivu
     MatkailijaKontrolleri::muokkaahenkiloa($id);
 });
 
