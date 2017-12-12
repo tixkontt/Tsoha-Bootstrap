@@ -123,6 +123,11 @@ class Henkilo extends BaseModel {
         }
         return NULL;
     }
+    
+        public static function poistaHenkiloJaHanenMatkat() {
+        $query = DB::connection()->prepare('DELETE FROM henkilo WHERE henkilo.id = :id');
+        $query->execute(array('id' => $this->id));
+    }
 
 
 }

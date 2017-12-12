@@ -80,6 +80,16 @@ $routes->post('/paivitamatka/:id', function($id) {//lähetetään tiedot >>> muo
     MatkailijaKontrolleri::paivitamatka($id);
 });
 
+$routes->get('/matkallanyt', function(){
+MatkailijaKontrolleri::ketkaovatmatkallanyt();    
+});
+
+$routes->post('/ketkaovatmatkallanyt', function(){
+MatkailijaKontrolleri::ketkaovatmatkallanyt();    
+});
+
+
+
 //********henkilöiden käsittely************
 
 $routes->get('/henkilo', function() {

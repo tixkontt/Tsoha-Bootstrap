@@ -32,43 +32,19 @@
 
 
         <label>Sukupuoli</label><br>
-     {%if henkilo.gender=="Mies"%}
+     
             <div class="radio">  
             <!-- <input name ="gender" type="text" id="result" class="form-control"> -->
-        <label><input type="radio" name="gender" value="Mies" checked>  Mies<br></label>
+        <label><input type="radio" name="gender" value="Mies" {%if henkilo.gender=="Mies"%}checked{%endif%}>  Mies<br></label>
         </div>
         <div class="radio"> 
-            <label><input type="radio" name="gender" value="Nainen">  Nainen<br></label>
+            <label><input type="radio" name="gender" value="Nainen"{%if henkilo.gender=="Nainen"%}checked{%endif%}>  Nainen<br></label>
         </div>
         <div class="radio"> 
-            <label><input type="radio" name="gender" value="En ilmoita" > En ilmoita  <br></label>
+            <label><input type="radio" name="gender" value="En ilmoita" {%if henkilo.gender=="En ilmoita"%}checked{%endif%}> En ilmoita  <br></label>
         </div>
-     {%elseif henkilo.gender == "Nainen"%}
-            <div class="radio">  
-            <!-- <input name ="gender" type="text" id="result" class="form-control"> -->
-        <label><input type="radio" name="gender" value="Mies">  Mies<br></label>
-        </div>
-        <div class="radio"> 
-            <label><input type="radio" name="gender" value="Nainen" checked>  Nainen<br></label>
-        </div>
-        <div class="radio"> 
-            <label><input type="radio" name="gender" value="En ilmoita"> En ilmoita  <br></label>
-        </div>
+ 
 
-        
-        {% else %}
-        
-        <div class="radio">  
-            <!-- <input name ="gender" type="text" id="result" class="form-control"> -->
-        <label><input type="radio" name="gender" value="Mies">  Mies<br></label>
-        </div>
-        <div class="radio"> 
-            <label><input type="radio" name="gender" value="Nainen">  Nainen<br></label>
-        </div>
-        <div class="radio"> 
-            <label><input type="radio" name="gender" value="En ilmoita" checked> En ilmoita  <br></label>
-        </div>
-        {%endif%}
 
         <h4>Kansalaisuus*</h4>
 

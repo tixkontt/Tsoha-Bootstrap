@@ -3,7 +3,7 @@
 class Matka extends BaseModel {
 
 //attribuutit
-    public $id, $travellerid, $country, $arrivaldate, $departuredate, $address, $postcode, $city;
+    public $id, $hid, $henkiloid, $matkailija, $matkakohde, $kaupunki, $tulopaiva, $lahtopaiva,  $travellerid, $country, $arrivaldate, $departuredate, $address, $postcode, $city;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -55,22 +55,21 @@ class Matka extends BaseModel {
 
     public static function etsimatka($id) {
         $query = DB::connection()->prepare('SELECT matka.id as id, matka.country as country, matka.arrivaldate as arrivaldate, matka.departuredate as departuredate, matka.address as address, matka.postcode as postcode, matka.city as city FROM matka WHERE matka.id =:id LIMIT 1');
-        $query->execute(array('id'=>$id));
-        $row =$query->fetch();
-        $matka=NULL;
-        
-        if($row){
-        //Käydään rivit läpi
-        $matka = new Matka(array(
-            'id' => $row['id'],
-            'country' => $row['country'],
-            'arrivaldate' => $row['arrivaldate'],
-            'departuredate' => $row['departuredate'],
-            'address'  => $row['address'],
-            'postcode' => $row['postcode'],
-            'city' => $row['city']));
-        return $matka;
-        
+        $query->execute(array('id' => $id));
+        $row = $query->fetch();
+        $matka = NULL;
+
+        if ($row) {
+            //Käydään rivit läpi
+            $matka = new Matka(array(
+                'id' => $row['id'],
+                'country' => $row['country'],
+                'arrivaldate' => $row['arrivaldate'],
+                'departuredate' => $row['departuredate'],
+                'address' => $row['address'],
+                'postcode' => $row['postcode'],
+                'city' => $row['city']));
+            return $matka;
         }
         return NULL;
     }
@@ -85,11 +84,33 @@ class Matka extends BaseModel {
             'address' => $this->address,
             'postcode' => $this->postcode,
             'city' => $this->city
-             ));
+        ));
 //        $row = $query->fetch();
 //        $this->id = $row['id'];
+    }
 
-        
+    public static function ketkaovatmatkallanyt() {
+        $query = DB::connection()->prepare('SELECT henkilo.id as hid, valitaulu.matkaid as matka, henkilo.familyname as matkailija, matka.country as matkakohde, matka.city as kaupunki, matka.arrivaldate as tulopaiva, matka.departuredate as lahtopaiva, henkilo.username as käyttäjätunnus FROM valitaulu, henkilo, matka
+WHERE valitaulu.henkiloid = henkilo.id AND valitaulu.matkaid=matka.id AND matka.arrivaldate <= now() AND matka.departuredate>=now()');
+        //Suoritetaan kysely
+        $query->execute();
+        //haetaan rivit
+        $rows = $query->fetchAll();
+//        $matkat = array();
+        $matka = array();
+        //Käydään rivit läpi
+        foreach ($rows as $row) {
+             $matka[] = new Matka(array(
+                'hid' => $row['hid'],
+                'matkailija' => $row['matkailija'],
+                'matkakohde' => $row['matkakohde'],
+                'kaupunki' => $row['kaupunki'],
+                'tulopaiva' => $row['tulopaiva'],
+                'lahtopaiva' => $row['lahtopaiva'],
+            ));
+        }
+       Kint::dump($matka);
+        return $matka;
     }
 
 }
