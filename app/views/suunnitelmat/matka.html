@@ -1,19 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3>Matkan tiedot:</h3>
-<!--
-{%if errors%}
-<div class="alert alert-danger">
-    <ul>
-        {% for error in errors %}
-        <li>{{error}}</li>
-        {% endfor %} 
-    </ul>
-</div>
+<h3>{{user_logged_in.id}}:n matkan tiedot:</h3>
 
-{% endif%}
--->
+
 <form method="post" action="{{base_path}}/matka">  
     <div class="form-group">
         Kohdemaa*:<br>
@@ -25,7 +15,10 @@
         {% endfor%}
     </select>
 
-    <div class="form-group"><input type="hidden" name ="id" value="{{matka.id}}"></div>
+                
+    <!--<div class="form-group"><input type="hidden" name="owner_id" value="{{gamemaster_logged_in.id}}"></div>-->
+    <div class="form-group"><input type="number" name ="hid"  value="{{user_logged_in.id}}"></div>                
+    <div class="form-group"><input name ="id" value="{{matka.id}}"></div>
 
 
     <div class="form-group">
@@ -54,7 +47,7 @@
     </div>
 
     <div class="form-group">
-        Kint::dump();
+        
         <button type="submit" class="btn btn-primary">Tallenna</button>
         <!--onclick="alert('Hello World!')">Click Me!</button>-->
     </div>

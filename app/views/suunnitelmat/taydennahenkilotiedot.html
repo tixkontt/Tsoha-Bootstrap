@@ -1,23 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Syötä henkilötiedot:</h2>
 
-{% if user_logged_in %}
-<h1>Tervetuloa {{user_logged_in.username}}, {{user_logged_in.id}} </h1>
-{%endif%}
-<!-- Painikkeet tähän -->
-<!--
-{%if errors%}
-<div class="alert alert-danger">
-    <ul>
-        {% for error in errors %}
-        <li>{{error}}</li>
-        {% endfor %}
-    </ul>
-</div>
+<h1>Täydennä tiedot </h1>
 
-{% endif%}
--->
 <form method="post" action="{{base_path}}/henkilo">  
 
 
@@ -100,21 +85,5 @@
 </form>
 
 
-<!--
-<div class="alert alert-success">
-    {{"Tallennus onnistui!"}}
-</div>-->
 
-<!-- Tiedot tulee listana tähän -->
-<ul>
-    <li>Kun haet tietoja, täytä haluamasi kohdat ja paina Hae-painiketta</li>
-    <li>Kun lisätä tietoja, täytä haluamasi kohdat ja paina Lisää-painiketta</li>
-    <li>Kun haluat muokata tietoja, hae muokattavat tiedot,täytä haluamasi kohdat ja paina Tallenna-painiketta</li>
-    <li>Kun haluat poistaa tietoja, hae ensin tiedot ja paina Poista-painiketta</li>
-
-</ul>
-<!-- Kuvaus tulee tähän -->
-<p>
-    Kuvaus tähän...
-</p>
 {% endblock %}

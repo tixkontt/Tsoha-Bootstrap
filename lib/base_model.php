@@ -77,7 +77,7 @@ class BaseModel {
         if ($this->password == '' || $this->password == null) {
             $errors[] = 'Salasanakenttä ei saa olla tyhjä!';
         }
-        //tarkastetaan, että päiväyskentässä on vähintään 8 merkin syöte
+        //tarkastetaan, että salasanakentässä on vähintään 8 merkin syöte
         if (strlen($this->password) < 8) {
             $errors[] = 'Salasanan minimipituus on 8 merkkiä!';
         }
@@ -91,19 +91,28 @@ class BaseModel {
 
     public function validoi_salasanat() {
         $errors = array();
-        //Tarkastetaan, että päiväyskenttä ei ole tyhjä
+        //Tarkastetaan, että salasanakenttä ei ole tyhjä
         if ($this->password == '' || $this->password == null) {
             $errors[] = 'Salasanakenttä ei saa olla tyhjä!';
         } else if ($this->password2 == '' || $this->password2 == null) {
             $errors[] = 'Salasanan varmistuskenttä ei saa olla tyhjä!';
         }
-        //tarkastetaan, että päiväyskentässä on vähintään 8 merkin syöte
-        if (strlen($this->password) < 8 || ($this->password2) < 8) {
-            $errors[] = 'Salasanan minimipituus on 8 merkkiä!';
+        //tarkastetaan, että salasanakentässä on vähintään 8 merkin syöte
+        if (strlen($this->password) < 8 ) {
+            $errors[] = 'Salasanan minimipituuskin on 8 merkkiä!';
+        }
+        
+        if (strlen($this->password2) < 8){
+            $erroros[] = 'Salasanan varmistuksen tulee olla vähintään 8 merkkiä!';
+            
         }
 
-        if (strlen($this->password) || ($this->password2) > 30) {
-            $errors[] = 'Salasanan maksimipituus on 30 merkkiä';
+        if (strlen($this->password)>30) {
+            $errors[] = 'Salasanan maksimipituushan on 30 merkkiä';
+        }
+        
+        if (strlen($this->password2) > 30) {
+            $errors[] = 'Salasanan varmistuksen maksimipituuskin on 30 merkkiä';
         }
 
         if(strcmp($this->password,$this->password2)!=0) {

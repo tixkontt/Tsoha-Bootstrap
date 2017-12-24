@@ -24,15 +24,15 @@ class Kirjaudu extends BaseModel {
                 'password' => $row['password'],
                 'administrator' => $row['administrator']
             ));
-//            KINT::dump($henkilo);
+            KINT::dump($henkilo);
             return $henkilo;
         }
         return null;
     }
 
-    public static function Luokayttaja() {
+    public static function Luokayttaja($username, $password) {
         //tsekataan, onko käyttäjätunnus jo käytössä
-        $query = DB::connection()->prepare('SELECT * FROM henkilo WHERE username = :username AND password = :password  LIMIT 1');
+        $query = DB::connection()->prepare('INSERT INTO henkilo VALUES(username = :username, password = :password');
         $query->execute(array('username' => $username, 'password' => $password));
         $row = $query->fetch();
 
@@ -48,18 +48,11 @@ class Kirjaudu extends BaseModel {
                     );
             return $henkilo;
         }
-        
-//        else if(){
-//            
-//            
-//            
-//        }
-// else {
-//     
-//     
-//     
-// };
+
          return null;
     }
+    
+
+    
 
 }

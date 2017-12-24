@@ -28,7 +28,7 @@ $routes->post('/etusivu', function() {
 });
 
 $routes->get('/luouusikayttaja', function() {
-    Kayttajahallinta::luouusikayttaja();
+    Kayttajahallinta::luouusikayttajalomake();
 });
 
 $routes->post('/luouusikayttaja', function() {

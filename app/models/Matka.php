@@ -3,7 +3,7 @@
 class Matka extends BaseModel {
 
 //attribuutit
-    public $id, $hid, $henkiloid, $matkailija, $matkakohde, $kaupunki, $tulopaiva, $lahtopaiva,  $travellerid, $country, $arrivaldate, $departuredate, $address, $postcode, $city;
+    public $id, $hid, $henkiloid, $matkaid, $matkailija, $matkakohde, $kaupunki, $tulopaiva, $lahtopaiva, $country, $arrivaldate, $departuredate, $address, $postcode, $city;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -36,7 +36,7 @@ class Matka extends BaseModel {
 
     public function tallennaUusiMatka() {
         //lisätään returning id tietokantakyselyn loppuun, niin saadaan se talteen
-        $query = DB::connection()->prepare('INSERT INTO matka (country, arrivaldate, departuredate, address, postcode, city) VALUES (:country, :arrivalDate, :departureDate, :address, :postcode, :city)RETURNING id ');
+        $query = DB::connection()->prepare('INSERT INTO matka (country, arrivaldate, departuredate, address, postcode, city) VALUES (:country, :arrivaldate, :departuredate, :address, :postcode, :city)RETURNING id as matkaid ');
         $query->execute(array(
             'country' => $this->country,
             'arrivaldate' => $this->arrivaldate,
@@ -45,12 +45,24 @@ class Matka extends BaseModel {
             'postcode' => $this->postcode,
             'city' => $this->city));
         $row = $query->fetch();
-        $this->id = $row['id'];
+        $this->id = $row['matkaid'];
+
+        return 'matkaid';
     }
 
-    public static function poistaMatka() {
+    public function tallennaMatkaValitauluun($matkaid, $henkiloid) {
+        $query = DB::connection()->prepare('INSERT INTO valitaulu (matkaid, henkiloid) VALUES (:matkaid, :henkiloid)');
+        $query->execute(array(
+            'henkiloid' => $henkiloid,
+            'matkaid' => $matkaid
+        ));
+    }
+
+    public function poistaMatka() {
         $query = DB::connection()->prepare('DELETE FROM matka WHERE matka.id=:id');
         $query->execute(array('id' => $this->id));
+//        $query=NULL; 
+//        $query =DB::connection()->prepare('DELETE FROM valitaulu where ')
     }
 
     public static function etsimatka($id) {
@@ -100,7 +112,7 @@ WHERE valitaulu.henkiloid = henkilo.id AND valitaulu.matkaid=matka.id AND matka.
         $matka = array();
         //Käydään rivit läpi
         foreach ($rows as $row) {
-             $matka[] = new Matka(array(
+            $matka[] = new Matka(array(
                 'hid' => $row['hid'],
                 'matkailija' => $row['matkailija'],
                 'matkakohde' => $row['matkakohde'],
@@ -109,7 +121,7 @@ WHERE valitaulu.henkiloid = henkilo.id AND valitaulu.matkaid=matka.id AND matka.
                 'lahtopaiva' => $row['lahtopaiva'],
             ));
         }
-       Kint::dump($matka);
+//        Kint::dump($matka);
         return $matka;
     }
 

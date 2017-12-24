@@ -9,6 +9,7 @@ CREATE TABLE henkilo(
 	email varchar(30),
 	username varchar(30),
 	password varchar(30),
+	password2 varchar(30),
         administrator boolean DEFAULT 'false'
 	);
 
