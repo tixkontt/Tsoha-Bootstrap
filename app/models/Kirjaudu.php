@@ -24,7 +24,7 @@ class Kirjaudu extends BaseModel {
                 'password' => $row['password'],
                 'administrator' => $row['administrator']
             ));
-            KINT::dump($henkilo);
+//            Kint::dump($henkilo);
             return $henkilo;
         }
         return null;

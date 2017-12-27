@@ -73,7 +73,7 @@ class Henkilo extends BaseModel {
         //Suoritetaan kysely
         $query->execute();
         //haetaan rivit
-        $rows = $query->fetchAll();
+       $rows = $query->fetchAll();
         $henkilo = array();
 
         //Käydään rivit läpi
@@ -125,7 +125,24 @@ class Henkilo extends BaseModel {
         }
         return NULL;
     }
+    
+    public function etsiadmin($id){
+        $query =DB::connection()->prepare("SELECT id as id, familyname as familyname FROM henkilo where administrator ='t'AND id=:id LIMIT 1");
+        $query->execute(array('id'=>$id));
+        $row = $query->fetch();
+        
+        if($row){
+            $administrator = new Henkilo(array(
+                'administrator'=>$row['administrator']
+             ));
+            return $administrator;    
+                                
+        }
+        
+        return NULL;
+    }
 
+    
     public function poistaHenkiloJaHanenMatkat($id) {
 
         $query = DB::connection()->prepare('DELETE              

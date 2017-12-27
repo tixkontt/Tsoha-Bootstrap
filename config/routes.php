@@ -35,6 +35,10 @@ $routes->post('/luouusikayttaja', function() {
     Kayttajahallinta::luouusikayttaja();
 });
 
+$routes->get('/omattiedot', function() {
+    Kayttajahallinta::omattiedot();
+});
+
 //********** Matkojen käsittely*************
 
 $routes->get('/matka', function() {
@@ -69,8 +73,33 @@ $routes->post('/matkalistaus', function() {
 });
 
 $routes->get('/haematka', function() {
+//    MatkailijaKontrolleri::haematkalaisetyhdestamaasta();
     MatkailijaKontrolleri::haematka();
 });
+
+
+//******************'''//************hakulistaus
+//$routes->post('/haematka/:id', function($id) {
+//    MatkailijaKontrolleri::haematkalaisetyhdestamaasta($id);
+//});
+
+$routes->post('/haematka', function() {
+    MatkailijaKontrolleri::HaeMatkatYhdestaMaasta();
+});
+
+////*******************
+//$routes->post('/henkilonmatkat/:id', function($id) {
+//    MatkailijaKontrolleri::haematka($id);
+//});
+
+$routes->get('/henkilonmatkat/:id', function($id) {
+    MatkailijaKontrolleri::haeyhdenhenkilonmatkat($id);
+});
+
+//$routes->post('/henkilonmatkat', function($id) {
+//    MatkailijaKontrolleri::haeyhdenhenkilonmatkat($id);
+//});
+
 
 $routes->get('/paivitamatka/:id', function($id) {//haetaan matkan muokkaussivuu näkyviin
     MatkailijaKontrolleri::muokkaamatkaa($id);

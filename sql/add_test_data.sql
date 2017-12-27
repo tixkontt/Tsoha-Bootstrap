@@ -13,8 +13,8 @@ INSERT INTO  matka (country, arrivaldate, departuredate, address, postcode, city
 
 ---lisätään henkilöitä
 INSERT INTO  henkilo (firstnames, familyname, dateofbirth, gender, nationality, mobilephone, email, username, password, administrator) VALUES ('timo', 'konttinen', '2017-12-09','Mies','Suomi','0505501234','timo.konttinen@ankkalinna.fi','motoristi','salasanat',TRUE);
-INSERT INTO  henkilo (firstnames, familyname, dateofbirth, gender, nationality, mobilephone, email, username, password, administrator) VALUES ('Trubadurix', 'Gallialainen', '1968-1-1', 'Mies','Celt','none', 'none','TheSinger','MetalRules',FALSE);
-INSERT INTO  henkilo (firstnames, familyname, dateofbirth, gender, nationality, mobilephone, email, username, password, administrator) VALUES ('Pelle', 'Peloton','2017-1-1','Mies','Suomi','050-123456','pelle.peloton@ankkalinna.org','inventor','tekniikkaRulaa', TRUE);
+INSERT INTO  henkilo (firstnames, familyname, dateofbirth, gender, nationality, mobilephone, email, username, password, administrator) VALUES ('Trubadurix', 'Gallialainen', '1968-1-1', 'Mies','Ranska','none', 'none','TheSinger','MetalRules',FALSE);
+INSERT INTO  henkilo (firstnames, familyname, dateofbirth, gender, nationality, mobilephone, email, username, password, administrator) VALUES ('Pelle', 'Peloton','2017-01-01','Mies','Suomi','050-123456','pelle.peloton@ankkalinna.org','inventor','tekniikkaRulaa', TRUE);
 INSERT INTO  henkilo (firstnames, familyname, dateofbirth, gender, nationality, mobilephone, email, username, password, administrator) VALUES ('Lucky', 'Luke', '1968-4-19', 'Mies', 'Yhdysvallat', 'none', 'none','ultrafast','cowboy', FALSE);
 INSERT INTO  henkilo (firstnames, familyname, dateofbirth, gender, nationality, mobilephone, email, username, password, administrator) VALUES ('Spacetraveller','StarWars', '2000-1-1','Nainen','Suomi','none','rebels@universum.com','robot12','Chewbacka', TRUE);
 

@@ -8,6 +8,13 @@ class MatkailijaKontrolleri extends BaseController {
         View::make('suunnitelmat/matkalistaus.html', array('matkat' => $matkat, 'maa' => $maa));
     }
 
+    public static function HaeMatkatYhdestaMaasta(){
+         $maa = Maa::kaikkiMaat();
+         $matka = HaeMatka::HaeMatkatYhdestaMaasta();
+         Kint::dump($matka);
+
+    }
+
     public static function henkilolistaus() {
         $maa = Maa::kaikkiMaat();
         $henkilo = Henkilo::kaikkiHenkilot();
@@ -57,7 +64,7 @@ class MatkailijaKontrolleri extends BaseController {
 
         if (count($errors) > 0) {
             $maa = Maa::kaikkiMaat();
-            View::make('suunnitelmat/muokkaahenkiloa.html', array('errors' => $errors, 'attributes' => $attributes, 'maa' => $maa)); //, 'etunimivirhe'=>$etunimivirhe));
+            Redirect::to('/henkilolistaus', array('errors' => $errors, 'attributes' => $attributes, 'maa' => $maa)); //, 'etunimivirhe'=>$etunimivirhe));
         } else {
             $maa = Maa::kaikkiMaat();
             $henkilo->paivitahenkilo($id);
@@ -71,7 +78,8 @@ class MatkailijaKontrolleri extends BaseController {
 
     public static function hakusivu() {
         $params = $_POST;
-        View::make('suunnitelmat/hakusivu.html');
+        $maa = Maa::kaikkiMaat();
+        View::make('suunnitelmat/hakusivu.html',array('maat' => $maa));
     }
 
     //********************************
@@ -82,13 +90,39 @@ class MatkailijaKontrolleri extends BaseController {
         $maa = Maa::kaikkiMaat();
         $matkat = Matka::all();
         View::make('suunnitelmat/etusivu.html', array('matka' => $matka, 'maa' => $maa));
-        
     }
 
     public static function HaeMatka() {
         $maa = Maa::kaikkiMaat();
         $haematka = HaeMatka::HaeMatka();
         View::make('suunnitelmat/haematka.html', array('maat' => $maa));
+    }
+    
+    public static function HaeMatkalaisetYhdestaMaasta(){
+        $params = $_POST;
+        Kint::dump($params);
+//        $country =>$params['country'];
+        $matkalainen = new Matka(array(
+            'country'=>$params['country']
+            
+        ));
+                
+        
+        $matkalaiset = Matka::ketkaovatnyttietyssamaassa($matkalainen);
+//        Kint::dump($matkalaiset);
+//        $maa = Maa::kaikkiMaat();
+//        Kint::dump($matkalaiset);
+//        Redirect::to('suunnitelmat/haematka.html', array('matkalaiset'=>$matkalaiset)); 
+        
+        
+        
+    }
+
+    public static function haeYhdenHenkilonMatkat($id) {
+        $matkalista = HaeMatka::HaeYhdenHenkilonMatkat($id);
+        $maa = Maa::kaikkiMaat();
+        View::make('suunnitelmat/henkilonmatkat.html', array('matkalista' => $matkalista));
+
     }
 
     public static function haeYksiMatka($id) {
@@ -109,9 +143,9 @@ class MatkailijaKontrolleri extends BaseController {
 
     public static function tallennaUusiMatka() {
         $params = $_POST; // Henkilo-id tulee lomakkeen tietojen mukana
-        Kint::dump($params);
-        $matka = new Matka(array('id' =>$params['id'],
-            'hid' =>$params['hid'],
+//        Kint::dump($params);
+        $matka = new Matka(array(//'id' =>$params['id'],
+            'hid' => $params['hid'],
             'country' => $params['country'],
             'arrivaldate' => $params['arrivaldate'],
             'departuredate' => $params['departuredate'],
@@ -119,8 +153,8 @@ class MatkailijaKontrolleri extends BaseController {
             'postcode' => $params['postcode'],
             'city' => $params['city']
         ));
-        //kutsutaan tallenna-metodia
-        //$etunimivirhe=$henkilo->validoi_etunimet();
+
+  
         $tuloaikavirhe = $matka->validoi_maahantulopaiva();
         $poistumisaikavirhe = $matka->validoi_maastapoistumispaiva();
         $matkankesto = $matka->validoi_matkankesto();
@@ -131,26 +165,20 @@ class MatkailijaKontrolleri extends BaseController {
             $maa = Maa::kaikkiMaat();
             View::make('suunnitelmat/matka.html', array('errors' => $errors, 'maat' => $maa)); //, 'etunimivirhe'=>$etunimivirhe));
         } else {
-        
-          
-                $matka->tallennaUusiMatka();
-                $matkaid =(int)$matka->id;
-               $henkiloid =(int)$matka->hid ;
-         
-                $valitaulu = new Matka(array(
-                    'matkaid' =>$matkaid,
-                    'henkiloid'=>$henkiloid));
-                $valitaulu ->tallennaMatkaValitauluun($matkaid,$henkiloid);
+
+
+            $matka->tallennaUusiMatka();
+            $matkaid = (int) $matka->id;
+            $henkiloid = (int) $matka->hid;
+
+            $valitaulu = new Matka(array(
+                'matkaid' => $matkaid,
+                'henkiloid' => $henkiloid));
+            $valitaulu->tallennaMatkaValitauluun($matkaid, $henkiloid);
 
             Redirect::to('/matkalistaus', array('message' => 'Matka lisättiin matkatietokantaan '));
         }
 
-
-
-
-        //ohjataan käyttäjä matkalistaukselle
-        // Redirect::to('/suunnitelmat/matkalistaus.html' . $matka->id, array('message' => 'Matka lisättiin matkatietokantaan'));
-//        Redirect::to('/matkalistaus');
     }
 
     //validointifunktiot
@@ -185,7 +213,6 @@ class MatkailijaKontrolleri extends BaseController {
         }
     }
 
-
     public static function paivitamatka($id) {
         $params = $_POST;
 
@@ -208,7 +235,8 @@ class MatkailijaKontrolleri extends BaseController {
 //        $errors = $matka->errors();
         $errors = array_merge($tuloaikavirhe, $poistumisaikavirhe, $matkankesto);
         if (count($errors) > 0) {
-            View::make('suunnitelmat/muokkaamatkaa.html', array('errors' => $errors, 'matka' => $matka));
+            $maa = Maa::kaikkiMaat();
+            View::make('suunnitelmat/muokkaamatkaa.html', array('errors' => $errors, 'matka' => $matka, 'maat' => $maa));
         } else {
 //            Kint::dump($params);
             $matka->paivitamatka($id);
@@ -216,15 +244,13 @@ class MatkailijaKontrolleri extends BaseController {
         }
     }
 
-    
-        public static function ketkaovatmatkallanyt() {
+    public static function ketkaovatmatkallanyt() {
         $matka = Matka::ketkaovatmatkallanyt();
         $maa = Maa::kaikkiMaat();
         $matkat = Matka::all();
         View::make('suunnitelmat/matkallanyt.html', array('matka' => $matka, 'maa' => $maa));
     }
-    
-    
+
     public static function poistaMatka($id) {
         $matka = new Matka(array('id' => $id));
         $matka->poistaMatka();
@@ -234,7 +260,7 @@ class MatkailijaKontrolleri extends BaseController {
 
     public static function poistaHenkilo($id) {
         $henkilo = new Henkilo(array('id' => $id));
-        $henkilo->poistaHenkiloJaHanenMatkat($id);      
+        $henkilo->poistaHenkiloJaHanenMatkat($id);
         $henkilo = new Henkilo(array('id' => $id));
         $henkilo->poistaHenkilo($id);
         Redirect::to('/henkilolistaus');

@@ -79,10 +79,10 @@
         </div>
         <br>
         
-      <label>Pääkäyttäjä</label><br>   
+     
         
 {% if henkilo.administrator ==1 %}
-
+ <label>Pääkäyttäjä</label><br>   
         <div class="radio">  
          
             <label><input type="radio" name="administrator" value="yes" checked>  Kyllä<br></label>
@@ -91,15 +91,6 @@
             <label><input type="radio" name="administrator" value="no" >  Ei<br></label>
         </div>
 
-{% else %}
-        
-        <div class="radio">  
-         
-            <label><input type="radio" name="administrator" value="yes" >  Kyllä<br></label>
-        </div>
-        <div class="radio"> 
-            <label><input type="radio" name="administrator" value="no" checked>  Ei<br></label>
-        </div>
 
 {%endif%}
        

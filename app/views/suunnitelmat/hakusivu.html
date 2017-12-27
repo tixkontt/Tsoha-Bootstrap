@@ -12,36 +12,29 @@
 <form method="post" action="{{base_path}}/hakusvu">  
     
     
-    <div class="checkbox">
-     <label><input type="checkbox" value="allmytravels">Haen omat matkani</label>
+    <div class="form-group">
+        <label for="hakuvalinta">Valitse hakutekijä:</label>
+        
+        <select class="form-control" id="hakuvalinta"> 
+            <option>haen omat matkani</option>
+            <option value="">kaikki matkat tietystä maasta</option>
+            <option>suomalaiset yhdestä maasta</option>
+            <option>suomalaiset, jotka ovat nyt matkalla</option>
+        </select>
     </div>
-     <div class="checkbox">
-     <label><input type="checkbox" value="allbyfamilyname">Haen sukunimen perusteella kaikki matkat</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" value="allfromcountry">Haen kaikki matkat tietystä maasta </label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" value="allfromonecity" >Haen kaikki matkat tietystä kaupungista</label>
-    </div>
-       <div class="checkbox">
-     <label><input type="checkbox" value="allfinnsfromonecountrynow">Haen ne suomalaiset matkailijat, jotka ovat nyt tietyssä maassa</label>
-    </div>      
-    <div class="checkbox">
-     <label><input type="checkbox" value="allfromonecountrynow">Haen ne matkailijat, jotka ovat nyt tietyssä maassa</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" value="allfromonecitynow">Haen ne matkailijat, jotka ovat nyt tietyssä kaupungissa </label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" value="allwhoareonthemovenow" >Haen ne matkailijat, jotka ovat nyt matkalla</label>
-    </div>
+            <!--täytetään alasvetovalikko-->
+        <select required name="country">
+        {% for maa in maat%}
+        <option value="{{maa.country}}">{{maa.country}}</option> 
+        {% endfor%}
+    </select>
+     <br> <br>
     
   
 
         <br>
         <div class="form-group">
-            <button type="submit" class="btn btn-success">Tallenna</button>
+            <button type="submit" class="btn btn-success">Hae</button>
 
         </div>
 

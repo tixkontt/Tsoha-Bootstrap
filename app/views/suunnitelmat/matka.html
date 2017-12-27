@@ -1,14 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3>{{user_logged_in.id}}:n matkan tiedot:</h3>
+<h3>Tervetuloa {{user_logged_in.username}}</h3>
+<h4>Täytä kentät ja tallenna matkasi painamalla Tallenna-painiketta</h4>
 
 
-<form method="post" action="{{base_path}}/matka">  
+<form method="post" action="{{base_path}}/matka"> <br> 
     <div class="form-group">
         Kohdemaa*:<br>
     </div>
-                <!--täytetään alasvetovalikko-->
+        <!--täytetään alasvetovalikko-->
         <select required name="country">
         {% for maa in maat%}
         <option value="{{maa.country}}">{{maa.country}}</option> 
@@ -17,8 +18,8 @@
 
                 
     <!--<div class="form-group"><input type="hidden" name="owner_id" value="{{gamemaster_logged_in.id}}"></div>-->
-    <div class="form-group"><input type="number" name ="hid"  value="{{user_logged_in.id}}"></div>                
-    <div class="form-group"><input name ="id" value="{{matka.id}}"></div>
+    <div class="form-group"><input type="hidden" name ="hid"  value="{{user_logged_in.id}}"></div>                
+   <div class="form-group"><input type = "hidden" name ="id" value="{{matka.id}}"></div>
 
 
     <div class="form-group">

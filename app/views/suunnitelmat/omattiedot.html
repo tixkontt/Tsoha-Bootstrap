@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
+<h2>Syötä henkilötiedot:</h2>
 
-<h1>Täydennä tiedot </h1>
+<!--{% if user_logged_in %}
+<h1>Tervetuloa {{user_logged_in.username}}, {{user_logged_in.id}} </h1>
+{%endif%}-->
 
 <form method="post" action="{{base_path}}/henkilo">  
 
@@ -65,20 +68,9 @@
             <input name =" password" type="password" value= "{{attributes.password}}" class="form-control">
         </div>
         <br>
- {% if henkilo.administrator ==1 %}
-        <label>Pääkäyttäjä</label><br>
-        <div class="radio">  
-            <!-- <input name ="gender" type="text" id="result" class="form-control"> -->
-            <label><input type="radio" name="administrator" value="yes">  Kyllä<br></label>
-        </div>
-        <div class="radio"> 
-            <label><input type="radio" name="administrator" value="no" checked>  Ei<br></label>
-        </div>
 
-        {%else%}
-         <label><input type="hidden" name="administrator" value="no">  Kyllä<br></label>
-        
-        {%endif%}
+
+
         <br>
         <div class="form-group">
             <button type="submit" class="btn btn-success">Tallenna</button>
@@ -90,4 +82,8 @@
 
 
 
+<!-- Kuvaus tulee tähän -->
+<p>
+   
+</p>
 {% endblock %}

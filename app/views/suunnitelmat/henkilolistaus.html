@@ -3,6 +3,7 @@
 {% import "macros/forms.html" as forms %}
 
   <h3>Valitse muokattava tai poistettava henkilo alla olevasta listasta:</h3>
+  <h4>Voit hakea myös henkilön matkoja</h4>
 
   <!-- Kaikki lomakkeen elementit form-tagin sisään -->
  
@@ -23,6 +24,7 @@
         <th>Pääkäyttäjä</th>
         <th>Muokkaa</th>
         <th>Poista</th>
+        <th>Hae matkat</th>
       </tr>
     </thead>
 
@@ -47,6 +49,7 @@
         <td> <a href="{{base_path}}/muokkaahenkiloa/{{henkilo.id}}" class="btn btn-default" role="button">Muokkaa</a></td>
        <!-- Poistetaan henkilö ilman varmistuksia-->
      <td>{{forms.destroy_button("#{base_path}/henkilo/#{henkilo.id}")}}</td>
+     <td> <a href ="{{base_path}}/henkilonmatkat/{{henkilo.id}}" class ="btn btn-info" role="button">Hae matkat</a></td>
 
             </tr>
       {%endfor%}

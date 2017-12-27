@@ -3,7 +3,7 @@
 class HaeMatka extends BaseModel {
 
 //attribuutit
-    public $id, $maa, $matka, $country, $arrivaldate, $departuredate, $address, $postcode, $city;
+    public $id, $hid, $vhid, $matkaid, $henkiloid, $maa, $matka, $country, $arrivaldate, $departuredate, $address, $postcode, $city;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -39,7 +39,7 @@ class HaeMatka extends BaseModel {
         $row = $query->fetch(); // haetaan vain yksi osuma
         //varmistetaan, että objekti $matka on null
         $matka = NULL;
- 
+
         //Mikäli kysely tuottaa rivin, kootaan tiedot listaksi
         if ($row) {
             $matka = new HaeMatka(array(
@@ -58,10 +58,11 @@ class HaeMatka extends BaseModel {
     }
 
     public static function HaeMatkatYhdestaMaasta($country) {
+        
         $query = DB::connection()->prepare('SELECT * FROM matka WHERE country = :country');
 
         $query->execute(array('country' => $country));
-        $row = $query->fetchall();
+        $rows = $query->fetchAll();
 
         $matkat = array();
 
@@ -75,43 +76,37 @@ class HaeMatka extends BaseModel {
                 'postcode' => $row['postcode'],
                 'city' => $row['city']));
 
-            return $matkat;
+            
         }
-        return null;
+        return $matkat;
     }
 
-    //Testataan, toimiiko...
+  
     public static function HaeYhdenHenkilonMatkat($id) {
-        $query = DB::connection()->prepare('SELECT valitaulu.matkaid, henkilo.familyname, matka.country, matka.city, matka.arrivaldate, matka.departuredate, henkilo.username 
-        FROM valitaulu, henkilo, matka
-        WHERE valitaulu.henkiloid = henkilo.id
-        AND valitaulu.matkaid=matka.id
-        and henkilo.id=:id');
-
-
-        $query->execute(array('country' => $country));
-        $row = $query->fetchall();
-
-        $matkat = array();
+        
+        $query = DB::connection()->prepare('SELECT valitaulu.matkaid AS matkaid, 
+        matka.country AS country, matka.city AS city, matka.arrivaldate AS arrivaldate, 
+        matka.departuredate AS departuredate, matka.address AS address, 
+        matka.postcode AS postcode, matka.city AS city 
+        FROM matka 
+        INNER JOIN valitaulu ON valitaulu.matkaid=matka.id AND valitaulu.henkiloid=:id');
+        $query->execute(array('id' => $id));
+        $rows = $query->fetchAll();
+        $matkalista = array();
 
         foreach ($rows as $row) {
-            $matkat = new Matka(array(
-                'henkilo.id' => $row['henkilo.id'],
-                'familyname'=>$row['familyname'],
+            $matkalista[] = new HaeMatka(array(
+                'id' => $row['matkaid'],
                 'country' => $row['country'],
                 'arrivaldate' => $row['arrivaldate'],
                 'departuredate' => $row['departuredate'],
                 'address' => $row['address'],
                 'postcode' => $row['postcode'],
-                'city' => $row['city']));
-
-            return $matkat;
+                'city' => $row['city']
+            ));
         }
-        return null;
+
+        return $matkalista;
     }
 
-//SELECT valitaulu.travelkey as matka, valitaulu.henkiloid as matkailija, matka.country as matkakohde, matka.arrivaldate as tulopaiva, matka.departuredate as lahtopaiva, henkilo.familyname as sukunimi 
-//FROM valitaulu, henkilo, matka
-//WHERE valitaulu.henkiloid = henkilo.id
-//AND valitaulu.travelkey=matka.id;
 }

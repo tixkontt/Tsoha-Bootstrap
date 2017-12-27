@@ -86,6 +86,31 @@ class Matka extends BaseModel {
         return NULL;
     }
 
+    public function etsihenkilonmatkat($id){
+        $query = DB::connection()->prepare('SELECT matka.id AS ID, matka.country AS Maa, matka.arrivaldate AS SAAPUMINEN, matka.departuredate AS POISTUMINEN, matka.address AS OSOITE, matka.postcode AS POSTCODE, matka.city AS KAUPUNKI FROM henkilo, matka, valitaulu  WHERE valitaulu.matkaid = matka.id AND valitaulu.henkiloid=henkilo.id AND henkilo.id =:id');
+        $query->execute(array('id' => $id));
+        $row = $query->fetchAll();
+        $matka = NULL;
+
+        if ($row) {
+            //Käydään rivit läpi
+            $matka = new Matka(array(
+                'id' => $row['id'],
+                'country' => $row['country'],
+                'arrivaldate' => $row['arrivaldate'],
+                'departuredate' => $row['departuredate'],
+                'address' => $row['address'],
+                'postcode'=>$row['postcode'],
+                'city' => $row['city']));
+            return $matka;
+        }
+        return NULL;
+        
+        
+        
+    }
+
+
     public function paivitamatka($id) {
         $query = DB::connection()->prepare('UPDATE matka SET (country, arrivaldate, departuredate, address, postcode, city) = (:country, :arrivaldate, :departuredate, :address, :postcode, :city) WHERE id = :id');
         $query->execute(array(
@@ -125,13 +150,32 @@ WHERE valitaulu.henkiloid = henkilo.id AND valitaulu.matkaid=matka.id AND matka.
         return $matka;
     }
 
+    
+        public static function ketkaovatnyttietyssamaassa($matkalainen) {
+       Kint::dump($matkalainen);
+        $query = DB::connection()->prepare('SELECT henkilo.id as id, henkilo.firstnames, henkilo.familyname, henkilo.mobilephone, henkilo.email,henkilo.nationality, matka.city, matka.arrivaldate as tulopaiva, matka.departuredate as lahtopaiva FROM valitaulu, henkilo, matka
+WHERE valitaulu.henkiloid = henkilo.id AND valitaulu.matkaid=matka.id AND matka.arrivaldate <= now() AND matka.departuredate>=now() AND matka.country =:country');
+        //Suoritetaan kysely
+        $query->execute();
+        //haetaan rivit
+        $rows = $query->fetchAll();
+//        $matkat = array();
+        $matkalaiset = array();
+        //Käydään rivit läpi
+        foreach ($rows as $row) {
+            $matkalaiset[] = new Matka(array(
+                'id' => $row['id'],
+                'firstnames' =>$row['firstnames'],
+                'familyname' => $row['familyname'],
+                'city'=>$row['city'],
+                'nationality' => $row['nationality'],
+                'mobilephone' => $row['mobilephone'],
+                'email' => $row['email'],
+                'arrivaldate'=>$row['arrivaldate'],
+                'departuredate'=>$row['departuredate']
+            ));
+        }
+//        Kint::dump($matkalaiset);
+        return $matkalaiset;
+    }
 }
-
-/* 
-
-  }
-}
-
- */
-
-//paivitamatka($id)

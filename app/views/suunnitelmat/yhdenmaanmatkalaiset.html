@@ -1,27 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
   {% if user_logged_in %}
-    <h2>Hei {{user_logged_in.username}}, voit hakea eri maissa olevia matkalaisia</h2>
+    <h1>Käyttäjä {{user_logged_in.username}} kirjautunut sisään</h1>
   {% endif %}
  <h3>Hae kohdemaassa nyt olevia matkalaisia:</h3>
  
-<form method="post" action="{{base_path}}/haematka"> 
+<form method="post" action="{{base_path}}/haematka">  
     <div class="form-group">
        
         Kohdemaa*:<br>
         <!-- <input type="text" placeholder="Etunimet"> <br>-->
 
-        <select required name="country">
+       <select required name="country">
+          
             {% for maa in maat%}
-            <option value="{{maa.country}}">{{maa.country}}</option> 
+  
+           <option value="{{maa.country}}">{{maa.country}}</option> 
             {% endfor%}
-        </select>
+        </select> 
 
-      <!--  <a href ="{{base_path}}/haematka/{{maa.country}}" class ="btn btn-primary" role="button">Hae matkat</a>-->
-      <button type="submit" class="btn btn-primary">Hae</button>
     </div>
-    
-    
                 
                  <table class="table table-striped table-bordered">
     <thead>
@@ -35,8 +33,8 @@
         <th>Kaupunki/maakunta</th>
         <th>Kohteeseen</th>
         <th>Kohteesta</th>
-       
-        
+        <th>Poista</th>
+        <th>Hae matkat</th>
       </tr>
     </thead>
 
@@ -56,23 +54,18 @@
         <td>{{matka.departuredate}}</td>
 
         
-    
+        <td> <a href="{{base_path}}/muokkaahenkiloa/{{henkilo.id}}" class="btn btn-default" role="button">Muokkaa</a></td>
+       <!-- Poistetaan henkilö ilman varmistuksia-->
+     <td>{{forms.destroy_button("#{base_path}/henkilo/#{henkilo.id}")}}</td>
+     <td> <a href ="{{base_path}}/henkilonmatkat/{{henkilo.id}}" class ="btn btn-info" role="button">Hae matkat</a></td>
+
       </tr>
         {% endfor%}
 
     <div class="form-group">
-        <!--<button type="submit" class="btn btn-primary">Hae</button>-->
-        
+        <button type="submit" class="btn btn-primary">Hae</button>
         <!--onclick="alert('Hello World!')">Click Me!</button>-->
     </div>
-    
-     
-            </tr>
-    
-    </tbody>
-  </table>
-
 </form>
-{% endblock %}
-     
-     
+
+     {% endblock %}
