@@ -3,15 +3,15 @@
 {% import "macros/forms.html" as forms %}
 
 
-<!--
-{%if message %}
-<div class="alert alert-success">
-{{message}}
-</div>
-{% endif %}
--->
-  <h3>Matkalistaus {{henkilo.familyname}}</h3>
 
+
+  <h3>Matkalistaus:</h3>
+  {%if matkamaara < 1%}
+  
+  <H2>  Henkilöllä ei ole matkoja tietokannassa</h2>
+ 
+
+  {%else%}
   <!-- Kaikki lomakkeen elementit form-tagin sisään 
  <form method="post" action="{{base_path}}/paivitamatka/{{matka.id}}"> --> 
     <!-- Tekstikenttä käyttäjätunnukselle -->
@@ -55,6 +55,6 @@
      
     </tbody>
   </table>
-
+ {%endif%}
    </form>
 {% endblock %}

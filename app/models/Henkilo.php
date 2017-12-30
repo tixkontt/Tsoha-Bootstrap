@@ -126,7 +126,7 @@ class Henkilo extends BaseModel {
         return NULL;
     }
     
-    public function etsiadmin($id){
+    public static function etsiadmin($id){
         $query =DB::connection()->prepare("SELECT id as id, familyname as familyname FROM henkilo where administrator ='t'AND id=:id LIMIT 1");
         $query->execute(array('id'=>$id));
         $row = $query->fetch();

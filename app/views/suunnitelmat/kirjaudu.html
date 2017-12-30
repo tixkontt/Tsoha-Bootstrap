@@ -1,17 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 
- {%if error %}
-<div class="alert alert-danger">
-{{error}}
-</div>
-{% endif %}
-
-{%if message %}
-<div class="alert alert-success">
-{{message}}
-</div>
-{% endif %}
 
 <h1> Kirjaudu sisään</h1>
 <!-- Kaikki lomakkeen elementit form-tagin sisään -->
@@ -29,13 +18,14 @@
         <input type="password" class="form-control" name = "password" >
     </div>
 
-    <!-- Salasanakenttä salasanalle 
-    <div class="form-group">
-        <label>Salasana uudelleen </label>
-        <input name = "password2" type="password" class="form-control">
-    </div>-->
-    <div class="form-group">
+    <div class="container">
         <button type="submit" class="btn btn-success">Kirjaudu sisään</button>
-    </div>
-</form>
-{% endblock %} 
+
+ <a href="{{base_path}}/luouusikayttaja" class="btn btn-info" role="button">Rekisteröidy</a>
+    </div>     
+            
+   </form>
+
+{% endblock %}
+
+

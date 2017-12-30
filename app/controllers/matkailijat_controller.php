@@ -120,8 +120,9 @@ class MatkailijaKontrolleri extends BaseController {
 
     public static function haeYhdenHenkilonMatkat($id) {
         $matkalista = HaeMatka::HaeYhdenHenkilonMatkat($id);
+        $matkamaara =count($matkalista);
         $maa = Maa::kaikkiMaat();
-        View::make('suunnitelmat/henkilonmatkat.html', array('matkalista' => $matkalista));
+        View::make('suunnitelmat/henkilonmatkat.html', array('matkalista' => $matkalista, 'matkamaara'=>$matkamaara));
 
     }
 
@@ -138,12 +139,12 @@ class MatkailijaKontrolleri extends BaseController {
 
     public static function lisaaHenkilo() {
         $maa = Maa::kaikkiMaat();
+//        $administrator= Henkilo::etsiadmin();
         View::make('suunnitelmat/henkilo.html', array('maat' => $maa));
     }
 
     public static function tallennaUusiMatka() {
         $params = $_POST; // Henkilo-id tulee lomakkeen tietojen mukana
-//        Kint::dump($params);
         $matka = new Matka(array(//'id' =>$params['id'],
             'hid' => $params['hid'],
             'country' => $params['country'],

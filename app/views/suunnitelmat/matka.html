@@ -15,11 +15,10 @@
         <option value="{{maa.country}}">{{maa.country}}</option> 
         {% endfor%}
     </select>
-
-                
+                       
     <!--<div class="form-group"><input type="hidden" name="owner_id" value="{{gamemaster_logged_in.id}}"></div>-->
-    <div class="form-group"><input type="hidden" name ="hid"  value="{{user_logged_in.id}}"></div>                
-   <div class="form-group"><input type = "hidden" name ="id" value="{{matka.id}}"></div>
+    <div class="form-group"><input type="hidden" name ="hid"  value={{user_logged_in.id}}></div>                
+   <div class="form-group"><input type = "hidden" name ="id" value={{matka.id}}></div>
 
 
     <div class="form-group">

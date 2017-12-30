@@ -1,16 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Syötä henkilötiedot:</h2>
-
-<!--{% if user_logged_in %}
-<h1>Tervetuloa {{user_logged_in.username}}, {{user_logged_in.id}} </h1>
-{%endif%}-->
+<h2>Syötä henkilötiedot:{{henkilo.administrator}}</h2>
 
 <form method="post" action="{{base_path}}/henkilo">  
 
 
     <div class="form-group"> 
         <h4>Tähdellä (*) merkityt kohdat ovat pakollisia</h4>
+    
 
         <div class="form-group">
             <label>Etunimet*</label>
@@ -42,9 +39,9 @@
 
         <!--täytetään alasvetovalikko-->
         <select required name="nationality">
+            
             {% for maa in maat%}
             <option value="{{maa.country}}">{{maa.country}}</option> 
-
 
             {% endfor%}
         </select>
@@ -68,7 +65,7 @@
             <input name =" password" type="password" value= "{{attributes.password}}" class="form-control">
         </div>
         <br>
- {% if henkilo.administrator ==1 %}
+ {% if user_logged_in.administrator ==1 %}
         <label>Pääkäyttäjä</label><br>
         <div class="radio">  
             <!-- <input name ="gender" type="text" id="result" class="form-control"> -->
