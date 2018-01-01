@@ -1,13 +1,8 @@
 <?php
 $routes->get('/', function() {
-    MatkailijaKontrolleri::etusivu();
+    Kayttajahallinta::kirjaudu();
 });
-$routes->get('/etusivu', function() {
-    MatkailijaKontrolleri::etusivu();
-});
-$routes->get('/hiekkalaatikko', function() {
-    HelloWorldController::sandbox();
-});
+
 
 //********** kirjautuminen*****************
 $routes->get('/kirjaudu', function() {

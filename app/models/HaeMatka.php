@@ -58,7 +58,7 @@ class HaeMatka extends BaseModel {
     }
 
     public static function HaeMatkatYhdestaMaasta($country) {
-        
+
         $query = DB::connection()->prepare('SELECT * FROM matka WHERE country = :country');
 
         $query->execute(array('country' => $country));
@@ -75,15 +75,12 @@ class HaeMatka extends BaseModel {
                 'address' => $row['address'],
                 'postcode' => $row['postcode'],
                 'city' => $row['city']));
-
-            
         }
         return $matkat;
     }
 
-  
     public static function HaeYhdenHenkilonMatkat($id) {
-        
+
         $query = DB::connection()->prepare('SELECT valitaulu.matkaid AS matkaid, 
         matka.country AS country, matka.city AS city, matka.arrivaldate AS arrivaldate, 
         matka.departuredate AS departuredate, matka.address AS address, 

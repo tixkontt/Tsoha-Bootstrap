@@ -1,15 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-  {% if user_logged_in %}
-    <h2>Hei {{user_logged_in.username}}, voit hakea eri maissa olevia matkalaisia</h2>
-  {% endif %}
- <h3>Hae kohdemaassa nyt olevia matkalaisia:</h3>
- 
+{% if user_logged_in %}
+<h2>Hei {{user_logged_in.username}}, voit hakea eri maissa olevia matkalaisia</h2>
+{% endif %}
+<h3>Hae kohdemaassa nyt olevia matkalaisia:</h3>
+
 <form method="post" action="{{base_path}}/haematka"> 
     <div class="form-group">
-       
+
         Kohdemaa*:<br>
-        <!-- <input type="text" placeholder="Etunimet"> <br>-->
 
         <select required name="country">
             {% for maa in maat%}
@@ -17,62 +16,55 @@
             {% endfor%}
         </select>
 
-      <!--  <a href ="{{base_path}}/haematka/{{maa.country}}" class ="btn btn-primary" role="button">Hae matkat</a>-->
-      <button type="submit" class="btn btn-primary">Hae</button>
+
+        <button type="submit" class="btn btn-primary">Hae</button>
     </div>
-    
-    
-                
-                 <table class="table table-striped table-bordered">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Etunimet</th>
-        <th>Sukunimi</th>
-        <th>Matkapuh.</th>
-        <th>Sähköposti</th>
-        <th>Kansalaisuus</th>
-        <th>Kaupunki/maakunta</th>
-        <th>Kohteeseen</th>
-        <th>Kohteesta</th>
-       
-        
-      </tr>
-    </thead>
 
-    <tbody>
-      <!-- Listataan maat tähän -->
-      {% for henkilo in matkalaiset%}
-      <tr>
-        <!--<td><a href="{{base_path}}/matkalistaus/{{matkakohde.id}}">matka</a></td>-->
-        <td>{{henkilo.id}}</td>
-        <td>{{henkilo.firstnames}}</td>
-        <td>{{henkilo.familyname}}</td>
-        <td>{{henkilo.mobilephone}}</td>
-        <td>{{henkilo.email}}</td>
-        <td>{{henkilo.nationality}}</td>
-        <td>{{matka.city}}</td>
-        <td>{{matka.arrivadate}}</td>
-        <td>{{matka.departuredate}}</td>
 
-        
-    
-      </tr>
-        {% endfor%}
 
-    <div class="form-group">
-        <!--<button type="submit" class="btn btn-primary">Hae</button>-->
-        
-        <!--onclick="alert('Hello World!')">Click Me!</button>-->
-    </div>
-    
-     
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Etunimet</th>
+                <th>Sukunimi</th>
+                <th>Matkapuh.</th>
+                <th>Sähköposti</th>
+                <th>Kansalaisuus</th>
+                <th>Kaupunki/maakunta</th>
+                <th>Kohteeseen</th>
+                <th>Kohteesta</th>
+
+
             </tr>
-    
-    </tbody>
-  </table>
+        </thead>
+
+        <tbody>
+            <!-- Listataan maat tähän -->
+            {% for henkilo in matkalaiset%}
+            <tr>
+                <td>{{henkilo.id}}</td>
+                <td>{{henkilo.firstnames}}</td>
+                <td>{{henkilo.familyname}}</td>
+                <td>{{henkilo.mobilephone}}</td>
+                <td>{{henkilo.email}}</td>
+                <td>{{henkilo.nationality}}</td>
+                <td>{{matka.city}}</td>
+                <td>{{matka.arrivadate}}</td>
+                <td>{{matka.departuredate}}</td>
+
+
+
+            </tr>
+            {% endfor%}
+
+
+
+            </tr>
+
+        </tbody>
+    </table>
 
 </form>
 {% endblock %}
-     
-     
+

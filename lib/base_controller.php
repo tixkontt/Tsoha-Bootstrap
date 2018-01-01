@@ -18,9 +18,20 @@
       // Toteuta kirjautumisen tarkistus tähän.
       // Jos käyttäjä ei ole kirjautunut sisään, ohjaa hänet toiselle sivulle (esim. kirjautumissivulle).
             if(!isset($_SESSION['henkilo'])){
-                Redirect::to('/luouusikayttaja', array('message'=> 'Kirjaudu sisään tai rekisteröidy!'));
+                Redirect::to('/kirjaudu', array('message'=> 'Kirjaudu sisään tai rekisteröidy!'));
             }
         
         
+    }
+    
+    public static function haehenkilon_id(){
+        if(isset($_SESSION['henkilo'])){
+            $henkilo_id = $_SESSION['henkilo'];
+            
+            return $henkilo_id;
+       
+        }
+        
+        return NULL;
     }
   }

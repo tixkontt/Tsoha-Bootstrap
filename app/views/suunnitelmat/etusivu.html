@@ -30,28 +30,19 @@
         <th>Saapumispäivä</th>
         <th>Lähtöpäivä</th>
         <th>Kaupunki</th>
-      <!--  <th>Muokkaa</th>
-        <th>Poista</th>-->
       </tr>
     </thead>
 
     <tbody>
     {% for matka in matkat%}
      <tr>
-  <!--  <td><a href="{{base_path}}/matkallanyt/{{matka.id}}">matka</a></td>-->
         <td>{{matka.hid}}</td>
         <td>{{matka.matkailija}}</td>
         <td>{{matka.matkakohde}}</td>
         <td>{{matka.tulopaiva}}</td>
         <td>{{matka.lahtopaiva}}</td>
         <td>{{matka.kaupunki}}</td>
-         <!--<td> <a href="{{base_path}}/matka" class="btn btn-default" role="button">Muokkaa</a></td>-->
-     <!--   <td> <a href="{{base_path}}/paivitamatka/{{matka.id}}" class="btn btn-default" role="button">Muokkaa</a></td>
-       <!-- <td><button type = "submit" class="btn btn-danger" <a class="btn btn-default btn-sm" href="#">Poista</a></button></td>-->
-    <!--   <td>{{forms.destroy_button("#{base_path}/matka/#{matka.id}")}}</td>
-    
-        <!--onclick="alert('Hello World!')">Click Me!</button>-->
-     
+
             </tr>
       {%endfor%}
      

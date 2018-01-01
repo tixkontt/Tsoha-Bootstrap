@@ -10,6 +10,8 @@ class Matka extends BaseModel {
     }
 
     public static function all() {
+
+
         //alustetaan tietokantayhteys
         $query = DB::connection()->prepare('SELECT * FROM matka');
         //Suoritetaan kysely
@@ -61,8 +63,6 @@ class Matka extends BaseModel {
     public function poistaMatka() {
         $query = DB::connection()->prepare('DELETE FROM matka WHERE matka.id=:id');
         $query->execute(array('id' => $this->id));
-//        $query=NULL; 
-//        $query =DB::connection()->prepare('DELETE FROM valitaulu where ')
     }
 
     public static function etsimatka($id) {
@@ -86,7 +86,7 @@ class Matka extends BaseModel {
         return NULL;
     }
 
-    public function etsihenkilonmatkat($id){
+    public function etsihenkilonmatkat($id) {
         $query = DB::connection()->prepare('SELECT matka.id AS ID, matka.country AS Maa, matka.arrivaldate AS SAAPUMINEN, matka.departuredate AS POISTUMINEN, matka.address AS OSOITE, matka.postcode AS POSTCODE, matka.city AS KAUPUNKI FROM henkilo, matka, valitaulu  WHERE valitaulu.matkaid = matka.id AND valitaulu.henkiloid=henkilo.id AND henkilo.id =:id');
         $query->execute(array('id' => $id));
         $row = $query->fetchAll();
@@ -100,16 +100,12 @@ class Matka extends BaseModel {
                 'arrivaldate' => $row['arrivaldate'],
                 'departuredate' => $row['departuredate'],
                 'address' => $row['address'],
-                'postcode'=>$row['postcode'],
+                'postcode' => $row['postcode'],
                 'city' => $row['city']));
             return $matka;
         }
         return NULL;
-        
-        
-        
     }
-
 
     public function paivitamatka($id) {
         $query = DB::connection()->prepare('UPDATE matka SET (country, arrivaldate, departuredate, address, postcode, city) = (:country, :arrivaldate, :departuredate, :address, :postcode, :city) WHERE id = :id');
@@ -122,8 +118,6 @@ class Matka extends BaseModel {
             'postcode' => $this->postcode,
             'city' => $this->city
         ));
-//        $row = $query->fetch();
-//        $this->id = $row['id'];
     }
 
     public static function ketkaovatmatkallanyt() {
@@ -146,13 +140,11 @@ WHERE valitaulu.henkiloid = henkilo.id AND valitaulu.matkaid=matka.id AND matka.
                 'lahtopaiva' => $row['lahtopaiva'],
             ));
         }
-//        Kint::dump($matka);
         return $matka;
     }
 
-    
-        public static function ketkaovatnyttietyssamaassa($matkalainen) {
-       Kint::dump($matkalainen);
+    public static function ketkaovatnyttietyssamaassa($matkalainen) {
+        Kint::dump($matkalainen);
         $query = DB::connection()->prepare('SELECT henkilo.id as id, henkilo.firstnames, henkilo.familyname, henkilo.mobilephone, henkilo.email,henkilo.nationality, matka.city, matka.arrivaldate as tulopaiva, matka.departuredate as lahtopaiva FROM valitaulu, henkilo, matka
 WHERE valitaulu.henkiloid = henkilo.id AND valitaulu.matkaid=matka.id AND matka.arrivaldate <= now() AND matka.departuredate>=now() AND matka.country =:country');
         //Suoritetaan kysely
@@ -165,17 +157,18 @@ WHERE valitaulu.henkiloid = henkilo.id AND valitaulu.matkaid=matka.id AND matka.
         foreach ($rows as $row) {
             $matkalaiset[] = new Matka(array(
                 'id' => $row['id'],
-                'firstnames' =>$row['firstnames'],
+                'firstnames' => $row['firstnames'],
                 'familyname' => $row['familyname'],
-                'city'=>$row['city'],
+                'city' => $row['city'],
                 'nationality' => $row['nationality'],
                 'mobilephone' => $row['mobilephone'],
                 'email' => $row['email'],
-                'arrivaldate'=>$row['arrivaldate'],
-                'departuredate'=>$row['departuredate']
+                'arrivaldate' => $row['arrivaldate'],
+                'departuredate' => $row['departuredate']
             ));
         }
-//        Kint::dump($matkalaiset);
+
         return $matkalaiset;
     }
+
 }

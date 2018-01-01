@@ -13,8 +13,8 @@ class Kayttajahallinta extends BaseController {
     }
 
     //kirjautumienen siinä tapauksessa, että käyttäjällä on jo tunnukset
-
     public static function kasittele_kirjautuminen() {
+  
         $params = $_POST; // tuodaan lomakkeen tiedot
         $henkilo = new Henkilo(array(
 //            'id' =>$params['id'],
@@ -34,14 +34,15 @@ class Kayttajahallinta extends BaseController {
         $henkilo = Kirjaudu::Kirjaudu($params['username'], $params['password']);
         if (!$henkilo) {
             View::make('suunnitelmat/kirjaudu.html', array('error' => 'Käyttäjää ei ole tietokannassa'));
-        } else if (!$henkilo->administrator) {
+//        } else if (!$henkilo->administrator) {
             View::make('suunnitelmat/kirjaudu.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'username' => $params['username']));
-        } else {
+        } 
+        else {
             $_SESSION['henkilo'] = $henkilo->id; // Tässä lisätään assosiaatiolistaan kirjautuneen henkilön id.
             Redirect::to('/matkallanyt', array('message' => 'Tervetuloa takaisin ' . $henkilo->username . '!'));
         }
     }
-
+   
     //tuodaan kirjautumissivu näkyviin
     public static function luouusikayttajalomake() {
         View::make('suunnitelmat/luouusikayttaja.html');
@@ -49,17 +50,15 @@ class Kayttajahallinta extends BaseController {
 
     //kirjautuminen siinä tapauksessa, ettei käyttäjällä vielä ole tunnuksia
     public static function luouusikayttaja() {
+               
         $params = $_POST; // tuodaan lomakkeen tiedot
-//        View::make('suunnitelmat/luouusikayttaja.html');
+
         $henkilo = new Henkilo(array(
-//            'id' =>$params['id'],
             'username' => $params['username'],
             'password' => $params['password'],
             'password2' => $params['password2']
         ));
         //kutsutaan validaattoreita
-//        $kayttajatunnusvirhe = $henkilo->validoi_kayttajatunnus();
-//        $salasanavirhe = $henkilo->validoi_salasana();
         $kayttajatunnusvirhe = $henkilo->validoi_kayttajatunnus();
         $kirjautumisvirhe = $henkilo->validoi_salasanat();
         $errors = array_merge($kayttajatunnusvirhe, $kirjautumisvirhe);
@@ -95,10 +94,12 @@ class Kayttajahallinta extends BaseController {
         $query->execute(array(
             'username' => $this->username,
             'password' => $this->password,
-//            'administrator' => $this->administrator));
+
         ));
         $row = $query->fetch();
         $this->id = $row['id'];
     }
+    
+    
 
 }

@@ -62,7 +62,6 @@ class Henkilo extends BaseModel {
     }
 
     public function poistaHenkilo($id) {
-//        $query = DB::connection()->prepare('DELETE FROM valitaulu WHERE henkiloid = :id');
         $query = DB::connection()->prepare('DELETE FROM henkilo WHERE henkilo.id = :id');
         $query->execute(array('id' => $this->id));
     }
@@ -95,6 +94,7 @@ class Henkilo extends BaseModel {
         }
         return $henkilo;
     }
+
 
     public static function etsihenkilo($id) {
         //alustetaan tietokantayhteys
@@ -136,7 +136,7 @@ class Henkilo extends BaseModel {
                 'administrator'=>$row['administrator']
              ));
             return $administrator;    
-                                
+        
         }
         
         return NULL;

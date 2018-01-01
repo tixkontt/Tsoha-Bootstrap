@@ -42,13 +42,15 @@
         <div class="collapse navbar-collapse" id="navigation">
           <ul class="nav navbar-nav">
             <!-- Navigaation linkit -->
-            <!--<li><a href="{{base_path}}">Henkilötiedot</a></li>-->
+              <li><a href="{{base_path}}/matkallanyt">Matkalla parhaillaan</a></li>           
+              <li><a href="{{base_path}}/matkalistaus">Kaikki matkat</a></li>  
+              
             <li><a href="{{base_path}}/henkilo">Lisää henkilö</a></li>
              <li><a href="{{base_path}}/henkilolistaus">Kaikki henkilöt</a></li>
              <li><a href="{{base_path}}/luouusikayttaja">Luo uusi käyttäjä</a></li>
-             <li><a href="{{base_path}}/haematka">Hae matkoja</a></li>
+
             <li><a href="{{base_path}}/matka"> Lisää matka</a> </li>
-            <li><a href="{{base_path}}/matkalistaus">Kaikki matkat</a></li>
+
           </ul>
             
            <form class="navbar-form navbar-right" method="post" action="{{base_path}}/kirjauduulos">
@@ -56,10 +58,10 @@
            <button type="submit" class="btn btn-danger">Kirjaudu ulos</button>
           </form>
           {%else%}
-          <ul class="nav navbar-nav navbar-right">          
+        <!--  <ul class="nav navbar-nav navbar-right">          
           <li><a href="{{base_path}}/kirjaudu">Kirjaudu sisään</a></li>
            </ul>
-
+-->
           {% endif %}
         </div>
       </div>
