@@ -1,9 +1,8 @@
-Matkustustiedot helposti# Tietokantasovelluksen esittelysivu
+# Matkustustiedot helposti
 
 Yleisiä linkkejä:
 
 * [Linkki sovellukseeni](https://tixkontt.users.cs.helsinki.fi/Tietokantalabra/)
-<<<<<<< HEAD
 * [Linkki dokumentaatiooni](https://github.com/tixkontt/Tsoha-Bootstrap)
 * [Linkki etusivulle](https://tixkontt.users.cs.helsinki.fi/Tietokantalabra/kirjaudu)
 * [Linkki kirjatumissivulle](https://tixkontt.users.cs.helsinki.fi/Tietokantalabra/kirjaudu)
@@ -13,28 +12,20 @@ Yleisiä linkkejä:
 
 ## Työn aihe
 
-Työn aihe on Matkustustiedot helposti
-
 Ohjelma tulee olemaan samankaltainen kuin ulkoministeriön matkustusilmoitustietokanta.
 Matkustaja täyttää matkustusilmoituksen ja käyttäjä sekä ministeriön kriisipäivystäjä voivat selailla ilmoituksia.
-##[linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Pokemon-kanta.html) 
+[linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Pokemon-kanta.html) 
 [linkki valmiiseen aiheeseen](http://tixkontt.users.cs.helsinki.fi/Tietokantalabra/)
 =======
 * [Linkki dokumentaatiooni](https://github.com/tixkontt/Tsoha-Bootstrap/blob/master/doc/dokumentaatio.pdf)
 
-## Työn aihe
-
-Työn aihe on Matkustustietokanta
-
-Ohjelmalla käyttäjä  voi syöttää tietokantaan matkan ja selailla, muokata ja poistaa matkoja
-.
-Matkustaja täyttää matkustusilmoituksen, jonka jälkeen sekä käyttäjä että ministeriön kriisipäivystäjä voivat selailla ilmoituksia.
+## Käyttäjätunnukset testikäyttöä varten
 
 Testaamista varten on luotu käyttäjätunnus ja salasana
 Peruskäyttäjä:
 Käyttäjätunnus: TheSinger
 Salasana:MetalRues
-
+=======
 Pääkäyttäjä:
 Käyttäjätunnus: motoristi
 Salasana: salasanat
